@@ -139,7 +139,7 @@ Soy tu asistente virtual y estoy aquí para ayudarte. ¿Qué te gustaría hacer?
 </div>
 
 <script>
-var WA_NUMBER='34643199580'; // Tu WhatsApp de ejemplo
+var WA_NUMBER='34643199580';
 var state={step:0,service:'',name:'',apellidos:'',tel:'',date:'',time:''};
 
 function addMsg(text,type){
@@ -254,17 +254,16 @@ function pickDate(el,ds){
   state.date=ds;
   addMsg(ds,'user');
   setTimeout(function(){
-    addMsg('Día '+ds+'. ¿Qué hora te viene mejor? Las horas tachadas ya están ocupadas:');
+    addMsg('Día '+ds+'. ¿Qué hora te viene mejor? La clínica confirmará la disponibilidad:');
     setTimeout(showTimes,400);
   },600);
 }
 
 function showTimes(){
   var ts=['09:00','09:30','10:00','10:30','11:00','11:30','12:00','12:30','16:00','16:30','17:00','17:30','18:00','18:30','19:00','19:30'];
-  var occ={};for(var i=0;i<5;i++)occ[ts[Math.floor(Math.random()*ts.length)]]=1;
   var h='<div class="times">';
   ts.forEach(function(t){
-    h+=occ[t]?'<div class="time-off">'+t+'</div>':'<button class="time-btn" onclick="pickTime(this,\''+t+'\')">'+t+'</button>';
+    h+='<button class="time-btn" onclick="pickTime(this,\''+t+'\')">'+t+'</button>';
   });
   h+='</div>';
   addHtml(h);
@@ -290,7 +289,7 @@ function pickTime(el,t){
         +'📅 *Fecha:* '+state.date+'\n'
         +'🕐 *Hora:* '+state.time+'\n\n'
         +'_Enviado desde Chatbot IA WhiteMoon_';
-      var waUrl='https://wa.me/'+WA_NUMBER+'?text='+encodeURIComponent(waMsg);
+      var waUrl='https://api.whatsapp.com/send?phone='+WA_NUMBER+'&text='+encodeURIComponent(waMsg);
       window.open(waUrl,'_blank');
 
       // Confirmation card
