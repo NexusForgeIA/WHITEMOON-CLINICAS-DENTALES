@@ -293,11 +293,8 @@ function pickTime(el,t){
 
       // Enviar al webhook (N8N)
       if(WEBHOOK_URL){
-        fetch(WEBHOOK_URL,{
-          method:'POST',
-          headers:{'Content-Type':'application/json'},
-          body:JSON.stringify(datos)
-        }).then(function(r){console.log('Webhook OK')}).catch(function(e){console.log('Webhook error:',e)});
+        var img=new Image();
+        img.src=WEBHOOK_URL+'?nombre='+encodeURIComponent(datos.nombre)+'&apellidos='+encodeURIComponent(datos.apellidos)+'&telefono='+encodeURIComponent(datos.telefono)+'&servicio='+encodeURIComponent(datos.servicio)+'&fecha='+encodeURIComponent(datos.fecha)+'&hora='+encodeURIComponent(datos.hora);
       }
 
       // También abrir WhatsApp como respaldo si hay número configurado
