@@ -296,9 +296,8 @@ function pickTime(el,t){
         fetch(WEBHOOK_URL,{
           method:'POST',
           headers:{'Content-Type':'application/json'},
-          body:JSON.stringify(datos),
-          mode:'no-cors'
-        }).catch(function(e){console.log('Webhook error:',e)});
+          body:JSON.stringify(datos)
+        }).then(function(r){console.log('Webhook OK')}).catch(function(e){console.log('Webhook error:',e)});
       }
 
       // También abrir WhatsApp como respaldo si hay número configurado
