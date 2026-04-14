@@ -140,6 +140,7 @@ Soy tu asistente virtual y estoy aquí para ayudarte. ¿Qué te gustaría hacer?
 
 <script>
 var WA_NUMBER='34643199580';
+var WEBHOOK_URL='https://whitemoon.app.n8n.cloud/webhook/chatbot-cita';
 var state={step:0,service:'',name:'',apellidos:'',tel:'',date:'',time:''};
 
 function addMsg(text,type){
@@ -277,23 +278,44 @@ function pickTime(el,t){
   addMsg(state.date+' a las '+t,'user');
 
   setTimeout(function(){
-    // Summary
     addMsg('Perfecto '+state.name+'. He registrado tu solicitud de cita:\n\n• Nombre: '+state.name+' '+state.apellidos+'\n• Teléfono: '+state.tel+'\n• Tratamiento: '+state.service+'\n• Fecha: '+state.date+'\n• Hora: '+state.time+'\n\nEnviando datos al equipo...');
 
     setTimeout(function(){
-      // WhatsApp message
-      var waMsg='🦷 *NUEVA CITA — Chatbot IA*\n\n'
-        +'👤 *Nombre:* '+state.name+' '+state.apellidos+'\n'
-        +'📱 *Teléfono:* '+state.tel+'\n'
-        +'🦷 *Tratamiento:* '+state.service+'\n'
-        +'📅 *Fecha:* '+state.date+'\n'
-        +'🕐 *Hora:* '+state.time+'\n\n'
-        +'_Enviado desde Chatbot IA WhiteMoon_';
-      var waUrl='https://api.whatsapp.com/send?phone='+WA_NUMBER+'&text='+encodeURIComponent(waMsg);
-      window.open(waUrl,'_blank');
+      // Enviar datos al webhook de N8N
+      var datos={
+        nombre: state.name,
+        apellidos: state.apellidos,
+        telefono: state.tel,
+        servicio: state.service,
+        fecha: state.date,
+        hora: state.time
+      };
+
+      // Enviar al webhook (N8N)
+      if(WEBHOOK_URL){
+        fetch(WEBHOOK_URL,{
+          method:'POST',
+          headers:{'Content-Type':'application/json'},
+          body:JSON.stringify(datos),
+          mode:'no-cors'
+        }).catch(function(e){console.log('Webhook error:',e)});
+      }
+
+      // También abrir WhatsApp como respaldo si hay número configurado
+      if(WA_NUMBER){
+        var waMsg='🦷 *NUEVA CITA — Chatbot IA*\n\n'
+          +'👤 *Nombre:* '+state.name+' '+state.apellidos+'\n'
+          +'📱 *Teléfono:* '+state.tel+'\n'
+          +'🦷 *Tratamiento:* '+state.service+'\n'
+          +'📅 *Fecha:* '+state.date+'\n'
+          +'🕐 *Hora:* '+state.time+'\n\n'
+          +'_Enviado desde Chatbot IA WhiteMoon_';
+        var waUrl='https://api.whatsapp.com/send?phone='+WA_NUMBER+'&text='+encodeURIComponent(waMsg);
+        window.open(waUrl,'_blank');
+      }
 
       // Confirmation card
-      addHtml('<div class="wa-confirm"><div class="wa-icon">✅</div><div class="wa-title">¡Solicitud de cita registrada!</div><div class="wa-text">Hemos enviado tus datos a nuestro equipo por WhatsApp.<br><br>Revisarán la disponibilidad y si el día y hora seleccionados no estuvieran disponibles, te llamarán para proponerte la fecha y hora más cercana posible.<br><br>¡Gracias por confiar en nosotros! 😊</div></div>');
+      addHtml('<div class="wa-confirm"><div class="wa-icon">✅</div><div class="wa-title">¡Solicitud de cita registrada!</div><div class="wa-text">Hemos enviado tus datos a nuestro equipo.<br><br>Revisarán la disponibilidad y si el día y hora seleccionados no estuvieran disponibles, te llamarán para proponerte la fecha y hora más cercana posible.<br><br>¡Gracias por confiar en nosotros! 😊</div></div>');
 
       addMsg('Si necesitas algo más, estoy aquí para ayudarte. ¡Que tengas un excelente día! 🌟');
     },1500);
