@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Dental WhiteMoon — Tu sonrisa empieza aquí</title>
+<title>Clínica Dental Ejemplo — Tu sonrisa empieza aquí</title>
 <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
@@ -18,36 +18,72 @@
   --text-soft:#475569;
   --border:#e2e8f0;
 }
-body{font-family:'Outfit',sans-serif;background:var(--bg);color:var(--text);min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:flex-start;padding:20px;position:relative}
-body::before{content:'';position:fixed;top:-50%;left:-50%;width:200%;height:200%;background:radial-gradient(circle at 30% 40%,rgba(14,165,233,.08) 0%,transparent 50%),radial-gradient(circle at 70% 60%,rgba(6,182,212,.06) 0%,transparent 50%);pointer-events:none;z-index:0}
+body{font-family:'Inter','Segoe UI',system-ui,-apple-system,sans-serif;background:#fff;color:var(--text-soft);margin:0;padding:0;min-height:100vh;line-height:1.6}
 
-/* Header */
-.header{text-align:center;margin-bottom:10px;position:relative;z-index:1}
-.logo{display:flex;align-items:center;justify-content:center;gap:12px;margin-bottom:8px}
-.logo img{height:44px;border-radius:12px;box-shadow:0 4px 14px rgba(14,165,233,.18)}
-.logo-text{font-size:1.4rem;font-weight:800;color:var(--text);letter-spacing:-.02em}
-.logo-text span{color:var(--primary)}
-.header p{color:var(--text-soft);font-size:.85rem;font-weight:400}
+/* Fake clinic site */
+.site-header{background:#fff;border-bottom:1px solid var(--border);padding:18px 6%;display:flex;justify-content:space-between;align-items:center;position:sticky;top:0;z-index:10}
+.site-logo{font-weight:700;font-size:1.15rem;color:#1e293b;display:flex;align-items:center;gap:10px}
+.site-logo-icon{width:36px;height:36px;border-radius:8px;background:linear-gradient(135deg,#0ea5e9,#06b6d4);display:flex;align-items:center;justify-content:center;color:#fff;font-size:1.1rem}
+.site-nav{display:flex;gap:24px;font-size:.9rem}
+.site-nav a{color:var(--text-soft);text-decoration:none;transition:color .2s}
+.site-nav a:hover{color:var(--primary)}
+.site-hero{padding:60px 6% 50px;background:linear-gradient(135deg,#f0f9ff 0%,#ecfeff 100%);text-align:center}
+.site-hero h1{font-size:2.4rem;color:#0f172a;margin-bottom:14px;font-weight:700;line-height:1.2}
+.site-hero p{font-size:1.05rem;color:var(--text-soft);max-width:640px;margin:0 auto 22px}
+.site-hero-cta{display:inline-block;background:var(--primary);color:#fff;padding:12px 30px;border-radius:8px;text-decoration:none;font-weight:600;transition:background .2s}
+.site-hero-cta:hover{background:var(--primary-dark)}
+.site-section{padding:50px 6%;max-width:1100px;margin:0 auto}
+.site-section h2{font-size:1.7rem;color:#0f172a;margin-bottom:24px;text-align:center;font-weight:700}
+.site-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:24px}
+.site-card{background:#fff;border:1px solid var(--border);border-radius:12px;padding:24px;transition:transform .2s,box-shadow .2s}
+.site-card:hover{transform:translateY(-3px);box-shadow:0 6px 20px rgba(15,23,42,.06)}
+.site-card-icon{font-size:2rem;margin-bottom:10px}
+.site-card h3{font-size:1.1rem;color:#0f172a;margin-bottom:8px;font-weight:600}
+.site-card p{font-size:.92rem;color:#64748b}
+.site-team{background:#f8fafc;padding:50px 6%}
+.site-team h2{font-size:1.7rem;color:#0f172a;margin-bottom:24px;text-align:center;font-weight:700}
+.site-team-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:24px;max-width:1000px;margin:0 auto}
+.site-team-card{text-align:center}
+.site-team-card h3{color:#0f172a;font-size:1.05rem;margin-bottom:4px;font-weight:600}
+.site-team-card p{color:var(--text-soft);font-size:.88rem}
+.site-team-avatar{width:80px;height:80px;border-radius:50%;background:linear-gradient(135deg,#0ea5e9,#06b6d4);margin:0 auto 12px;display:flex;align-items:center;justify-content:center;color:#fff;font-size:1.6rem;font-weight:700}
+.site-footer{background:#0f172a;color:#94a3b8;padding:40px 6% 24px;text-align:center;font-size:.88rem}
+.site-footer-name{color:#fff;font-weight:600;margin-bottom:8px;font-size:1rem}
 
-/* Hero */
-.hero{text-align:center;padding:24px 20px 16px;max-width:680px;margin:0 auto;position:relative;z-index:1}
-.hero-icon{font-size:3rem;margin-bottom:10px}
-.hero-title{font-size:2rem;font-weight:700;color:var(--text);margin:0 0 12px;line-height:1.2}
-.hero-sub{font-size:1rem;color:var(--text-soft);margin:0 0 20px;line-height:1.5}
-.hero-sub strong{color:var(--primary)}
-.hero-trust{display:flex;justify-content:center;gap:18px;flex-wrap:wrap;margin-bottom:14px;font-size:.85rem;color:var(--text-soft)}
-.hero-rating{display:flex;align-items:center;justify-content:center;gap:8px;font-size:.85rem;color:var(--text-soft)}
-.stars{color:#fbbf24;font-size:1rem;letter-spacing:2px}
+/* Floating chat button */
+.fab{position:fixed;bottom:24px;right:24px;width:64px;height:64px;border-radius:50%;background:linear-gradient(135deg,#0ea5e9,#06b6d4);border:none;cursor:pointer;box-shadow:0 8px 24px rgba(14,165,233,.4),0 0 0 0 rgba(14,165,233,.5);display:flex;align-items:center;justify-content:center;font-size:1.8rem;z-index:9998;transition:transform .2s;animation:fabPulse 2.2s infinite;color:#fff}
+.fab:hover{transform:scale(1.08)}
+.fab.open{animation:none}
+@keyframes fabPulse{
+  0%,100%{box-shadow:0 8px 24px rgba(14,165,233,.4),0 0 0 0 rgba(14,165,233,.5)}
+  50%{box-shadow:0 8px 24px rgba(14,165,233,.4),0 0 0 16px rgba(14,165,233,0)}
+}
 
-/* Chat */
-.chat-container{width:100%;max-width:440px;background:var(--card);border:1px solid var(--border);border-radius:24px;overflow:hidden;box-shadow:0 12px 40px rgba(15,23,42,.08);position:relative;z-index:1;display:flex;flex-direction:column}
-.chat-head{background:linear-gradient(135deg,#0ea5e9 0%,#06b6d4 100%);padding:18px;color:#fff;display:flex;justify-content:space-between;align-items:center;flex-shrink:0}
+/* Teaser bubble */
+.teaser{position:fixed;bottom:42px;right:104px;background:#fff;color:var(--text);padding:14px 18px;border-radius:16px 16px 4px 16px;box-shadow:0 12px 32px rgba(15,23,42,.18);font-family:'Outfit',sans-serif;font-size:.92rem;font-weight:500;max-width:260px;line-height:1.4;z-index:9997;display:none;align-items:center;gap:10px}
+.teaser.show{display:flex;animation:teaserIn .35s ease-out}
+@keyframes teaserIn{
+  from{opacity:0;transform:translateX(20px)}
+  to{opacity:1;transform:translateX(0)}
+}
+.teaser-text{flex:1}
+.teaser-text-mobile{display:none}
+.teaser-close{background:none;border:none;color:#94a3b8;cursor:pointer;font-size:1rem;padding:2px 6px;border-radius:4px;line-height:1;flex-shrink:0;transition:all .2s;font-family:inherit}
+.teaser-close:hover{background:#f1f5f9;color:var(--text)}
+
+/* Chat widget */
+.chat-container{position:fixed;bottom:100px;right:24px;width:380px;height:600px;max-height:calc(100vh - 130px);border-radius:16px;box-shadow:0 20px 60px rgba(15,23,42,.25);z-index:9999;display:none;flex-direction:column;overflow:hidden;background:#fff;border:1px solid var(--border);font-family:'Outfit',sans-serif}
+.chat-container.open{display:flex;animation:slideUp .25s ease-out}
+@keyframes slideUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+.chat-head{background:linear-gradient(135deg,#0ea5e9 0%,#06b6d4 100%);padding:16px;color:#fff;display:flex;justify-content:space-between;align-items:center;flex-shrink:0}
 .chat-head-info{display:flex;align-items:center;gap:12px}
-.chat-avatar{width:44px;height:44px;border-radius:50%;background:rgba(255,255,255,.2);display:flex;align-items:center;justify-content:center;font-size:1.5rem;border:2px solid rgba(255,255,255,.35)}
-.chat-head-name{font-weight:700;font-size:.95rem}
+.chat-avatar{width:42px;height:42px;border-radius:50%;background:rgba(255,255,255,.2);display:flex;align-items:center;justify-content:center;font-size:1.4rem;border:2px solid rgba(255,255,255,.35)}
+.chat-head-name{font-weight:700;font-size:.92rem}
 .chat-head-sub{font-size:.7rem;opacity:.9;display:flex;align-items:center;gap:4px}
 .chat-head-sub::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--success)}
-.chat-msgs{flex:1;overflow-y:auto;padding:18px;background:#fff;scroll-behavior:smooth;min-height:300px;max-height:55vh}
+.chat-close{background:none;border:none;color:#fff;font-size:1.3rem;cursor:pointer;padding:4px 10px;border-radius:6px;opacity:.85;transition:all .2s;line-height:1;font-family:inherit}
+.chat-close:hover{opacity:1;background:rgba(255,255,255,.18)}
+.chat-msgs{flex:1;overflow-y:auto;padding:18px;background:#fff;scroll-behavior:smooth;color:var(--text)}
 .chat-msgs::-webkit-scrollbar{width:4px}
 .chat-msgs::-webkit-scrollbar-thumb{background:var(--border);border-radius:4px}
 
@@ -63,7 +99,6 @@ body::before{content:'';position:fixed;top:-50%;left:-50%;width:200%;height:200%
 .quick-btn.primary{background:var(--primary);color:#fff;border-color:var(--primary)}
 .quick-btn.primary:hover{background:var(--primary-dark);border-color:var(--primary-dark)}
 
-/* Service info card */
 .service-info{background:#f1f5f9;border-left:3px solid var(--primary);border-radius:10px;padding:14px 16px;margin-bottom:10px;font-size:.85rem;color:var(--text);line-height:1.6}
 .service-info-title{color:var(--primary);font-size:.92rem;font-weight:700;margin-bottom:8px;display:block}
 .service-info ul{list-style:none;padding:0;margin:8px 0}
@@ -71,31 +106,24 @@ body::before{content:'';position:fixed;top:-50%;left:-50%;width:200%;height:200%
 .service-info-cta{margin-top:8px;color:var(--text);font-weight:500}
 .service-actions{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:10px}
 
-/* Price table */
 .price-table{background:#f8fafc;border:1px solid var(--border);border-radius:12px;padding:14px 16px;margin-bottom:10px;font-size:.85rem}
 .price-table-title{font-weight:700;color:var(--primary);margin-bottom:10px;font-size:.9rem}
 .price-row{display:flex;justify-content:space-between;padding:7px 0;border-bottom:1px dashed var(--border);color:var(--text-soft)}
 .price-row:last-child{border-bottom:0}
 .price-row span:last-child{color:var(--text);font-weight:600}
 
-/* Urgency grid */
 .urgency-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:10px}
 .urgency-btn{background:#fff;border:1.5px solid #fee2e2;color:#dc2626;border-radius:12px;padding:14px 12px;font-size:.82rem;cursor:pointer;font-family:inherit;font-weight:600;transition:all .2s;text-align:center}
 .urgency-btn:hover{background:#dc2626;color:#fff;border-color:#dc2626;transform:translateY(-1px)}
 
-/* Input */
-.chat-input{padding:14px;border-top:1px solid var(--border);display:flex;gap:10px;background:#fff;flex-shrink:0}
-.chat-input input{flex:1;background:#f8fafc;border:1px solid var(--border);border-radius:22px;padding:12px 18px;font-size:.9rem;color:var(--text);font-family:inherit;outline:none;transition:all .2s;min-width:0}
+.chat-input{padding:12px;border-top:1px solid var(--border);display:flex;gap:8px;background:#fff;flex-shrink:0}
+.chat-input input{flex:1;background:#f8fafc;border:1px solid var(--border);border-radius:22px;padding:11px 16px;font-size:.88rem;color:var(--text);font-family:inherit;outline:none;transition:all .2s;min-width:0}
 .chat-input input:focus{border-color:var(--primary);background:#fff}
 .chat-input input::placeholder{color:#94a3b8}
-.send-btn{width:44px;height:44px;border-radius:50%;background:var(--primary);border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .2s;box-shadow:0 3px 12px rgba(14,165,233,.3);flex-shrink:0}
+.send-btn{width:42px;height:42px;border-radius:50%;background:var(--primary);border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .2s;box-shadow:0 3px 12px rgba(14,165,233,.3);flex-shrink:0}
 .send-btn:hover{background:var(--primary-dark);transform:scale(1.05)}
 .send-btn svg{width:16px;height:16px;stroke:#fff;fill:none;stroke-width:2}
 
-.chat-footer{text-align:center;padding:10px;font-size:.7rem;color:var(--text-soft);background:#f8fafc;border-top:1px solid var(--border)}
-.chat-footer a{color:var(--primary);text-decoration:none}
-
-/* WhatsApp confirmation */
 .wa-confirm{background:rgba(16,185,129,.06);border:1px solid rgba(16,185,129,.2);border-radius:14px;padding:16px;margin-bottom:10px;text-align:center}
 .wa-confirm .wa-icon{font-size:2rem;margin-bottom:8px}
 .wa-confirm .wa-title{font-weight:700;color:var(--success);font-size:.9rem;margin-bottom:4px}
@@ -103,60 +131,84 @@ body::before{content:'';position:fixed;top:-50%;left:-50%;width:200%;height:200%
 .wa-confirm .wa-btn{display:inline-block;margin-top:12px;background:var(--success);color:#fff;text-decoration:none;padding:10px 22px;border-radius:20px;font-size:.82rem;font-weight:600;transition:all .2s;font-family:inherit}
 .wa-confirm .wa-btn:hover{background:#059669;transform:translateY(-1px)}
 
-/* Lead summary card */
 .lead-summary{background:rgba(16,185,129,.06);border-left:3px solid var(--success);border-radius:8px;padding:12px 14px;margin-bottom:10px;line-height:1.6;font-size:.82rem;color:var(--text)}
 .lead-summary strong{color:var(--success)}
 
-@media(max-width:600px){
-  body{padding:8px}
-  .header{margin-bottom:6px}
-  .logo img{height:36px}
-  .logo-text{font-size:1.1rem}
-  .header p{font-size:.78rem}
-  .hero{padding:18px 12px 12px}
-  .hero-icon{font-size:2.4rem}
-  .hero-title{font-size:1.45rem}
-  .hero-sub{font-size:.9rem;margin-bottom:14px}
-  .hero-trust{gap:8px;font-size:.76rem;flex-direction:column;align-items:center;margin-bottom:10px}
-  .chat-container{border-radius:16px;max-width:100%;flex:1}
-  .chat-msgs{max-height:calc(100vh - 380px);min-height:200px;padding:12px}
-  .chat-head{padding:12px}
-  .chat-head-name{font-size:.84rem}
-  .chat-input{padding:10px}
-  .chat-input input{padding:10px 14px;font-size:.86rem}
-  .msg{font-size:.82rem;padding:10px 12px}
-  .quick-btns{flex-direction:column}
-  .quick-btn{font-size:.76rem;padding:9px 14px;width:100%;text-align:center}
-  .urgency-grid{grid-template-columns:1fr}
+@media(max-width:768px){
+  .site-nav{display:none}
+  .site-hero h1{font-size:1.7rem}
+  .site-hero{padding:40px 6%}
+  .site-section{padding:36px 6%}
+  .site-team{padding:36px 6%}
+}
+@media(max-width:480px){
+  .fab{width:56px;height:56px;bottom:16px;right:16px;font-size:1.5rem}
+  .chat-container{bottom:0;right:0;width:100vw;height:100vh;max-height:100vh;border-radius:0;border:none}
+  .teaser{bottom:84px;right:16px;left:auto;max-width:calc(100vw - 90px);font-size:.86rem;padding:12px 14px}
+  .teaser-text-desktop{display:none}
+  .teaser-text-mobile{display:inline}
 }
 </style>
 </head>
 <body>
 
-<div class="header">
-  <div class="logo">
-    <img src="data:image/jpeg;base64,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">
-    <div class="logo-text">Dental WHITE<span>MOON</span></div>
+<header class="site-header">
+  <div class="site-logo">
+    <div class="site-logo-icon">🦷</div>
+    Clínica Dental Ejemplo
   </div>
-  <p>Clínica dental de confianza</p>
-</div>
+  <nav class="site-nav">
+    <a href="#servicios">Servicios</a>
+    <a href="#equipo">Equipo</a>
+    <a href="#contacto">Contacto</a>
+  </nav>
+</header>
 
-<section class="hero">
-  <div class="hero-icon">🦷</div>
-  <h1 class="hero-title">Tu sonrisa empieza aquí</h1>
-  <p class="hero-sub">Reserva tu <strong>primera visita gratuita</strong> en menos de 30 segundos. Te llamamos en 15 minutos para confirmar tu hora.</p>
-  <div class="hero-trust">
-    <span>✓ +15 años de experiencia</span>
-    <span>✓ Tecnología 3D digital</span>
-    <span>✓ Sin lista de espera</span>
-  </div>
-  <div class="hero-rating">
-    <span class="stars">★★★★★</span>
-    <span class="rating-text">4.9/5 · Más de 247 pacientes satisfechos</span>
+<section class="site-hero">
+  <h1>Cuidamos tu sonrisa con tecnología y cercanía</h1>
+  <p>Más de 15 años ayudando a pacientes a recuperar su confianza con tratamientos personalizados, materiales de primera calidad y un equipo humano excepcional.</p>
+  <a href="#contacto" class="site-hero-cta">Pide tu primera visita</a>
+</section>
+
+<section class="site-section" id="servicios">
+  <h2>Nuestros servicios</h2>
+  <div class="site-grid">
+    <div class="site-card"><div class="site-card-icon">🔩</div><h3>Implantes dentales</h3><p>Tecnología 3D guiada con garantía de por vida y financiación a medida.</p></div>
+    <div class="site-card"><div class="site-card-icon">😬</div><h3>Ortodoncia invisible</h3><p>Brackets e Invisalign con plan personalizado por especialistas certificados.</p></div>
+    <div class="site-card"><div class="site-card-icon">✨</div><h3>Estética dental</h3><p>Blanqueamiento profesional LED y carillas para una sonrisa natural.</p></div>
+    <div class="site-card"><div class="site-card-icon">🧼</div><h3>Higiene y prevención</h3><p>Limpiezas profesionales y revisiones periódicas para mantener tu salud bucal.</p></div>
   </div>
 </section>
 
-<div class="chat-container">
+<section class="site-team" id="equipo">
+  <h2>Nuestro equipo</h2>
+  <div class="site-team-grid">
+    <div class="site-team-card"><div class="site-team-avatar">DR</div><h3>Dra. Ramos</h3><p>Implantología</p></div>
+    <div class="site-team-card"><div class="site-team-avatar">DM</div><h3>Dr. Martín</h3><p>Ortodoncia</p></div>
+    <div class="site-team-card"><div class="site-team-avatar">DL</div><h3>Dra. López</h3><p>Estética dental</p></div>
+  </div>
+</section>
+
+<footer class="site-footer" id="contacto">
+  <div class="site-footer-name">Clínica Dental Ejemplo</div>
+  <div>Calle Mayor 123 · 28001 Madrid · 📞 911 234 567</div>
+  <div style="margin-top:14px;font-size:.78rem;opacity:.6">© 2026 Clínica Dental Ejemplo · Todos los derechos reservados</div>
+</footer>
+
+<!-- Teaser bubble -->
+<div class="teaser" id="teaser" role="status" aria-live="polite">
+  <span class="teaser-text">
+    <span class="teaser-text-desktop">¿Necesitas ayuda? Pide cita en 30 segundos 👋</span>
+    <span class="teaser-text-mobile">¿Necesitas ayuda? 👋</span>
+  </span>
+  <button class="teaser-close" onclick="dismissTeaser()" aria-label="Cerrar mensaje">✕</button>
+</div>
+
+<!-- Floating chat button -->
+<button class="fab" id="fab" onclick="toggleChat()" aria-label="Abrir chat">🦷</button>
+
+<!-- Chat widget -->
+<div class="chat-container" id="chatContainer">
   <div class="chat-head">
     <div class="chat-head-info">
       <div class="chat-avatar">🦷</div>
@@ -165,6 +217,7 @@ body::before{content:'';position:fixed;top:-50%;left:-50%;width:200%;height:200%
         <div class="chat-head-sub">En línea · Respuesta inmediata</div>
       </div>
     </div>
+    <button class="chat-close" onclick="toggleChat()" aria-label="Cerrar chat">✕</button>
   </div>
   <div class="chat-msgs" id="msgs">
     <div class="msg bot">¡Hola! 😊 Soy el asistente virtual de Dental WhiteMoon.
@@ -182,9 +235,8 @@ Estoy aquí 24/7 para ayudarte. ¿Qué necesitas hoy?</div>
   </div>
   <div class="chat-input">
     <input type="text" id="input" placeholder="Escribe tu mensaje..." onkeydown="if(event.key==='Enter')send()">
-    <button class="send-btn" onclick="send()"><svg viewBox="0 0 24 24"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg></button>
+    <button class="send-btn" onclick="send()" aria-label="Enviar"><svg viewBox="0 0 24 24"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg></button>
   </div>
-  <div class="chat-footer">Powered by <a href="https://whitemoon.es" target="_blank">WhiteMoon</a> · Agencia de IA</div>
 </div>
 
 <script>
@@ -214,6 +266,40 @@ var SERVICE_INFO={
   }
 };
 
+/* Widget toggle + teaser */
+function toggleChat(){
+  var c=document.getElementById('chatContainer');
+  var fab=document.getElementById('fab');
+  var isOpen=c.classList.toggle('open');
+  fab.classList.toggle('open',isOpen);
+  fab.textContent=isOpen?'✕':'🦷';
+  fab.setAttribute('aria-label',isOpen?'Cerrar chat':'Abrir chat');
+  if(isOpen){
+    dismissTeaser();
+    setTimeout(function(){var i=document.getElementById('input');if(i)i.focus();},300);
+  }
+}
+
+function dismissTeaser(){
+  var t=document.getElementById('teaser');
+  if(t)t.classList.remove('show');
+  try{sessionStorage.setItem('wm_teaser_dismissed','1');}catch(e){}
+}
+
+function showTeaser(){
+  try{
+    if(sessionStorage.getItem('wm_teaser_dismissed')==='1')return;
+  }catch(e){}
+  var c=document.getElementById('chatContainer');
+  if(c&&c.classList.contains('open'))return;
+  var t=document.getElementById('teaser');
+  if(t)t.classList.add('show');
+}
+
+setTimeout(showTeaser,5000);
+window.addEventListener('scroll',function(){dismissTeaser();},{passive:true,once:true});
+
+/* Chat helpers */
 function addMsg(text,type){
   var c=document.getElementById('msgs');
   var d=document.createElement('div');
