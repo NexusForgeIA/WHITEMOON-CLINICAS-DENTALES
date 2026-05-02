@@ -41,22 +41,6 @@ body::before{content:'';position:fixed;top:-50%;left:-50%;width:200%;height:200%
 .quick-btn{background:rgba(124,58,237,.06);border:1px solid var(--purple-mid);color:var(--purple);border-radius:20px;padding:7px 16px;font-size:.76rem;cursor:pointer;font-family:inherit;font-weight:500;transition:all .2s}
 .quick-btn:hover{background:var(--purple);color:var(--white);transform:translateY(-1px)}
 
-/* Calendar */
-.cal{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:14px;margin-bottom:10px;max-width:290px}
-.cal-title{text-align:center;font-weight:700;font-size:.84rem;color:var(--white);margin-bottom:10px}
-.cal-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:3px;text-align:center}
-.cal-day{font-weight:700;color:var(--muted);font-size:.65rem;padding:4px 0}
-.cal-num{padding:6px 2px;border-radius:8px;font-size:.74rem;cursor:pointer;border:1px solid transparent;transition:all .2s;color:var(--text)}
-.cal-num:hover{background:var(--purple-light);border-color:var(--purple)}
-.cal-num.sel{background:var(--purple);color:var(--white);border-color:var(--purple)}
-.cal-off{padding:6px 2px;color:#333;font-size:.74rem;border-radius:8px}
-
-/* Time slots */
-.times{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:10px;max-width:300px}
-.time-btn{padding:6px 13px;border-radius:8px;font-size:.73rem;background:var(--purple-light);color:var(--purple);border:1px solid var(--purple-mid);cursor:pointer;font-family:inherit;transition:all .2s;font-weight:500}
-.time-btn:hover,.time-btn.sel{background:var(--purple);color:var(--white)}
-.time-off{padding:6px 13px;border-radius:8px;font-size:.73rem;background:rgba(255,255,255,.03);color:#444;text-decoration:line-through}
-
 /* Input */
 .chat-input{padding:14px;border-top:1px solid var(--border);display:flex;gap:10px;background:var(--card);flex-shrink:0}
 .chat-input input{flex:1;background:#0d0d18;border:1px solid var(--border);border-radius:22px;padding:12px 18px;font-size:.9rem;color:var(--white);font-family:inherit;outline:none;transition:border .2s;min-width:0}
@@ -74,6 +58,12 @@ body::before{content:'';position:fixed;top:-50%;left:-50%;width:200%;height:200%
 .wa-confirm .wa-icon{font-size:2rem;margin-bottom:8px}
 .wa-confirm .wa-title{font-weight:700;color:var(--green);font-size:.88rem;margin-bottom:4px}
 .wa-confirm .wa-text{font-size:.76rem;color:var(--muted);line-height:1.5}
+.wa-confirm .wa-btn{display:inline-block;margin-top:12px;background:var(--green);color:var(--white);text-decoration:none;padding:10px 22px;border-radius:20px;font-size:.82rem;font-weight:600;transition:all .2s;font-family:inherit}
+.wa-confirm .wa-btn:hover{background:#16a34a;transform:translateY(-1px)}
+
+/* Lead summary card */
+.lead-summary{background:rgba(34,197,94,.08);border-left:3px solid var(--green);border-radius:8px;padding:12px 14px;margin-bottom:10px;line-height:1.6;font-size:.82rem;color:var(--text)}
+.lead-summary strong{color:var(--green)}
 
 @media(max-width:480px){
   body{padding:8px;justify-content:flex-start}
@@ -89,10 +79,6 @@ body::before{content:'';position:fixed;top:-50%;left:-50%;width:200%;height:200%
   .chat-input input{padding:10px 14px;font-size:.86rem}
   .msg{font-size:.8rem;padding:10px 12px}
   .quick-btn{font-size:.72rem;padding:6px 12px}
-  .cal{max-width:100%;padding:10px}
-  .cal-num,.cal-off{padding:5px 1px;font-size:.7rem}
-  .times{max-width:100%}
-  .time-btn,.time-off{padding:5px 10px;font-size:.7rem}
 }
 </style>
 </head>
@@ -139,9 +125,8 @@ Soy tu asistente virtual y estoy aquí para ayudarte. ¿Qué te gustaría hacer?
 </div>
 
 <script>
-var WA_NUMBER='';
-var WEBHOOK_URL='https://whitemoonagency.app.n8n.cloud/webhook/chatbot-cita';
-var state={step:0,service:'',name:'',apellidos:'',tel:'',date:'',time:''};
+var WA_NUMBER='643199580';
+var state={step:0,service:'',name:'',apellidos:'',tel:''};
 
 function addMsg(text,type){
   var c=document.getElementById('msgs');
@@ -219,103 +204,31 @@ function send(){
     setTimeout(function(){addMsg('Perfecto, '+state.name+' '+state.apellidos+'. ¿Me das un número de teléfono móvil para contactarte?')},800);
   }
   else if(state.step===3){
-    state.tel=m;state.step=4;
+    state.tel=m;state.step=99;
     setTimeout(function(){
-      addMsg('Genial. Ahora elige el día que mejor te venga para tu cita de '+state.service+':');
-      setTimeout(showCalendar,400);
+      var resumen='<div class="lead-summary"><strong>✅ Cita preregistrada</strong><br><br>Servicio: '+state.service+'<br>Nombre: '+state.name+' '+state.apellidos+'<br>Teléfono: '+state.tel+'</div>';
+      addHtml(resumen);
+      setTimeout(function(){
+        addMsg('✅ ¡Perfecto '+state.name+'! Hemos registrado tu solicitud.\n\nTe llamaremos en los próximos 15 minutos para confirmar el día y la hora que mejor te venga. 📞');
+        setTimeout(showWaConfirm,700);
+      },700);
     },800);
   }
   else if(state.step===99){
-    setTimeout(function(){addMsg('Tu cita ya está registrada. Nuestro equipo te contactará por WhatsApp para confirmar. ¡Gracias por confiar en nosotros! 😊')},800);
+    setTimeout(function(){addMsg('Si necesitas algo más, escríbeme por aquí. 😊')},800);
   }
 }
 
-function showCalendar(){
-  var today=new Date(),mo=today.getMonth(),yr=today.getFullYear();
-  var dim=new Date(yr,mo+1,0).getDate(),fd=new Date(yr,mo,1).getDay();
-  var off=fd===0?6:fd-1;
-  var mn=['Enero','Febrero','Marzo','Abril','Mayo','Junio','Julio','Agosto','Septiembre','Octubre','Noviembre','Diciembre'];
-  var dn=['L','M','X','J','V','S','D'];
-  var h='<div class="cal"><div class="cal-title">📅 '+mn[mo]+' '+yr+'</div><div class="cal-grid">';
-  dn.forEach(function(d){h+='<div class="cal-day">'+d+'</div>'});
-  for(var i=0;i<off;i++)h+='<div></div>';
-  for(var d=1;d<=dim;d++){
-    var dt=new Date(yr,mo,d),dw=dt.getDay();
-    var past=dt<new Date(today.getFullYear(),today.getMonth(),today.getDate());
-    if(past||dw===0){h+='<div class="cal-off">'+d+'</div>'}
-    else{var ds=d+'/'+(mo+1)+'/'+yr;h+='<div class="cal-num" onclick="pickDate(this,\''+ds+'\')">'+d+'</div>'}
-  }
-  h+='</div></div>';
-  addHtml(h);
-}
-
-function pickDate(el,ds){
-  el.closest('.cal-grid').querySelectorAll('.cal-num').forEach(function(x){x.classList.remove('sel')});
-  el.classList.add('sel');
-  state.date=ds;
-  addMsg(ds,'user');
-  setTimeout(function(){
-    addMsg('Día '+ds+'. ¿Qué hora te viene mejor? La clínica confirmará la disponibilidad:');
-    setTimeout(showTimes,400);
-  },600);
-}
-
-function showTimes(){
-  var ts=['09:00','09:30','10:00','10:30','11:00','11:30','12:00','12:30','16:00','16:30','17:00','17:30','18:00','18:30','19:00','19:30'];
-  var h='<div class="times">';
-  ts.forEach(function(t){
-    h+='<button class="time-btn" onclick="pickTime(this,\''+t+'\')">'+t+'</button>';
-  });
-  h+='</div>';
-  addHtml(h);
-}
-
-function pickTime(el,t){
-  el.parentElement.querySelectorAll('.time-btn').forEach(function(x){x.classList.remove('sel')});
-  el.classList.add('sel');
-  state.time=t;
-  state.step=99;
-  addMsg(state.date+' a las '+t,'user');
-
-  setTimeout(function(){
-    addMsg('Perfecto '+state.name+'. He registrado tu solicitud de cita:\n\n• Nombre: '+state.name+' '+state.apellidos+'\n• Teléfono: '+state.tel+'\n• Tratamiento: '+state.service+'\n• Fecha: '+state.date+'\n• Hora: '+state.time+'\n\nEnviando datos al equipo...');
-
-    setTimeout(function(){
-      // Enviar datos al webhook de N8N
-      var datos={
-        nombre: state.name,
-        apellidos: state.apellidos,
-        telefono: state.tel,
-        servicio: state.service,
-        fecha: state.date,
-        hora: state.time
-      };
-
-      // Enviar al webhook (N8N)
-      if(WEBHOOK_URL){
-        var img=new Image();
-        img.src=WEBHOOK_URL+'?nombre='+encodeURIComponent(datos.nombre)+'&apellidos='+encodeURIComponent(datos.apellidos)+'&telefono='+encodeURIComponent(datos.telefono)+'&servicio='+encodeURIComponent(datos.servicio)+'&fecha='+encodeURIComponent(datos.fecha)+'&hora='+encodeURIComponent(datos.hora);
-      }
-
-      // También abrir WhatsApp como respaldo si hay número configurado
-      if(WA_NUMBER){
-        var waMsg='🦷 *NUEVA CITA — Chatbot IA*\n\n'
-          +'👤 *Nombre:* '+state.name+' '+state.apellidos+'\n'
-          +'📱 *Teléfono:* '+state.tel+'\n'
-          +'🦷 *Tratamiento:* '+state.service+'\n'
-          +'📅 *Fecha:* '+state.date+'\n'
-          +'🕐 *Hora:* '+state.time+'\n\n'
-          +'_Enviado desde Chatbot IA WhiteMoon_';
-        var waUrl='https://api.whatsapp.com/send?phone='+WA_NUMBER+'&text='+encodeURIComponent(waMsg);
-        window.open(waUrl,'_blank');
-      }
-
-      // Confirmation card
-      addHtml('<div class="wa-confirm"><div class="wa-icon">✅</div><div class="wa-title">¡Solicitud de cita registrada!</div><div class="wa-text">Hemos enviado tus datos a nuestro equipo.<br><br>Revisarán la disponibilidad y si el día y hora seleccionados no estuvieran disponibles, te llamarán para proponerte la fecha y hora más cercana posible.<br><br>¡Gracias por confiar en nosotros! 😊</div></div>');
-
-      addMsg('Si necesitas algo más, estoy aquí para ayudarte. ¡Que tengas un excelente día! 🌟');
-    },1500);
-  },1000);
+function showWaConfirm(){
+  var msg='Hola, soy '+state.name+' '+state.apellidos+'. Acabo de pedir cita para '+state.service+' desde la web. Mi teléfono: '+state.tel;
+  var url='https://wa.me/'+WA_NUMBER+'?text='+encodeURIComponent(msg);
+  var html='<div class="wa-confirm">'
+    +'<div class="wa-icon">📲</div>'
+    +'<div class="wa-title">¿Quieres avisarnos por WhatsApp?</div>'
+    +'<div class="wa-text">Pulsa el botón y abriremos WhatsApp con el mensaje ya redactado.</div>'
+    +'<a href="'+url+'" target="_blank" rel="noopener" class="wa-btn">📲 Avisar por WhatsApp</a>'
+    +'</div>';
+  addHtml(html);
 }
 </script>
 </body>
