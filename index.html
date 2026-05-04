@@ -28,43 +28,63 @@ body{font-family:'Inter','Segoe UI',system-ui,-apple-system,sans-serif;backgroun
 .site-nav a{color:var(--text-soft);text-decoration:none;transition:color .2s}
 .site-nav a:hover{color:var(--primary)}
 
-.site-hero{position:relative;padding:90px 6% 80px;background:linear-gradient(135deg,rgba(14,165,233,.85) 0%,rgba(6,182,212,.78) 100%),url('https://images.unsplash.com/photo-1629909615184-74f495363b67?w=1200&q=80') center/cover no-repeat;text-align:center;color:#fff}
+.site-hero{position:relative;padding:90px 6% 80px;background:linear-gradient(135deg,#0ea5e9 0%,#06b6d4 60%,#f9a8d4 130%);text-align:center;color:#fff;overflow:hidden}
+.site-hero::before{content:'🦷';position:absolute;font-size:18rem;opacity:.07;right:-30px;top:50%;transform:translateY(-50%);pointer-events:none}
+.site-hero-inner{position:relative;z-index:1;max-width:780px;margin:0 auto}
 .site-hero h1{font-size:2.6rem;color:#fff;margin-bottom:16px;font-weight:700;line-height:1.2;text-shadow:0 2px 12px rgba(0,0,0,.18)}
 .site-hero p{font-size:1.1rem;color:rgba(255,255,255,.95);max-width:660px;margin:0 auto 26px}
 .site-hero-cta{display:inline-block;background:#fff;color:var(--primary);padding:14px 34px;border-radius:8px;text-decoration:none;font-weight:700;transition:transform .2s,box-shadow .2s;box-shadow:0 6px 20px rgba(0,0,0,.18)}
 .site-hero-cta:hover{transform:translateY(-2px);box-shadow:0 10px 28px rgba(0,0,0,.25)}
+.site-hero-trust{margin-top:24px;display:flex;justify-content:center;gap:28px;flex-wrap:wrap;font-size:.85rem;color:rgba(255,255,255,.92)}
+.site-hero-trust span{display:inline-flex;align-items:center;gap:6px}
 
 .site-section{padding:60px 6%;max-width:1200px;margin:0 auto}
 .site-section h2{font-size:1.8rem;color:#0f172a;margin-bottom:8px;text-align:center;font-weight:700}
 .site-section .section-sub{text-align:center;color:var(--text-soft);margin-bottom:32px;font-size:1rem}
 
 .site-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:24px}
-.site-card{background:#fff5f7;border:1px solid var(--border);border-radius:12px;overflow:hidden;transition:transform .2s,box-shadow .2s;display:flex;flex-direction:column}
-.site-card:hover{transform:translateY(-4px);box-shadow:0 12px 28px rgba(15,23,42,.08)}
-.site-card-img{width:100%;height:200px;object-fit:cover;display:block}
-.site-card-body{padding:20px;display:flex;flex-direction:column;flex:1}
+.site-card{background:#fff5f7;border:1px solid #fce7eb;border-radius:14px;padding:28px 24px;transition:transform .2s,box-shadow .2s;display:flex;flex-direction:column;align-items:flex-start}
+.site-card:hover{transform:translateY(-4px);box-shadow:0 12px 28px rgba(15,23,42,.08);border-color:#f9bcc7}
+.site-card-icon{width:64px;height:64px;border-radius:16px;background:linear-gradient(135deg,#0ea5e9,#06b6d4);display:flex;align-items:center;justify-content:center;font-size:1.9rem;margin-bottom:16px;box-shadow:0 6px 16px rgba(14,165,233,.25)}
 .site-card h3{font-size:1.1rem;color:#0f172a;margin-bottom:8px;font-weight:600}
-.site-card p{font-size:.92rem;color:#64748b;flex:1;margin-bottom:14px}
-.site-card-cta{align-self:flex-start;background:var(--primary);color:#fff;border:none;padding:9px 18px;border-radius:8px;font-size:.85rem;font-weight:600;cursor:pointer;transition:background .2s;font-family:inherit}
+.site-card p{font-size:.92rem;color:#64748b;flex:1;margin-bottom:16px;line-height:1.55}
+.site-card-cta{align-self:flex-start;background:var(--primary);color:#fff;border:none;padding:10px 20px;border-radius:8px;font-size:.85rem;font-weight:600;cursor:pointer;transition:background .2s;font-family:inherit}
 .site-card-cta:hover{background:var(--primary-dark)}
 
 .site-team{background:#fdf0f3;padding:60px 6%}
 .site-team h2{font-size:1.8rem;color:#0f172a;margin-bottom:8px;text-align:center;font-weight:700}
 .site-team .section-sub{text-align:center;color:var(--text-soft);margin-bottom:32px}
 .site-team-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:28px;max-width:1000px;margin:0 auto}
-.site-team-card{text-align:center;background:#fff;border-radius:14px;padding:24px 18px;border:1px solid var(--border);transition:transform .2s,box-shadow .2s}
+.site-team-card{text-align:center;background:#fff;border-radius:14px;padding:28px 18px;border:1px solid var(--border);transition:transform .2s,box-shadow .2s}
 .site-team-card:hover{transform:translateY(-3px);box-shadow:0 8px 22px rgba(15,23,42,.08)}
 .site-team-card h3{color:#0f172a;font-size:1.05rem;margin-bottom:4px;font-weight:600}
 .site-team-card p{color:var(--text-soft);font-size:.88rem}
-.site-team-photo{width:130px;height:130px;border-radius:50%;object-fit:cover;margin:0 auto 14px;display:block;border:4px solid #fff;box-shadow:0 6px 18px rgba(15,23,42,.12)}
+.site-team-avatar{width:110px;height:110px;border-radius:50%;background:linear-gradient(135deg,#0ea5e9,#06b6d4);margin:0 auto 14px;display:flex;align-items:center;justify-content:center;color:#fff;font-size:2rem;font-weight:700;letter-spacing:1px;box-shadow:0 6px 18px rgba(14,165,233,.3)}
+.site-team-avatar.pink{background:linear-gradient(135deg,#f472b6,#ec4899)}
+.site-team-spec{display:inline-block;margin-top:8px;font-size:.72rem;font-weight:600;color:var(--primary);background:#e0f2fe;padding:4px 10px;border-radius:12px;letter-spacing:.3px}
 
-.site-gallery{padding:60px 6%;background:#fff5f7}
-.site-gallery h2{font-size:1.8rem;color:#0f172a;margin-bottom:8px;text-align:center;font-weight:700}
-.site-gallery .section-sub{text-align:center;color:var(--text-soft);margin-bottom:32px}
-.gallery-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:14px;max-width:1200px;margin:0 auto}
-.gallery-item{position:relative;overflow:hidden;border-radius:12px;aspect-ratio:4/3;cursor:pointer}
-.gallery-item img{width:100%;height:100%;object-fit:cover;transition:transform .4s}
-.gallery-item:hover img{transform:scale(1.06)}
+.site-why{padding:60px 6%;background:#fff5f7}
+.site-why h2{font-size:1.8rem;color:#0f172a;margin-bottom:8px;text-align:center;font-weight:700}
+.site-why .section-sub{text-align:center;color:var(--text-soft);margin-bottom:36px}
+.why-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:20px;max-width:1100px;margin:0 auto}
+.why-card{background:#fff;border-radius:14px;padding:26px 22px;text-align:center;border:1px solid #fce7eb;transition:transform .2s,box-shadow .2s}
+.why-card:hover{transform:translateY(-3px);box-shadow:0 10px 24px rgba(15,23,42,.06)}
+.why-icon{font-size:2.2rem;margin-bottom:10px}
+.why-num{font-size:2rem;font-weight:800;color:var(--primary);margin-bottom:4px;line-height:1}
+.why-card h3{font-size:1rem;color:#0f172a;margin-bottom:6px;font-weight:600}
+.why-card p{font-size:.85rem;color:var(--text-soft);line-height:1.5}
+
+.site-testimonials{padding:60px 6%}
+.site-testimonials h2{font-size:1.8rem;color:#0f172a;margin-bottom:8px;text-align:center;font-weight:700}
+.site-testimonials .section-sub{text-align:center;color:var(--text-soft);margin-bottom:36px}
+.testimonials-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:20px;max-width:1100px;margin:0 auto}
+.testimonial{background:#fff5f7;border-radius:14px;padding:24px;border:1px solid #fce7eb;display:flex;flex-direction:column}
+.testimonial-stars{color:#f59e0b;margin-bottom:10px;font-size:1rem;letter-spacing:2px}
+.testimonial-text{color:var(--text);font-size:.92rem;line-height:1.6;margin-bottom:14px;flex:1;font-style:italic}
+.testimonial-author{display:flex;align-items:center;gap:10px}
+.testimonial-avatar{width:40px;height:40px;border-radius:50%;background:linear-gradient(135deg,#0ea5e9,#06b6d4);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:.9rem}
+.testimonial-author-info strong{display:block;color:#0f172a;font-size:.88rem;font-weight:600}
+.testimonial-author-info span{color:var(--text-soft);font-size:.78rem}
 
 .site-footer{background:#0f172a;color:#94a3b8;padding:40px 6% 24px;text-align:center;font-size:.88rem}
 .site-footer-name{color:#fff;font-weight:600;margin-bottom:8px;font-size:1rem}
@@ -165,9 +185,9 @@ body{font-family:'Inter','Segoe UI',system-ui,-apple-system,sans-serif;backgroun
   .site-hero{padding:60px 6%}
   .site-section{padding:40px 6%}
   .site-team{padding:40px 6%}
-  .site-gallery{padding:40px 6%}
-  .site-card-img{height:180px}
-  .site-team-photo{width:110px;height:110px}
+  .site-why{padding:40px 6%}
+  .site-testimonials{padding:40px 6%}
+  .site-team-avatar{width:90px;height:90px;font-size:1.7rem}
 }
 @media(max-width:480px){
   .fab{width:56px;height:56px;bottom:16px;right:16px;font-size:1.5rem}
@@ -188,15 +208,23 @@ body{font-family:'Inter','Segoe UI',system-ui,-apple-system,sans-serif;backgroun
   <nav class="site-nav">
     <a href="#servicios">Servicios</a>
     <a href="#equipo">Equipo</a>
-    <a href="#galeria">Galería</a>
+    <a href="#porque">Por qué nosotros</a>
+    <a href="#opiniones">Opiniones</a>
     <a href="#contacto">Contacto</a>
   </nav>
 </header>
 
 <section class="site-hero">
-  <h1>Cuidamos tu sonrisa con tecnología y cercanía</h1>
-  <p>Más de 15 años ayudando a pacientes a recuperar su confianza con tratamientos personalizados, materiales de primera calidad y un equipo humano excepcional.</p>
-  <a href="#" class="site-hero-cta" onclick="openChatFromCta(event)">Pide tu primera visita</a>
+  <div class="site-hero-inner">
+    <h1>Cuidamos tu sonrisa con tecnología y cercanía</h1>
+    <p>Más de 15 años ayudando a pacientes a recuperar su confianza con tratamientos personalizados, materiales de primera calidad y un equipo humano excepcional.</p>
+    <a href="#" class="site-hero-cta" onclick="openChatFromCta(event)">Pide tu primera visita</a>
+    <div class="site-hero-trust">
+      <span>✓ Primera visita gratuita</span>
+      <span>✓ Financiación sin intereses</span>
+      <span>✓ Garantía de por vida</span>
+    </div>
+  </div>
 </section>
 
 <section class="site-section" id="servicios">
@@ -204,52 +232,40 @@ body{font-family:'Inter','Segoe UI',system-ui,-apple-system,sans-serif;backgroun
   <p class="section-sub">Tratamientos integrales con la última tecnología</p>
   <div class="site-grid">
     <div class="site-card">
-      <img class="site-card-img" src="https://images.unsplash.com/photo-1609840114035-3c981b782dfe?w=500&q=80" alt="Implantes dentales" loading="lazy">
-      <div class="site-card-body">
-        <h3>Implantes dentales</h3>
-        <p>Tecnología 3D guiada con garantía de por vida y financiación a medida.</p>
-        <button class="site-card-cta" onclick="openChatService('Implantes dentales')">Pedir cita</button>
-      </div>
+      <div class="site-card-icon">🦷</div>
+      <h3>Implantes dentales</h3>
+      <p>Tecnología 3D guiada con garantía de por vida y financiación a medida.</p>
+      <button class="site-card-cta" onclick="openChatService('Implantes dentales')">Pedir cita</button>
     </div>
     <div class="site-card">
-      <img class="site-card-img" src="https://images.unsplash.com/photo-1606811841689-23dfddce3e56?w=500&q=80" alt="Ortodoncia y brackets" loading="lazy">
-      <div class="site-card-body">
-        <h3>Ortodoncia invisible</h3>
-        <p>Brackets e Invisalign con plan personalizado por especialistas certificados.</p>
-        <button class="site-card-cta" onclick="openChatService('Ortodoncia / Invisalign')">Pedir cita</button>
-      </div>
+      <div class="site-card-icon">😬</div>
+      <h3>Ortodoncia invisible</h3>
+      <p>Brackets e Invisalign con plan personalizado por especialistas certificados.</p>
+      <button class="site-card-cta" onclick="openChatService('Ortodoncia / Invisalign')">Pedir cita</button>
     </div>
     <div class="site-card">
-      <img class="site-card-img" src="https://images.unsplash.com/photo-1598256989800-fe5f95da9787?w=500&q=80" alt="Estética dental y blanqueamiento" loading="lazy">
-      <div class="site-card-body">
-        <h3>Estética dental</h3>
-        <p>Blanqueamiento profesional LED y carillas para una sonrisa natural.</p>
-        <button class="site-card-cta" onclick="openChatService('Blanqueamiento dental')">Pedir cita</button>
-      </div>
+      <div class="site-card-icon">✨</div>
+      <h3>Estética dental</h3>
+      <p>Blanqueamiento profesional LED y carillas para una sonrisa natural.</p>
+      <button class="site-card-cta" onclick="openChatService('Blanqueamiento dental')">Pedir cita</button>
     </div>
     <div class="site-card">
-      <img class="site-card-img" src="https://images.unsplash.com/photo-1588776814546-1ffbb34c94a4?w=500&q=80" alt="Higiene y prevención" loading="lazy">
-      <div class="site-card-body">
-        <h3>Higiene y prevención</h3>
-        <p>Limpiezas profesionales y revisiones periódicas para mantener tu salud bucal.</p>
-        <button class="site-card-cta" onclick="openChatService('Limpieza profesional')">Pedir cita</button>
-      </div>
+      <div class="site-card-icon">🪥</div>
+      <h3>Higiene y prevención</h3>
+      <p>Limpiezas profesionales y revisiones periódicas para mantener tu salud bucal.</p>
+      <button class="site-card-cta" onclick="openChatService('Limpieza profesional')">Pedir cita</button>
     </div>
     <div class="site-card">
-      <img class="site-card-img" src="https://images.unsplash.com/photo-1607613009820-a29f7bb81c04?w=500&q=80" alt="Endodoncia" loading="lazy">
-      <div class="site-card-body">
-        <h3>Endodoncia</h3>
-        <p>Tratamiento de conductos para conservar tus dientes naturales con la última tecnología.</p>
-        <button class="site-card-cta" onclick="openChatService('Endodoncia')">Pedir cita</button>
-      </div>
+      <div class="site-card-icon">🩺</div>
+      <h3>Endodoncia</h3>
+      <p>Tratamiento de conductos para conservar tus dientes naturales con la última tecnología.</p>
+      <button class="site-card-cta" onclick="openChatService('Endodoncia')">Pedir cita</button>
     </div>
     <div class="site-card">
-      <img class="site-card-img" src="https://images.unsplash.com/photo-1581594693702-fbdc51b2763b?w=500&q=80" alt="Odontología infantil" loading="lazy">
-      <div class="site-card-body">
-        <h3>Odontología infantil</h3>
-        <p>Cuidamos la salud bucal de los más pequeños con paciencia, cariño y juegos.</p>
-        <button class="site-card-cta" onclick="openChatService('Odontología infantil')">Pedir cita</button>
-      </div>
+      <div class="site-card-icon">🧒</div>
+      <h3>Odontología infantil</h3>
+      <p>Cuidamos la salud bucal de los más pequeños con paciencia, cariño y juegos.</p>
+      <button class="site-card-cta" onclick="openChatService('Odontología infantil')">Pedir cita</button>
     </div>
   </div>
 </section>
@@ -259,33 +275,94 @@ body{font-family:'Inter','Segoe UI',system-ui,-apple-system,sans-serif;backgroun
   <p class="section-sub">Profesionales con vocación y experiencia</p>
   <div class="site-team-grid">
     <div class="site-team-card">
-      <img class="site-team-photo" src="https://images.unsplash.com/photo-1559839734-2b71ea197ec2?w=300&q=80" alt="Dra. Ramos" loading="lazy">
+      <div class="site-team-avatar">DR</div>
       <h3>Dra. Ramos</h3>
       <p>Implantología</p>
+      <span class="site-team-spec">15 años exp.</span>
     </div>
     <div class="site-team-card">
-      <img class="site-team-photo" src="https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?w=300&q=80" alt="Dr. Martín" loading="lazy">
+      <div class="site-team-avatar">DM</div>
       <h3>Dr. Martín</h3>
       <p>Ortodoncia</p>
+      <span class="site-team-spec">Invisalign Diamond</span>
     </div>
     <div class="site-team-card">
-      <img class="site-team-photo" src="https://images.unsplash.com/photo-1594824476967-48c8b964273f?w=300&q=80" alt="Dra. López" loading="lazy">
+      <div class="site-team-avatar pink">DL</div>
       <h3>Dra. López</h3>
       <p>Estética dental</p>
+      <span class="site-team-spec">Diseño de sonrisa</span>
     </div>
   </div>
 </section>
 
-<section class="site-gallery" id="galeria">
-  <h2>Nuestra clínica</h2>
-  <p class="section-sub">Instalaciones modernas pensadas para tu comodidad</p>
-  <div class="gallery-grid">
-    <div class="gallery-item"><img src="https://images.unsplash.com/photo-1629909613654-28e377c37b09?w=500&q=80" alt="Higiene dental" loading="lazy"></div>
-    <div class="gallery-item"><img src="https://images.unsplash.com/photo-1571772996211-2f02c9727629?w=500&q=80" alt="WhiteMoon Dental" loading="lazy"></div>
-    <div class="gallery-item"><img src="https://images.unsplash.com/photo-1502224562085-639556652f33?w=500&q=80" alt="Sonrisa sana" loading="lazy"></div>
-    <div class="gallery-item"><img src="https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=500&q=80" alt="Revisión odontológica" loading="lazy"></div>
-    <div class="gallery-item"><img src="https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?w=500&q=80" alt="Equipo dental" loading="lazy"></div>
-    <div class="gallery-item"><img src="https://images.unsplash.com/photo-1606811841689-23dfddce3e56?w=500&q=80" alt="Ortodoncia" loading="lazy"></div>
+<section class="site-why" id="porque">
+  <h2>¿Por qué WhiteMoon Dental?</h2>
+  <p class="section-sub">Más de 15 años cuidando sonrisas en Madrid</p>
+  <div class="why-grid">
+    <div class="why-card">
+      <div class="why-icon">😊</div>
+      <div class="why-num">5.000+</div>
+      <h3>Pacientes felices</h3>
+      <p>Familias que confían en nosotros año tras año.</p>
+    </div>
+    <div class="why-card">
+      <div class="why-icon">🏆</div>
+      <div class="why-num">15+</div>
+      <h3>Años de experiencia</h3>
+      <p>Especialistas con formación continua y certificaciones internacionales.</p>
+    </div>
+    <div class="why-card">
+      <div class="why-icon">💳</div>
+      <div class="why-num">24</div>
+      <h3>Meses sin intereses</h3>
+      <p>Financiación cómoda para todos los tratamientos.</p>
+    </div>
+    <div class="why-card">
+      <div class="why-icon">⚡</div>
+      <div class="why-num">2h</div>
+      <h3>Respuesta urgencias</h3>
+      <p>Atendemos urgencias dentales el mismo día.</p>
+    </div>
+  </div>
+</section>
+
+<section class="site-testimonials" id="opiniones">
+  <h2>Lo que dicen nuestros pacientes</h2>
+  <p class="section-sub">Opiniones reales de pacientes verificados</p>
+  <div class="testimonials-grid">
+    <div class="testimonial">
+      <div class="testimonial-stars">★★★★★</div>
+      <p class="testimonial-text">"Llegué con mucho miedo y salí encantada. Me explicaron todo paso a paso y la financiación me permitió hacerme los implantes sin agobios."</p>
+      <div class="testimonial-author">
+        <div class="testimonial-avatar">MG</div>
+        <div class="testimonial-author-info">
+          <strong>María G.</strong>
+          <span>Implantes dentales</span>
+        </div>
+      </div>
+    </div>
+    <div class="testimonial">
+      <div class="testimonial-stars">★★★★★</div>
+      <p class="testimonial-text">"Trato de 10. Mi hijo de 6 años va contento al dentista, eso lo dice todo. El equipo infantil es maravilloso."</p>
+      <div class="testimonial-author">
+        <div class="testimonial-avatar">CR</div>
+        <div class="testimonial-author-info">
+          <strong>Carlos R.</strong>
+          <span>Odontología infantil</span>
+        </div>
+      </div>
+    </div>
+    <div class="testimonial">
+      <div class="testimonial-stars">★★★★★</div>
+      <p class="testimonial-text">"El Invisalign cambió mi sonrisa en un año. La Dra. López y el Dr. Martín son cercanos y profesionales. 100% recomendable."</p>
+      <div class="testimonial-author">
+        <div class="testimonial-avatar">LF</div>
+        <div class="testimonial-author-info">
+          <strong>Lucía F.</strong>
+          <span>Ortodoncia Invisalign</span>
+        </div>
+      </div>
+    </div>
   </div>
 </section>
 
@@ -327,16 +404,6 @@ body{font-family:'Inter','Segoe UI',system-ui,-apple-system,sans-serif;backgroun
 </div>
 
 <script>
-/* Image fallback — swap to a safe dental URL if any image fails to load */
-(function(){
-  var FALLBACK='https://images.unsplash.com/photo-1588776814546-1ffbb34c94a4?w=500&q=80';
-  document.querySelectorAll('img').forEach(function(img){
-    img.addEventListener('error',function(){
-      if(img.src!==FALLBACK)img.src=FALLBACK;
-    });
-  });
-})();
-
 var WA_NUMBER='643199580';
 var CLINIC_PHONE='911234567';
 /* state.step: 0 = idle/choosing, 1 = capturing name, 2 = capturing phone, 3 = done */
