@@ -28,7 +28,7 @@ body{font-family:'Inter','Segoe UI',system-ui,-apple-system,sans-serif;backgroun
 .site-nav a{color:var(--text-soft);text-decoration:none;transition:color .2s}
 .site-nav a:hover{color:var(--primary)}
 
-.site-hero{position:relative;padding:90px 6% 80px;background:linear-gradient(135deg,rgba(14,165,233,.85) 0%,rgba(6,182,212,.78) 100%),url('https://images.unsplash.com/photo-1588776814546-1ffbb34c94a4?w=1200&q=80') center/cover no-repeat;text-align:center;color:#fff}
+.site-hero{position:relative;padding:90px 6% 80px;background:linear-gradient(135deg,rgba(14,165,233,.85) 0%,rgba(6,182,212,.78) 100%),url('https://images.unsplash.com/photo-1629909615184-74f495363b67?w=1200&q=80') center/cover no-repeat;text-align:center;color:#fff}
 .site-hero h1{font-size:2.6rem;color:#fff;margin-bottom:16px;font-weight:700;line-height:1.2;text-shadow:0 2px 12px rgba(0,0,0,.18)}
 .site-hero p{font-size:1.1rem;color:rgba(255,255,255,.95);max-width:660px;margin:0 auto 26px}
 .site-hero-cta{display:inline-block;background:#fff;color:var(--primary);padding:14px 34px;border-radius:8px;text-decoration:none;font-weight:700;transition:transform .2s,box-shadow .2s;box-shadow:0 6px 20px rgba(0,0,0,.18)}
@@ -220,7 +220,7 @@ body{font-family:'Inter','Segoe UI',system-ui,-apple-system,sans-serif;backgroun
       </div>
     </div>
     <div class="site-card">
-      <img class="site-card-img" src="https://images.unsplash.com/photo-1570461226513-e08b58a52c53?w=500&q=80" alt="Estética dental y blanqueamiento" loading="lazy">
+      <img class="site-card-img" src="https://images.unsplash.com/photo-1598256989800-fe5f95da9787?w=500&q=80" alt="Estética dental y blanqueamiento" loading="lazy">
       <div class="site-card-body">
         <h3>Estética dental</h3>
         <p>Blanqueamiento profesional LED y carillas para una sonrisa natural.</p>
@@ -228,7 +228,7 @@ body{font-family:'Inter','Segoe UI',system-ui,-apple-system,sans-serif;backgroun
       </div>
     </div>
     <div class="site-card">
-      <img class="site-card-img" src="https://images.unsplash.com/photo-1629909613654-28e377c37b09?w=500&q=80" alt="Higiene y prevención" loading="lazy">
+      <img class="site-card-img" src="https://images.unsplash.com/photo-1588776814546-1ffbb34c94a4?w=500&q=80" alt="Higiene y prevención" loading="lazy">
       <div class="site-card-body">
         <h3>Higiene y prevención</h3>
         <p>Limpiezas profesionales y revisiones periódicas para mantener tu salud bucal.</p>
@@ -280,11 +280,11 @@ body{font-family:'Inter','Segoe UI',system-ui,-apple-system,sans-serif;backgroun
   <h2>Nuestra clínica</h2>
   <p class="section-sub">Instalaciones modernas pensadas para tu comodidad</p>
   <div class="gallery-grid">
-    <div class="gallery-item"><img src="https://images.unsplash.com/photo-1588776814546-1ffbb34c94a4?w=500&q=80" alt="Clínica" loading="lazy"></div>
-    <div class="gallery-item"><img src="https://images.unsplash.com/photo-1609840114035-3c981b782dfe?w=500&q=80" alt="Implantes" loading="lazy"></div>
-    <div class="gallery-item"><img src="https://images.unsplash.com/photo-1598256989800-fe5f95da9787?w=500&q=80" alt="Equipo moderno" loading="lazy"></div>
-    <div class="gallery-item"><img src="https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=500&q=80" alt="Atención al paciente" loading="lazy"></div>
-    <div class="gallery-item"><img src="https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?w=500&q=80" alt="Sala de espera" loading="lazy"></div>
+    <div class="gallery-item"><img src="https://images.unsplash.com/photo-1629909613654-28e377c37b09?w=500&q=80" alt="Higiene dental" loading="lazy"></div>
+    <div class="gallery-item"><img src="https://images.unsplash.com/photo-1571772996211-2f02c9727629?w=500&q=80" alt="Clínica dental" loading="lazy"></div>
+    <div class="gallery-item"><img src="https://images.unsplash.com/photo-1502224562085-639556652f33?w=500&q=80" alt="Sonrisa sana" loading="lazy"></div>
+    <div class="gallery-item"><img src="https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=500&q=80" alt="Revisión odontológica" loading="lazy"></div>
+    <div class="gallery-item"><img src="https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?w=500&q=80" alt="Equipo dental" loading="lazy"></div>
     <div class="gallery-item"><img src="https://images.unsplash.com/photo-1606811841689-23dfddce3e56?w=500&q=80" alt="Ortodoncia" loading="lazy"></div>
   </div>
 </section>
@@ -327,6 +327,16 @@ body{font-family:'Inter','Segoe UI',system-ui,-apple-system,sans-serif;backgroun
 </div>
 
 <script>
+/* Image fallback — swap to a safe dental URL if any image fails to load */
+(function(){
+  var FALLBACK='https://images.unsplash.com/photo-1588776814546-1ffbb34c94a4?w=500&q=80';
+  document.querySelectorAll('img').forEach(function(img){
+    img.addEventListener('error',function(){
+      if(img.src!==FALLBACK)img.src=FALLBACK;
+    });
+  });
+})();
+
 var WA_NUMBER='643199580';
 var CLINIC_PHONE='911234567';
 /* state.step: 0 = idle/choosing, 1 = capturing name, 2 = capturing phone, 3 = done */
