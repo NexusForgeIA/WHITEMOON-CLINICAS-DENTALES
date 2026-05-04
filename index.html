@@ -27,33 +27,53 @@ body{font-family:'Inter','Segoe UI',system-ui,-apple-system,sans-serif;backgroun
 .site-nav{display:flex;gap:24px;font-size:.9rem}
 .site-nav a{color:var(--text-soft);text-decoration:none;transition:color .2s}
 .site-nav a:hover{color:var(--primary)}
-.site-hero{padding:60px 6% 50px;background:linear-gradient(135deg,#f0f9ff 0%,#ecfeff 100%);text-align:center}
-.site-hero h1{font-size:2.4rem;color:#0f172a;margin-bottom:14px;font-weight:700;line-height:1.2}
-.site-hero p{font-size:1.05rem;color:var(--text-soft);max-width:640px;margin:0 auto 22px}
-.site-hero-cta{display:inline-block;background:var(--primary);color:#fff;padding:12px 30px;border-radius:8px;text-decoration:none;font-weight:600;transition:background .2s}
-.site-hero-cta:hover{background:var(--primary-dark)}
-.site-section{padding:50px 6%;max-width:1100px;margin:0 auto}
-.site-section h2{font-size:1.7rem;color:#0f172a;margin-bottom:24px;text-align:center;font-weight:700}
+
+.site-hero{position:relative;padding:90px 6% 80px;background:linear-gradient(135deg,rgba(14,165,233,.85) 0%,rgba(6,182,212,.78) 100%),url('https://images.unsplash.com/photo-1588776814546-1ffbb34c94a4?w=1200&q=80') center/cover no-repeat;text-align:center;color:#fff}
+.site-hero h1{font-size:2.6rem;color:#fff;margin-bottom:16px;font-weight:700;line-height:1.2;text-shadow:0 2px 12px rgba(0,0,0,.18)}
+.site-hero p{font-size:1.1rem;color:rgba(255,255,255,.95);max-width:660px;margin:0 auto 26px}
+.site-hero-cta{display:inline-block;background:#fff;color:var(--primary);padding:14px 34px;border-radius:8px;text-decoration:none;font-weight:700;transition:transform .2s,box-shadow .2s;box-shadow:0 6px 20px rgba(0,0,0,.18)}
+.site-hero-cta:hover{transform:translateY(-2px);box-shadow:0 10px 28px rgba(0,0,0,.25)}
+
+.site-section{padding:60px 6%;max-width:1200px;margin:0 auto}
+.site-section h2{font-size:1.8rem;color:#0f172a;margin-bottom:8px;text-align:center;font-weight:700}
+.site-section .section-sub{text-align:center;color:var(--text-soft);margin-bottom:32px;font-size:1rem}
+
 .site-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:24px}
-.site-card{background:#fff;border:1px solid var(--border);border-radius:12px;padding:24px;transition:transform .2s,box-shadow .2s}
-.site-card:hover{transform:translateY(-3px);box-shadow:0 6px 20px rgba(15,23,42,.06)}
-.site-card-icon{font-size:2rem;margin-bottom:10px}
+.site-card{background:#fff;border:1px solid var(--border);border-radius:12px;overflow:hidden;transition:transform .2s,box-shadow .2s;display:flex;flex-direction:column}
+.site-card:hover{transform:translateY(-4px);box-shadow:0 12px 28px rgba(15,23,42,.08)}
+.site-card-img{width:100%;height:200px;object-fit:cover;display:block}
+.site-card-body{padding:20px;display:flex;flex-direction:column;flex:1}
 .site-card h3{font-size:1.1rem;color:#0f172a;margin-bottom:8px;font-weight:600}
-.site-card p{font-size:.92rem;color:#64748b}
-.site-team{background:#f8fafc;padding:50px 6%}
-.site-team h2{font-size:1.7rem;color:#0f172a;margin-bottom:24px;text-align:center;font-weight:700}
-.site-team-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:24px;max-width:1000px;margin:0 auto}
-.site-team-card{text-align:center}
+.site-card p{font-size:.92rem;color:#64748b;flex:1;margin-bottom:14px}
+.site-card-cta{align-self:flex-start;background:var(--primary);color:#fff;border:none;padding:9px 18px;border-radius:8px;font-size:.85rem;font-weight:600;cursor:pointer;transition:background .2s;font-family:inherit}
+.site-card-cta:hover{background:var(--primary-dark)}
+
+.site-team{background:#f8fafc;padding:60px 6%}
+.site-team h2{font-size:1.8rem;color:#0f172a;margin-bottom:8px;text-align:center;font-weight:700}
+.site-team .section-sub{text-align:center;color:var(--text-soft);margin-bottom:32px}
+.site-team-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:28px;max-width:1000px;margin:0 auto}
+.site-team-card{text-align:center;background:#fff;border-radius:14px;padding:24px 18px;border:1px solid var(--border);transition:transform .2s,box-shadow .2s}
+.site-team-card:hover{transform:translateY(-3px);box-shadow:0 8px 22px rgba(15,23,42,.08)}
 .site-team-card h3{color:#0f172a;font-size:1.05rem;margin-bottom:4px;font-weight:600}
 .site-team-card p{color:var(--text-soft);font-size:.88rem}
-.site-team-avatar{width:80px;height:80px;border-radius:50%;background:linear-gradient(135deg,#0ea5e9,#06b6d4);margin:0 auto 12px;display:flex;align-items:center;justify-content:center;color:#fff;font-size:1.6rem;font-weight:700}
+.site-team-photo{width:130px;height:130px;border-radius:50%;object-fit:cover;margin:0 auto 14px;display:block;border:4px solid #fff;box-shadow:0 6px 18px rgba(15,23,42,.12)}
+
+.site-gallery{padding:60px 6%;max-width:1200px;margin:0 auto}
+.site-gallery h2{font-size:1.8rem;color:#0f172a;margin-bottom:8px;text-align:center;font-weight:700}
+.site-gallery .section-sub{text-align:center;color:var(--text-soft);margin-bottom:32px}
+.gallery-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:14px}
+.gallery-item{position:relative;overflow:hidden;border-radius:12px;aspect-ratio:4/3;cursor:pointer}
+.gallery-item img{width:100%;height:100%;object-fit:cover;transition:transform .4s}
+.gallery-item:hover img{transform:scale(1.06)}
+
 .site-footer{background:#0f172a;color:#94a3b8;padding:40px 6% 24px;text-align:center;font-size:.88rem}
 .site-footer-name{color:#fff;font-weight:600;margin-bottom:8px;font-size:1rem}
 
 /* Floating chat button */
-.fab{position:fixed;bottom:24px;right:24px;width:64px;height:64px;border-radius:50%;background:linear-gradient(135deg,#0ea5e9,#06b6d4);border:none;cursor:pointer;box-shadow:0 8px 24px rgba(14,165,233,.4),0 0 0 0 rgba(14,165,233,.5);display:flex;align-items:center;justify-content:center;font-size:1.8rem;z-index:9998;transition:transform .2s;animation:fabPulse 2.2s infinite;color:#fff}
+.fab{position:fixed;bottom:24px;right:24px;width:64px;height:64px;border-radius:50%;background:linear-gradient(135deg,#0ea5e9,#06b6d4);border:none;cursor:pointer;box-shadow:0 8px 24px rgba(14,165,233,.4),0 0 0 0 rgba(14,165,233,.5);display:flex;align-items:center;justify-content:center;font-size:1.8rem;z-index:9998;transition:transform .2s,opacity .2s;animation:fabPulse 2.2s infinite;color:#fff}
 .fab:hover{transform:scale(1.08)}
 .fab.open{animation:none}
+.fab.hidden{opacity:0;pointer-events:none;transform:scale(.6)}
 @keyframes fabPulse{
   0%,100%{box-shadow:0 8px 24px rgba(14,165,233,.4),0 0 0 0 rgba(14,165,233,.5)}
   50%{box-shadow:0 8px 24px rgba(14,165,233,.4),0 0 0 16px rgba(14,165,233,0)}
@@ -83,6 +103,7 @@ body{font-family:'Inter','Segoe UI',system-ui,-apple-system,sans-serif;backgroun
 .chat-head-sub::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--success)}
 .chat-close{background:none;border:none;color:#fff;font-size:1.3rem;cursor:pointer;padding:4px 10px;border-radius:6px;opacity:.85;transition:all .2s;line-height:1;font-family:inherit}
 .chat-close:hover{opacity:1;background:rgba(255,255,255,.18)}
+.chat-close.hidden{display:none}
 .chat-msgs{flex:1;overflow-y:auto;padding:18px;background:#fff;scroll-behavior:smooth;color:var(--text)}
 .chat-msgs::-webkit-scrollbar{width:4px}
 .chat-msgs::-webkit-scrollbar-thumb{background:var(--border);border-radius:4px}
@@ -92,6 +113,13 @@ body{font-family:'Inter','Segoe UI',system-ui,-apple-system,sans-serif;backgroun
 .msg.bot{background:#f1f5f9;color:var(--text);border-radius:16px 16px 16px 4px}
 .msg.user{background:var(--primary);color:#fff;margin-left:auto;border-radius:16px 16px 4px 16px}
 .msg.system{background:rgba(16,185,129,.08);border:1px solid rgba(16,185,129,.2);color:var(--success);border-radius:12px;text-align:center;max-width:100%;font-weight:500;font-size:.82rem}
+
+/* Typing indicator */
+.typing{display:inline-flex;gap:4px;background:#f1f5f9;padding:14px 18px;border-radius:16px 16px 16px 4px;margin-bottom:10px;animation:msgIn .3s ease-out}
+.typing span{width:7px;height:7px;border-radius:50%;background:#94a3b8;animation:typingDot 1.2s infinite}
+.typing span:nth-child(2){animation-delay:.15s}
+.typing span:nth-child(3){animation-delay:.3s}
+@keyframes typingDot{0%,60%,100%{opacity:.3;transform:translateY(0)}30%{opacity:1;transform:translateY(-4px)}}
 
 .quick-btns{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:10px}
 .quick-btn{background:#fff;border:1.5px solid var(--border);color:var(--primary);border-radius:20px;padding:8px 16px;font-size:.78rem;cursor:pointer;font-family:inherit;font-weight:600;transition:all .2s}
@@ -106,15 +134,12 @@ body{font-family:'Inter','Segoe UI',system-ui,-apple-system,sans-serif;backgroun
 .service-info-cta{margin-top:8px;color:var(--text);font-weight:500}
 .service-actions{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:10px}
 
-.price-table{background:#f8fafc;border:1px solid var(--border);border-radius:12px;padding:14px 16px;margin-bottom:10px;font-size:.85rem}
-.price-table-title{font-weight:700;color:var(--primary);margin-bottom:10px;font-size:.9rem}
-.price-row{display:flex;justify-content:space-between;padding:7px 0;border-bottom:1px dashed var(--border);color:var(--text-soft)}
-.price-row:last-child{border-bottom:0}
-.price-row span:last-child{color:var(--text);font-weight:600}
-
 .urgency-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:10px}
 .urgency-btn{background:#fff;border:1.5px solid #fee2e2;color:#dc2626;border-radius:12px;padding:14px 12px;font-size:.82rem;cursor:pointer;font-family:inherit;font-weight:600;transition:all .2s;text-align:center}
 .urgency-btn:hover{background:#dc2626;color:#fff;border-color:#dc2626;transform:translateY(-1px)}
+
+.phone-card{background:#f1f5f9;border-radius:12px;padding:14px 16px;margin-bottom:10px;text-align:center}
+.phone-card a{display:block;color:var(--primary);font-weight:700;font-size:1.1rem;text-decoration:none;margin-bottom:8px}
 
 .chat-input{padding:12px;border-top:1px solid var(--border);display:flex;gap:8px;background:#fff;flex-shrink:0}
 .chat-input input{flex:1;background:#f8fafc;border:1px solid var(--border);border-radius:22px;padding:11px 16px;font-size:.88rem;color:var(--text);font-family:inherit;outline:none;transition:all .2s;min-width:0}
@@ -128,18 +153,21 @@ body{font-family:'Inter','Segoe UI',system-ui,-apple-system,sans-serif;backgroun
 .wa-confirm .wa-icon{font-size:2rem;margin-bottom:8px}
 .wa-confirm .wa-title{font-weight:700;color:var(--success);font-size:.9rem;margin-bottom:4px}
 .wa-confirm .wa-text{font-size:.78rem;color:var(--text-soft);line-height:1.5}
-.wa-confirm .wa-btn{display:inline-block;margin-top:12px;background:var(--success);color:#fff;text-decoration:none;padding:10px 22px;border-radius:20px;font-size:.82rem;font-weight:600;transition:all .2s;font-family:inherit}
-.wa-confirm .wa-btn:hover{background:#059669;transform:translateY(-1px)}
+.wa-confirm .wa-btn{display:inline-block;margin-top:12px;background:var(--primary);color:#fff;text-decoration:none;padding:10px 22px;border-radius:20px;font-size:.82rem;font-weight:600;transition:all .2s;font-family:inherit}
+.wa-confirm .wa-btn:hover{background:var(--primary-dark);transform:translateY(-1px)}
 
 .lead-summary{background:rgba(16,185,129,.06);border-left:3px solid var(--success);border-radius:8px;padding:12px 14px;margin-bottom:10px;line-height:1.6;font-size:.82rem;color:var(--text)}
 .lead-summary strong{color:var(--success)}
 
 @media(max-width:768px){
   .site-nav{display:none}
-  .site-hero h1{font-size:1.7rem}
-  .site-hero{padding:40px 6%}
-  .site-section{padding:36px 6%}
-  .site-team{padding:36px 6%}
+  .site-hero h1{font-size:1.8rem}
+  .site-hero{padding:60px 6%}
+  .site-section{padding:40px 6%}
+  .site-team{padding:40px 6%}
+  .site-gallery{padding:40px 6%}
+  .site-card-img{height:180px}
+  .site-team-photo{width:110px;height:110px}
 }
 @media(max-width:480px){
   .fab{width:56px;height:56px;bottom:16px;right:16px;font-size:1.5rem}
@@ -160,6 +188,7 @@ body{font-family:'Inter','Segoe UI',system-ui,-apple-system,sans-serif;backgroun
   <nav class="site-nav">
     <a href="#servicios">Servicios</a>
     <a href="#equipo">Equipo</a>
+    <a href="#galeria">Galería</a>
     <a href="#contacto">Contacto</a>
   </nav>
 </header>
@@ -167,25 +196,96 @@ body{font-family:'Inter','Segoe UI',system-ui,-apple-system,sans-serif;backgroun
 <section class="site-hero">
   <h1>Cuidamos tu sonrisa con tecnología y cercanía</h1>
   <p>Más de 15 años ayudando a pacientes a recuperar su confianza con tratamientos personalizados, materiales de primera calidad y un equipo humano excepcional.</p>
-  <a href="#contacto" class="site-hero-cta">Pide tu primera visita</a>
+  <a href="#" class="site-hero-cta" onclick="openChatFromCta(event)">Pide tu primera visita</a>
 </section>
 
 <section class="site-section" id="servicios">
   <h2>Nuestros servicios</h2>
+  <p class="section-sub">Tratamientos integrales con la última tecnología</p>
   <div class="site-grid">
-    <div class="site-card"><div class="site-card-icon">🔩</div><h3>Implantes dentales</h3><p>Tecnología 3D guiada con garantía de por vida y financiación a medida.</p></div>
-    <div class="site-card"><div class="site-card-icon">😬</div><h3>Ortodoncia invisible</h3><p>Brackets e Invisalign con plan personalizado por especialistas certificados.</p></div>
-    <div class="site-card"><div class="site-card-icon">✨</div><h3>Estética dental</h3><p>Blanqueamiento profesional LED y carillas para una sonrisa natural.</p></div>
-    <div class="site-card"><div class="site-card-icon">🧼</div><h3>Higiene y prevención</h3><p>Limpiezas profesionales y revisiones periódicas para mantener tu salud bucal.</p></div>
+    <div class="site-card">
+      <img class="site-card-img" src="https://images.unsplash.com/photo-1609840114035-3c981b782dfe?w=500&q=80" alt="Implantes dentales" loading="lazy">
+      <div class="site-card-body">
+        <h3>Implantes dentales</h3>
+        <p>Tecnología 3D guiada con garantía de por vida y financiación a medida.</p>
+        <button class="site-card-cta" onclick="openChatService('Implantes dentales')">Pedir cita</button>
+      </div>
+    </div>
+    <div class="site-card">
+      <img class="site-card-img" src="https://images.unsplash.com/photo-1606811841689-23dfddce3e56?w=500&q=80" alt="Ortodoncia y brackets" loading="lazy">
+      <div class="site-card-body">
+        <h3>Ortodoncia invisible</h3>
+        <p>Brackets e Invisalign con plan personalizado por especialistas certificados.</p>
+        <button class="site-card-cta" onclick="openChatService('Ortodoncia / Invisalign')">Pedir cita</button>
+      </div>
+    </div>
+    <div class="site-card">
+      <img class="site-card-img" src="https://images.unsplash.com/photo-1570461226513-e08b58a52c53?w=500&q=80" alt="Estética dental y blanqueamiento" loading="lazy">
+      <div class="site-card-body">
+        <h3>Estética dental</h3>
+        <p>Blanqueamiento profesional LED y carillas para una sonrisa natural.</p>
+        <button class="site-card-cta" onclick="openChatService('Blanqueamiento dental')">Pedir cita</button>
+      </div>
+    </div>
+    <div class="site-card">
+      <img class="site-card-img" src="https://images.unsplash.com/photo-1629909613654-28e377c37b09?w=500&q=80" alt="Higiene y prevención" loading="lazy">
+      <div class="site-card-body">
+        <h3>Higiene y prevención</h3>
+        <p>Limpiezas profesionales y revisiones periódicas para mantener tu salud bucal.</p>
+        <button class="site-card-cta" onclick="openChatService('Limpieza profesional')">Pedir cita</button>
+      </div>
+    </div>
+    <div class="site-card">
+      <img class="site-card-img" src="https://images.unsplash.com/photo-1607613009820-a29f7bb81c04?w=500&q=80" alt="Endodoncia" loading="lazy">
+      <div class="site-card-body">
+        <h3>Endodoncia</h3>
+        <p>Tratamiento de conductos para conservar tus dientes naturales con la última tecnología.</p>
+        <button class="site-card-cta" onclick="openChatService('Endodoncia')">Pedir cita</button>
+      </div>
+    </div>
+    <div class="site-card">
+      <img class="site-card-img" src="https://images.unsplash.com/photo-1581594693702-fbdc51b2763b?w=500&q=80" alt="Odontología infantil" loading="lazy">
+      <div class="site-card-body">
+        <h3>Odontología infantil</h3>
+        <p>Cuidamos la salud bucal de los más pequeños con paciencia, cariño y juegos.</p>
+        <button class="site-card-cta" onclick="openChatService('Odontología infantil')">Pedir cita</button>
+      </div>
+    </div>
   </div>
 </section>
 
 <section class="site-team" id="equipo">
   <h2>Nuestro equipo</h2>
+  <p class="section-sub">Profesionales con vocación y experiencia</p>
   <div class="site-team-grid">
-    <div class="site-team-card"><div class="site-team-avatar">DR</div><h3>Dra. Ramos</h3><p>Implantología</p></div>
-    <div class="site-team-card"><div class="site-team-avatar">DM</div><h3>Dr. Martín</h3><p>Ortodoncia</p></div>
-    <div class="site-team-card"><div class="site-team-avatar">DL</div><h3>Dra. López</h3><p>Estética dental</p></div>
+    <div class="site-team-card">
+      <img class="site-team-photo" src="https://images.unsplash.com/photo-1559839734-2b71ea197ec2?w=300&q=80" alt="Dra. Ramos" loading="lazy">
+      <h3>Dra. Ramos</h3>
+      <p>Implantología</p>
+    </div>
+    <div class="site-team-card">
+      <img class="site-team-photo" src="https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?w=300&q=80" alt="Dr. Martín" loading="lazy">
+      <h3>Dr. Martín</h3>
+      <p>Ortodoncia</p>
+    </div>
+    <div class="site-team-card">
+      <img class="site-team-photo" src="https://images.unsplash.com/photo-1594824476967-48c8b964273f?w=300&q=80" alt="Dra. López" loading="lazy">
+      <h3>Dra. López</h3>
+      <p>Estética dental</p>
+    </div>
+  </div>
+</section>
+
+<section class="site-gallery" id="galeria">
+  <h2>Nuestra clínica</h2>
+  <p class="section-sub">Instalaciones modernas pensadas para tu comodidad</p>
+  <div class="gallery-grid">
+    <div class="gallery-item"><img src="https://images.unsplash.com/photo-1588776814546-1ffbb34c94a4?w=500&q=80" alt="Clínica" loading="lazy"></div>
+    <div class="gallery-item"><img src="https://images.unsplash.com/photo-1609840114035-3c981b782dfe?w=500&q=80" alt="Implantes" loading="lazy"></div>
+    <div class="gallery-item"><img src="https://images.unsplash.com/photo-1598256989800-fe5f95da9787?w=500&q=80" alt="Equipo moderno" loading="lazy"></div>
+    <div class="gallery-item"><img src="https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=500&q=80" alt="Atención al paciente" loading="lazy"></div>
+    <div class="gallery-item"><img src="https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?w=500&q=80" alt="Sala de espera" loading="lazy"></div>
+    <div class="gallery-item"><img src="https://images.unsplash.com/photo-1606811841689-23dfddce3e56?w=500&q=80" alt="Ortodoncia" loading="lazy"></div>
   </div>
 </section>
 
@@ -213,26 +313,13 @@ body{font-family:'Inter','Segoe UI',system-ui,-apple-system,sans-serif;backgroun
     <div class="chat-head-info">
       <div class="chat-avatar">🦷</div>
       <div>
-        <div class="chat-head-name">Asistente Dental · Dental WhiteMoon</div>
+        <div class="chat-head-name">Asistente Dental · WhiteMoon</div>
         <div class="chat-head-sub">En línea · Respuesta inmediata</div>
       </div>
     </div>
-    <button class="chat-close" onclick="toggleChat()" aria-label="Cerrar chat">✕</button>
+    <button class="chat-close" id="chatClose" onclick="toggleChat()" aria-label="Cerrar chat">✕</button>
   </div>
-  <div class="chat-msgs" id="msgs">
-    <div class="msg bot">¡Hola! 😊 Soy el asistente virtual de Dental WhiteMoon.
-
-Estoy aquí 24/7 para ayudarte. ¿Qué necesitas hoy?</div>
-    <div class="quick-btns" id="initBtns">
-      <button class="quick-btn primary" data-svc="Pedir cita" onclick="pickService(this)">🦷 Pedir cita</button>
-      <button class="quick-btn" data-svc="Blanqueamiento dental" onclick="pickService(this)">✨ Blanqueamiento dental</button>
-      <button class="quick-btn" data-svc="Ortodoncia / Invisalign" onclick="pickService(this)">😬 Ortodoncia / Invisalign</button>
-      <button class="quick-btn" data-svc="Implantes dentales" onclick="pickService(this)">🔩 Implantes dentales</button>
-      <button class="quick-btn" data-svc="Limpieza profesional" onclick="pickService(this)">🧼 Limpieza profesional</button>
-      <button class="quick-btn" data-svc="Urgencia dental" onclick="pickService(this)">🚨 Urgencia dental</button>
-      <button class="quick-btn" data-svc="Consultar precios" onclick="pickService(this)">💰 Consultar precios</button>
-    </div>
-  </div>
+  <div class="chat-msgs" id="msgs"></div>
   <div class="chat-input">
     <input type="text" id="input" placeholder="Escribe tu mensaje..." onkeydown="if(event.key==='Enter')send()">
     <button class="send-btn" onclick="send()" aria-label="Enviar"><svg viewBox="0 0 24 24"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg></button>
@@ -241,43 +328,44 @@ Estoy aquí 24/7 para ayudarte. ¿Qué necesitas hoy?</div>
 
 <script>
 var WA_NUMBER='643199580';
-var state={step:0,service:'',name:'',apellidos:'',tel:'',urgent:false,urgentSubtype:''};
+var CLINIC_PHONE='911234567';
+/* state.step: 0 = idle/choosing, 1 = capturing name, 2 = capturing phone, 3 = done */
+var state={step:0,service:'',name:'',tel:'',context:''};
+var chatStarted=false;
 
-var SERVICE_INFO={
-  'Implantes dentales':{
-    title:'Implantes dentales premium 🦷',
-    bullets:['Garantía de por vida','Cirugía mínimamente invasiva','Tecnología 3D guiada','Desde 1.200€/diente con financiación'],
-    cta:'¿Te llamamos para presupuesto sin compromiso?'
-  },
-  'Ortodoncia / Invisalign':{
-    title:'Ortodoncia invisible 😬',
-    bullets:['Brackets desde 2.500€','Invisalign desde 3.500€','Plan de tratamiento personalizado','Especialistas certificados'],
-    cta:'¿Pedimos tu primera consulta gratuita?'
-  },
-  'Blanqueamiento dental':{
-    title:'Blanqueamiento profesional con LED ✨',
-    bullets:['Resultados visibles en 1 sesión','Sin sensibilidad','Materiales de máxima calidad','Desde 250€'],
-    cta:'¿Reservamos tu cita?'
-  },
-  'Limpieza profesional':{
-    title:'Limpieza dental profesional 🧼',
-    bullets:['Eliminación de sarro y manchas','Recomendada cada 6 meses','60€ (gratis si tienes seguro)','Sesión rápida (30 min)'],
-    cta:'¿Pedimos cita?'
-  }
-};
-
-/* Widget toggle + teaser */
+/* ---------- Widget toggle + teaser ---------- */
 function toggleChat(){
   var c=document.getElementById('chatContainer');
   var fab=document.getElementById('fab');
+  /* Block close if capturing data */
+  if(c.classList.contains('open') && state.step>=1 && state.step<3){
+    return;
+  }
   var isOpen=c.classList.toggle('open');
   fab.classList.toggle('open',isOpen);
   fab.textContent=isOpen?'✕':'🦷';
   fab.setAttribute('aria-label',isOpen?'Cerrar chat':'Abrir chat');
   if(isOpen){
     dismissTeaser();
+    if(!chatStarted){chatStarted=true;startConversation();}
     setTimeout(function(){var i=document.getElementById('input');if(i)i.focus();},300);
   }
+}
+
+function openChatFromCta(e){
+  if(e)e.preventDefault();
+  var c=document.getElementById('chatContainer');
+  if(!c.classList.contains('open'))toggleChat();
+}
+
+function openChatService(service){
+  var c=document.getElementById('chatContainer');
+  if(!c.classList.contains('open'))toggleChat();
+  setTimeout(function(){
+    if(state.step===0){
+      handleService(service);
+    }
+  },chatStarted?400:1700);
 }
 
 function dismissTeaser(){
@@ -299,7 +387,17 @@ function showTeaser(){
 setTimeout(showTeaser,5000);
 window.addEventListener('scroll',function(){dismissTeaser();},{passive:true,once:true});
 
-/* Chat helpers */
+/* ---------- UI capture lock ---------- */
+function lockUI(){
+  document.getElementById('fab').classList.add('hidden');
+  document.getElementById('chatClose').classList.add('hidden');
+}
+function unlockUI(){
+  document.getElementById('fab').classList.remove('hidden');
+  document.getElementById('chatClose').classList.remove('hidden');
+}
+
+/* ---------- Chat helpers ---------- */
 function addMsg(text,type){
   var c=document.getElementById('msgs');
   var d=document.createElement('div');
@@ -307,6 +405,7 @@ function addMsg(text,type){
   d.textContent=text;
   c.appendChild(d);
   c.scrollTop=c.scrollHeight;
+  return d;
 }
 
 function addHtml(html){
@@ -315,132 +414,443 @@ function addHtml(html){
   d.innerHTML=html;
   c.appendChild(d);
   c.scrollTop=c.scrollHeight;
+  return d;
 }
 
-function pickService(el){
-  var service=el.getAttribute('data-svc');
-  addMsg(el.textContent.trim(),'user');
-  var initBtns=document.getElementById('initBtns');
-  if(initBtns)initBtns.remove();
-
-  if(service==='Pedir cita'){
-    state.step=0.5;
-    setTimeout(function(){
-      addMsg('¡Por supuesto! 😊 ¿Para qué tratamiento necesitas la cita?');
-      setTimeout(function(){
-        addHtml('<div class="quick-btns" id="svcBtns"><button class="quick-btn" onclick="pickTreatment(this)">Implantes</button><button class="quick-btn" onclick="pickTreatment(this)">Ortodoncia</button><button class="quick-btn" onclick="pickTreatment(this)">Blanqueamiento</button><button class="quick-btn" onclick="pickTreatment(this)">Limpieza dental</button><button class="quick-btn" onclick="pickTreatment(this)">Estética dental</button><button class="quick-btn" onclick="pickTreatment(this)">Revisión general</button><button class="quick-btn" onclick="pickTreatment(this)">Otro</button></div>');
-      },300);
-    },800);
-  }
-  else if(service==='Urgencia dental'){
-    showUrgencyOptions();
-  }
-  else if(service==='Consultar precios'){
-    showPriceTable();
-  }
-  else if(SERVICE_INFO[service]){
-    showServiceInfo(service);
-  }
+function showTyping(){
+  var c=document.getElementById('msgs');
+  var d=document.createElement('div');
+  d.className='typing';
+  d.id='typingIndicator';
+  d.innerHTML='<span></span><span></span><span></span>';
+  c.appendChild(d);
+  c.scrollTop=c.scrollHeight;
 }
 
-function showServiceInfo(service){
-  var info=SERVICE_INFO[service];
-  state.service=service;
+function hideTyping(){
+  var t=document.getElementById('typingIndicator');
+  if(t)t.remove();
+}
+
+function botSay(text,delay){
+  delay=delay||900;
+  showTyping();
   setTimeout(function(){
-    var bullets=info.bullets.map(function(b){return '<li>✓ '+b+'</li>';}).join('');
-    var html='<div class="service-info"><span class="service-info-title">'+info.title+'</span><ul>'+bullets+'</ul><div class="service-info-cta">'+info.cta+'</div></div>'
-      +'<div class="service-actions"><button class="quick-btn primary" onclick="confirmService()">Sí, pedir cita</button><button class="quick-btn" onclick="requestMoreInfo()">Más información</button></div>';
+    hideTyping();
+    addMsg(text,'bot');
+  },delay);
+}
+
+function botHtml(html,delay){
+  delay=delay||900;
+  showTyping();
+  setTimeout(function(){
+    hideTyping();
     addHtml(html);
-  },600);
+  },delay);
 }
 
-function confirmService(){
-  addMsg('Sí, pedir cita','user');
-  document.querySelectorAll('.service-actions').forEach(function(x){x.remove();});
-  state.step=1;
-  setTimeout(function(){
-    addMsg('¡Perfecto! Para reservarte una cita de '+state.service+', necesito algunos datos. 😊\n\n¿Cuál es tu nombre?');
-  },600);
-}
-
-function requestMoreInfo(){
-  addMsg('Más información','user');
-  document.querySelectorAll('.service-actions').forEach(function(x){x.remove();});
-  state.step=1;
-  setTimeout(function(){
-    addMsg('Te llamaremos para resolver todas tus dudas sobre '+state.service+' sin compromiso. 😊\n\n¿Cuál es tu nombre?');
-  },600);
-}
-
-function pickTreatment(el){
-  state.service=el.textContent;
-  addMsg(el.textContent,'user');
-  var btns=document.getElementById('svcBtns');
-  if(btns)btns.remove();
-  state.step=1;
-  setTimeout(function(){
-    addMsg('¡Perfecto! Para reservarte una cita de '+state.service+', necesito algunos datos. 😊\n\n¿Cuál es tu nombre?');
-  },800);
-}
-
-function showUrgencyOptions(){
-  state.urgent=true;
-  state.service='Urgencia dental';
-  setTimeout(function(){
-    addMsg('🚨 Urgencia dental — atendemos el mismo día.\n\n¿Qué te ocurre?');
-    setTimeout(function(){
-      addHtml('<div class="urgency-grid" id="urgBtns">'
-        +'<button class="urgency-btn" onclick="pickUrgency(\'Dolor intenso\')">Dolor intenso</button>'
-        +'<button class="urgency-btn" onclick="pickUrgency(\'Diente roto\')">Diente roto</button>'
-        +'<button class="urgency-btn" onclick="pickUrgency(\'Hinchazón\')">Hinchazón</button>'
-        +'<button class="urgency-btn" onclick="pickUrgency(\'Otro\')">Otro</button>'
-        +'</div>');
-    },300);
-  },600);
-}
-
-function pickUrgency(subtype){
-  state.urgentSubtype=subtype;
-  addMsg(subtype,'user');
-  var b=document.getElementById('urgBtns');
+function removeButtons(id){
+  var b=document.getElementById(id);
   if(b)b.remove();
-  state.step=1;
-  setTimeout(function(){
-    addMsg('Entendido. Para atenderte cuanto antes, ¿cuál es tu nombre?');
-  },600);
 }
 
-function showPriceTable(){
+function clearAllQuickBtns(){
+  document.querySelectorAll('.quick-btns,.urgency-grid,.service-actions').forEach(function(x){x.remove();});
+}
+
+/* ---------- Conversation start ---------- */
+function startConversation(){
   setTimeout(function(){
-    addHtml('<div class="price-table">'
-      +'<div class="price-table-title">💰 Precios orientativos</div>'
-      +'<div class="price-row"><span>Limpieza profesional</span><span>60€</span></div>'
-      +'<div class="price-row"><span>Blanqueamiento</span><span>desde 250€</span></div>'
-      +'<div class="price-row"><span>Empaste</span><span>desde 80€</span></div>'
-      +'<div class="price-row"><span>Implante dental</span><span>desde 1.200€</span></div>'
-      +'<div class="price-row"><span>Ortodoncia</span><span>desde 2.500€</span></div>'
-      +'<div class="price-row"><span>Invisalign</span><span>desde 3.500€</span></div>'
-      +'</div>');
+    showTyping();
     setTimeout(function(){
-      addMsg('¿Te interesa algún tratamiento? Te llamamos sin compromiso para presupuesto detallado. 😊');
+      hideTyping();
+      addMsg('¡Hola! 😊 Bienvenido/a a Clínica Dental Ejemplo.\n\n¿En qué puedo ayudarte hoy?','bot');
       setTimeout(function(){
-        addHtml('<div class="quick-btns" id="priceCtaBtns"><button class="quick-btn primary" onclick="restartFromPrices()">📅 Pedir cita</button></div>');
-      },400);
-    },500);
+        addHtml('<div class="quick-btns" id="initBtns">'
+          +'<button class="quick-btn primary" onclick="quickStart(\'cita\')">📅 Pedir primera visita</button>'
+          +'<button class="quick-btn" onclick="quickStart(\'implantes\')">🔩 Implantes</button>'
+          +'<button class="quick-btn" onclick="quickStart(\'ortodoncia\')">😬 Ortodoncia</button>'
+          +'<button class="quick-btn" onclick="quickStart(\'estetica\')">✨ Estética dental</button>'
+          +'<button class="quick-btn" onclick="quickStart(\'limpieza\')">🧼 Limpieza y revisión</button>'
+          +'<button class="quick-btn" onclick="quickStart(\'precios\')">💰 Precios y financiación</button>'
+        +'</div>');
+      },300);
+    },1100);
+  },400);
+}
+
+function quickStart(key){
+  var labels={
+    cita:'Pedir primera visita',
+    implantes:'Implantes',
+    ortodoncia:'Ortodoncia',
+    estetica:'Estética dental',
+    limpieza:'Limpieza y revisión',
+    precios:'Precios y financiación'
+  };
+  addMsg(labels[key]||key,'user');
+  removeButtons('initBtns');
+  if(key==='cita')handleGenericAppointment();
+  else if(key==='implantes')flowImplants();
+  else if(key==='ortodoncia')flowOrthodontics();
+  else if(key==='estetica')flowAesthetic();
+  else if(key==='limpieza')flowHygiene();
+  else if(key==='precios')flowPricing();
+}
+
+/* ---------- Service flows ---------- */
+function flowImplants(){
+  state.context='implantes';
+  state.service='Implantes dentales';
+  botHtml('<div class="service-info"><span class="service-info-title">🦷 Implantes dentales</span>'
+    +'<p>Los implantes dentales son la solución más natural y duradera para reponer dientes perdidos.</p>'
+    +'<p style="margin-top:8px">En nuestra clínica trabajamos con tecnología 3D guiada para mayor precisión y seguridad.</p>'
+    +'<ul><li>✅ Garantía de por vida</li><li>✅ Financiación sin intereses</li><li>✅ Primera valoración gratuita</li></ul>'
+    +'<div class="service-info-cta">¿Para cuántos implantes necesitas valoración?</div></div>'
+    +'<div class="quick-btns" id="implantQty">'
+      +'<button class="quick-btn" onclick="pickImplantQty(\'1 implante\')">1 implante</button>'
+      +'<button class="quick-btn" onclick="pickImplantQty(\'2-3 implantes\')">2-3 implantes</button>'
+      +'<button class="quick-btn" onclick="pickImplantQty(\'Varios\')">Varios</button>'
+      +'<button class="quick-btn" onclick="pickImplantQty(\'No sé aún\')">No sé aún</button>'
+    +'</div>',1000);
+}
+
+function pickImplantQty(qty){
+  addMsg(qty,'user');
+  removeButtons('implantQty');
+  state.service='Implantes dentales · '+qty;
+  botSay('Perfecto. Para darte un presupuesto exacto necesitamos hacerte una valoración gratuita con radiografía panorámica incluida.\n\n¿Reservamos?',900);
+  setTimeout(function(){
+    botHtml('<div class="quick-btns" id="confirmBtns">'
+      +'<button class="quick-btn primary" onclick="startCapture()">Sí, reservar</button>'
+      +'<button class="quick-btn" onclick="needMoreInfo()">Necesito más info</button>'
+    +'</div>',300);
+  },1700);
+}
+
+function flowOrthodontics(){
+  state.context='ortodoncia';
+  state.service='Ortodoncia';
+  botHtml('<div class="service-info"><span class="service-info-title">😊 Ortodoncia</span>'
+    +'<p>La ortodoncia transforma tu sonrisa y tu calidad de vida.</p>'
+    +'<p style="margin-top:8px">Trabajamos con:</p>'
+    +'<ul><li>📌 Brackets metálicos — la opción más económica</li><li>📌 Brackets estéticos — casi invisibles</li><li>📌 Invisalign — alineadores transparentes removibles</li></ul>'
+    +'<div class="service-info-cta">¿Es para ti o para un menor?</div></div>'
+    +'<div class="quick-btns" id="orthoFor">'
+      +'<button class="quick-btn" onclick="pickOrthoFor(\'adulto\')">Para mí (adulto)</button>'
+      +'<button class="quick-btn" onclick="pickOrthoFor(\'menor\')">Para mi hijo/a</button>'
+    +'</div>',1000);
+}
+
+function pickOrthoFor(who){
+  removeButtons('orthoFor');
+  if(who==='adulto'){
+    addMsg('Para mí (adulto)','user');
+    state.service='Ortodoncia (adulto)';
+    botSay('Para adultos recomendamos Invisalign en la mayoría de casos — cómodo, invisible y resultados en 12-18 meses.\n\n¿Quieres una valoración gratuita?',900);
+    setTimeout(function(){
+      botHtml('<div class="quick-btns" id="confirmBtns">'
+        +'<button class="quick-btn primary" onclick="startCapture()">Sí, valoración gratuita</button>'
+        +'<button class="quick-btn" onclick="needMoreInfo()">Más información</button>'
+      +'</div>',300);
+    },1700);
+  } else {
+    addMsg('Para mi hijo/a','user');
+    state.service='Ortodoncia infantil';
+    botSay('En niños y adolescentes hacemos una valoración ortodóncica gratuita hasta los 14 años. ¿Cuántos años tiene?',900);
+    setTimeout(function(){
+      botHtml('<div class="quick-btns" id="confirmBtns">'
+        +'<button class="quick-btn primary" onclick="startCapture()">Reservar valoración</button>'
+        +'<button class="quick-btn" onclick="needMoreInfo()">Más información</button>'
+      +'</div>',300);
+    },1700);
+  }
+}
+
+function flowAesthetic(){
+  state.context='estetica';
+  state.service='Estética dental';
+  botHtml('<div class="service-info"><span class="service-info-title">✨ Estética dental</span>'
+    +'<p>Una sonrisa blanca y perfecta es posible.</p>'
+    +'<p style="margin-top:8px">Nuestros tratamientos estéticos:</p>'
+    +'<ul><li>🌟 Blanqueamiento LED — 1 sesión, resultados inmediatos</li><li>🌟 Carillas de porcelana — sonrisa de revista</li><li>🌟 Composite — corrección sin tallado del diente</li></ul>'
+    +'<div class="service-info-cta">¿Cuál te interesa más?</div></div>'
+    +'<div class="quick-btns" id="aestheticOpt">'
+      +'<button class="quick-btn" onclick="pickAesthetic(\'blanqueamiento\')">Blanqueamiento</button>'
+      +'<button class="quick-btn" onclick="pickAesthetic(\'carillas\')">Carillas</button>'
+      +'<button class="quick-btn" onclick="pickAesthetic(\'no se\')">No sé</button>'
+    +'</div>',1000);
+}
+
+function pickAesthetic(opt){
+  removeButtons('aestheticOpt');
+  if(opt==='blanqueamiento'){
+    addMsg('Blanqueamiento','user');
+    state.service='Blanqueamiento dental';
+    botSay('El blanqueamiento LED profesional consigue hasta 8 tonos más blanco en una sola sesión. Sin sensibilidad y resultados duraderos.\n\n¿Reservamos una consulta gratuita?',900);
+  } else if(opt==='carillas'){
+    addMsg('Carillas','user');
+    state.service='Carillas';
+    botSay('Las carillas de porcelana ofrecen una sonrisa armónica y duradera. La primera consulta para diseño de sonrisa es gratuita.\n\n¿Reservamos?',900);
+  } else {
+    addMsg('No sé','user');
+    state.service='Estética dental (orientación)';
+    botSay('Sin problema 😊 En la primera consulta gratuita evaluamos tu caso y te recomendamos el mejor tratamiento estético para ti.\n\n¿Reservamos esa consulta?',900);
+  }
+  setTimeout(function(){
+    botHtml('<div class="quick-btns" id="confirmBtns">'
+      +'<button class="quick-btn primary" onclick="startCapture()">Sí, reservar</button>'
+      +'<button class="quick-btn" onclick="needMoreInfo()">Más información</button>'
+    +'</div>',300);
+  },1700);
+}
+
+function flowHygiene(){
+  state.context='limpieza';
+  state.service='Limpieza y revisión';
+  botHtml('<div class="service-info"><span class="service-info-title">🧼 Higiene dental</span>'
+    +'<p>La higiene dental profesional es la base de una boca sana 🦷</p>'
+    +'<p style="margin-top:8px">Recomendamos revisión cada 6 meses. Incluye:</p>'
+    +'<ul><li>🔍 Exploración completa</li><li>🧼 Eliminación de sarro y placa</li><li>💧 Pulido dental</li><li>📋 Plan de tratamiento personalizado</li></ul>'
+    +'<div class="service-info-cta">¿Cuándo fue tu última visita al dentista?</div></div>'
+    +'<div class="quick-btns" id="hygieneTime">'
+      +'<button class="quick-btn" onclick="pickHygieneTime(\'reciente\')">Hace menos de 6 meses</button>'
+      +'<button class="quick-btn" onclick="pickHygieneTime(\'1ano\')">Hace más de 1 año</button>'
+      +'<button class="quick-btn" onclick="pickHygieneTime(\'mucho\')">Hace mucho tiempo</button>'
+      +'<button class="quick-btn" onclick="pickHygieneTime(\'primera\')">Primera vez</button>'
+    +'</div>',1000);
+}
+
+function pickHygieneTime(t){
+  removeButtons('hygieneTime');
+  var labels={reciente:'Hace menos de 6 meses',
+              '1ano':'Hace más de 1 año',
+              mucho:'Hace mucho tiempo',
+              primera:'Primera vez'};
+  addMsg(labels[t],'user');
+  if(t==='mucho'||t==='primera'){
+    botSay('No te preocupes, nunca es tarde para empezar a cuidar tu salud bucal 😊\n\nTe haremos una revisión completa sin prisas. ¿Reservamos?',900);
+  } else {
+    botSay('Genial 😊 Te ayudamos a mantener esa rutina. ¿Reservamos tu próxima limpieza y revisión?',900);
+  }
+  setTimeout(function(){
+    botHtml('<div class="quick-btns" id="confirmBtns">'
+      +'<button class="quick-btn primary" onclick="startCapture()">Sí, reservar</button>'
+      +'<button class="quick-btn" onclick="needMoreInfo()">Más información</button>'
+    +'</div>',300);
+  },1700);
+}
+
+function flowPricing(){
+  state.context='precios';
+  state.service='Consulta de precios';
+  botHtml('<div class="service-info"><span class="service-info-title">💙 Precios y financiación</span>'
+    +'<p>Entendemos que el precio es importante.</p>'
+    +'<p style="margin-top:8px">En nuestra clínica ofrecemos:</p>'
+    +'<ul><li>✅ Primera consulta y valoración GRATUITA</li><li>✅ Presupuesto sin compromiso</li><li>✅ Financiación hasta 24 meses sin intereses</li><li>✅ Precios transparentes desde el primer momento</li></ul>'
+    +'<div class="service-info-cta">¿Para qué tratamiento necesitas presupuesto?</div></div>'
+    +'<div class="quick-btns" id="priceOpts">'
+      +'<button class="quick-btn" onclick="quickStart(\'implantes\')">🔩 Implantes</button>'
+      +'<button class="quick-btn" onclick="quickStart(\'ortodoncia\')">😬 Ortodoncia</button>'
+      +'<button class="quick-btn" onclick="quickStart(\'estetica\')">✨ Estética</button>'
+      +'<button class="quick-btn" onclick="quickStart(\'limpieza\')">🧼 Limpieza</button>'
+    +'</div>',1000);
+}
+
+function flowUrgency(){
+  state.context='urgencia';
+  state.service='Urgencia dental';
+  botSay('Entendemos que es urgente 🚨\nAtendemos urgencias el mismo día.\n\n¿Qué tipo de urgencia es?',900);
+  setTimeout(function(){
+    botHtml('<div class="urgency-grid" id="urgBtns">'
+      +'<button class="urgency-btn" onclick="pickUrgency(\'Dolor intenso\')">Dolor intenso</button>'
+      +'<button class="urgency-btn" onclick="pickUrgency(\'Diente roto\')">Diente roto</button>'
+      +'<button class="urgency-btn" onclick="pickUrgency(\'Caída de empaste\')">Caída de empaste</button>'
+      +'<button class="urgency-btn" onclick="pickUrgency(\'Otro\')">Otro</button>'
+    +'</div>',300);
+  },1700);
+}
+
+function pickUrgency(sub){
+  addMsg(sub,'user');
+  removeButtons('urgBtns');
+  state.service='🚨 Urgencia: '+sub;
+  var waUrl='https://wa.me/'+WA_NUMBER+'?text='+encodeURIComponent('🚨 URGENCIA dental ('+sub+'). Necesito que me atiendan hoy.');
+  botSay('Llámanos ahora para que te atendamos lo antes posible:',900);
+  setTimeout(function(){
+    botHtml('<div class="phone-card">'
+      +'<a href="tel:+34'+CLINIC_PHONE+'">📞 '+CLINIC_PHONE.replace(/(\d{3})(\d{3})(\d{3})/,'$1 $2 $3')+'</a>'
+      +'<a class="wa-btn" style="display:inline-block;background:#25D366;color:#fff;padding:10px 22px;border-radius:20px;text-decoration:none;font-weight:600;font-size:.82rem;margin-top:6px" href="'+waUrl+'" target="_blank" rel="noopener">📲 Avisar por WhatsApp</a>'
+    +'</div>',300);
+    setTimeout(function(){
+      botSay('Si prefieres que te llamemos nosotros, déjame tus datos y te contactamos en minutos.',900);
+      setTimeout(function(){
+        botHtml('<div class="quick-btns" id="confirmBtns">'
+          +'<button class="quick-btn primary" onclick="startCapture()">Que me llamen</button>'
+        +'</div>',300);
+      },1700);
+    },800);
+  },1700);
+}
+
+function flowKids(){
+  state.context='infantil';
+  state.service='Odontología infantil';
+  botSay('La odontología infantil es fundamental para el futuro bucal de tu hijo/a 👶\n\nRecomendamos la primera visita entre los 3 y 5 años.\n\nNuestros dentistas están especializados en tratar a los más pequeños con paciencia y cariño.\n\n¿Reservamos una primera visita?',900);
+  setTimeout(function(){
+    botHtml('<div class="quick-btns" id="confirmBtns">'
+      +'<button class="quick-btn primary" onclick="startCapture()">Sí, reservar</button>'
+      +'<button class="quick-btn" onclick="needMoreInfo()">Más información</button>'
+    +'</div>',300);
+  },1700);
+}
+
+function flowFear(){
+  state.context='miedo';
+  state.service='Primera visita (sin compromiso)';
+  botSay('Entendemos perfectamente ese sentimiento, ¡es más común de lo que crees! 💙\n\nEn nuestra clínica trabajamos con:\n✅ Técnicas de relajación\n✅ Sedación consciente disponible\n✅ Sin prisas, a tu ritmo\n✅ Te explicamos todo antes de hacerlo\n\n¿Quieres una primera visita sin compromiso para conocernos?',900);
+  setTimeout(function(){
+    botHtml('<div class="quick-btns" id="confirmBtns">'
+      +'<button class="quick-btn primary" onclick="startCapture()">Sí, conozcámonos</button>'
+    +'</div>',300);
+  },1900);
+}
+
+function flowEndo(){
+  state.context='endodoncia';
+  state.service='Endodoncia';
+  botSay('La endodoncia (tratamiento de conductos) permite conservar tu diente natural cuando hay infección o nervio dañado 🦷\n\n✅ Técnica indolora con anestesia local\n✅ Realizada en 1-2 sesiones\n✅ Microscopio dental para máxima precisión\n\n¿Quieres una valoración?',900);
+  setTimeout(function(){
+    botHtml('<div class="quick-btns" id="confirmBtns">'
+      +'<button class="quick-btn primary" onclick="startCapture()">Sí, valoración</button>'
+      +'<button class="quick-btn" onclick="needMoreInfo()">Más información</button>'
+    +'</div>',300);
+  },1900);
+}
+
+function handleGenericAppointment(){
+  state.context='cita';
+  state.service='Primera visita';
+  botSay('¡Perfecto! La primera visita es gratuita e incluye revisión completa y plan de tratamiento personalizado.\n\n¿Reservamos?',900);
+  setTimeout(function(){
+    botHtml('<div class="quick-btns" id="confirmBtns">'
+      +'<button class="quick-btn primary" onclick="startCapture()">Sí, reservar</button>'
+    +'</div>',300);
+  },1700);
+}
+
+/* Map a service name (from CTA buttons in cards) to a flow */
+function handleService(service){
+  if(/implant/i.test(service))flowImplants();
+  else if(/ortodonc|invisalign/i.test(service))flowOrthodontics();
+  else if(/blanq|estetic|carilla/i.test(service))flowAesthetic();
+  else if(/limpieza|higiene/i.test(service))flowHygiene();
+  else if(/endodonc/i.test(service))flowEndo();
+  else if(/infantil|niñ/i.test(service))flowKids();
+  else handleGenericAppointment();
+}
+
+function needMoreInfo(){
+  addMsg('Más información','user');
+  removeButtons('confirmBtns');
+  botSay('Sin problema 😊 Déjame tus datos y un especialista te llamará para resolver todas tus dudas sin compromiso.',900);
+  setTimeout(startCapture,1700);
+}
+
+/* ---------- Capture flow ---------- */
+function startCapture(){
+  /* Avoid double-press */
+  if(state.step>=1)return;
+  removeButtons('confirmBtns');
+  /* Add a user msg only if triggered by primary button */
+  state.step=1;
+  lockUI();
+  botSay('Para reservar tu cita necesito un par de datos.\n\n¿Me dices tu nombre?',900);
+}
+
+function finalizeCapture(){
+  state.step=3;
+  unlockUI();
+  var summary='<div class="lead-summary">'
+    +'<strong>✅ Cita registrada</strong><br><br>'
+    +'Servicio: '+state.service+'<br>'
+    +'Nombre: '+state.name+'<br>'
+    +'Teléfono: +34'+state.tel
+  +'</div>';
+  addHtml(summary);
+  setTimeout(function(){
+    botSay('¡Listo '+state.name+'! He anotado tu solicitud 🦷\n\nNuestro equipo te llamará en menos de 2 horas para confirmar día y hora.\n\nTambién puedes escribirnos ahora mismo:',900);
+    setTimeout(showWaConfirm,1900);
   },600);
 }
 
-function restartFromPrices(){
-  addMsg('Pedir cita','user');
-  var b=document.getElementById('priceCtaBtns');
-  if(b)b.remove();
-  state.step=0.5;
-  setTimeout(function(){
-    addMsg('¡Por supuesto! 😊 ¿Para qué tratamiento necesitas la cita?');
+function showWaConfirm(){
+  var msg='🦷 *CITA — Clínica Dental Ejemplo*\n\n'
+    +'👤 *Paciente:* '+state.name+'\n'
+    +'📞 *Tel:* +34'+state.tel+'\n'
+    +'🔍 *Consulta:* '+state.service+'\n\n'
+    +'_Vía chatbot WhiteMoon · whitemoon.es_';
+  var url='https://wa.me/'+WA_NUMBER+'?text='+encodeURIComponent(msg);
+  var html='<div class="wa-confirm">'
+    +'<div class="wa-icon">📲</div>'
+    +'<div class="wa-title">¿Avisarnos por WhatsApp?</div>'
+    +'<div class="wa-text">Pulsa el botón y abriremos WhatsApp con tu mensaje listo para enviar.</div>'
+    +'<a href="'+url+'" target="_blank" rel="noopener" class="wa-btn">📲 Avisar por WhatsApp</a>'
+  +'</div>';
+  addHtml(html);
+}
+
+/* ---------- Text input router ---------- */
+function normalize(s){
+  return (s||'').toString().toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g,'');
+}
+
+function detectIntent(text){
+  var t=normalize(text);
+  /* Order matters — urgency first */
+  if(/\b(urgenci|dolor|muela|roto|partido|accidente|emergencia|duele)\b/.test(t))return 'urgencia';
+  if(/\b(miedo|nervios|ansiedad|fobia|panico)\b/.test(t))return 'miedo';
+  if(/\b(implant|coron|hueso)\b/.test(t)||/\b(falta).*(diente)\b/.test(t))return 'implantes';
+  if(/\b(ortodonc|brackets|invisalign|alinear|torcid|apinami)\b/.test(t))return 'ortodoncia';
+  if(/\b(blanqueam|estetic|carilla|veneer|manchas|amarillo|sonrisa)\b/.test(t))return 'estetica';
+  if(/\b(limpieza|higiene|revision|sarro|encia|periodont|sangrad)\b/.test(t))return 'limpieza';
+  if(/\b(endodonc|conducto|nervio)\b/.test(t))return 'endodoncia';
+  if(/\b(nin[oa]|infantil|hijo|hija|pediatr|pequen)\b/.test(t))return 'infantil';
+  if(/\b(precio|cuanto|coste|presupuesto|financiacion|pagar|cuotas)\b/.test(t))return 'precios';
+  if(/\b(cita|visita|reservar|agendar|hora)\b/.test(t))return 'cita';
+  if(/\b(hola|buenas|buenos|saludos|hey)\b/.test(t))return 'saludo';
+  return null;
+}
+
+function routeIntent(intent){
+  removeButtons('initBtns');
+  if(intent==='urgencia')flowUrgency();
+  else if(intent==='miedo')flowFear();
+  else if(intent==='implantes')flowImplants();
+  else if(intent==='ortodoncia')flowOrthodontics();
+  else if(intent==='estetica')flowAesthetic();
+  else if(intent==='limpieza')flowHygiene();
+  else if(intent==='endodoncia')flowEndo();
+  else if(intent==='infantil')flowKids();
+  else if(intent==='precios')flowPricing();
+  else if(intent==='cita')handleGenericAppointment();
+  else if(intent==='saludo'){
+    botSay('¡Hola! 😊 ¿En qué puedo ayudarte? Puedo darte información sobre nuestros tratamientos o reservar tu cita.',800);
+  }
+  else {
+    botSay('Puedo ayudarte con información sobre nuestros tratamientos o reservar tu cita.\n\n¿Qué necesitas? 😊',800);
     setTimeout(function(){
-      addHtml('<div class="quick-btns" id="svcBtns"><button class="quick-btn" onclick="pickTreatment(this)">Implantes</button><button class="quick-btn" onclick="pickTreatment(this)">Ortodoncia</button><button class="quick-btn" onclick="pickTreatment(this)">Blanqueamiento</button><button class="quick-btn" onclick="pickTreatment(this)">Limpieza dental</button><button class="quick-btn" onclick="pickTreatment(this)">Estética dental</button><button class="quick-btn" onclick="pickTreatment(this)">Revisión general</button><button class="quick-btn" onclick="pickTreatment(this)">Otro</button></div>');
-    },300);
-  },600);
+      botHtml('<div class="quick-btns" id="initBtns">'
+        +'<button class="quick-btn primary" onclick="quickStart(\'cita\')">📅 Pedir cita</button>'
+        +'<button class="quick-btn" onclick="quickStart(\'implantes\')">🔩 Implantes</button>'
+        +'<button class="quick-btn" onclick="quickStart(\'ortodoncia\')">😬 Ortodoncia</button>'
+        +'<button class="quick-btn" onclick="quickStart(\'estetica\')">✨ Estética</button>'
+        +'<button class="quick-btn" onclick="quickStart(\'limpieza\')">🧼 Limpieza</button>'
+        +'<button class="quick-btn" onclick="quickStart(\'precios\')">💰 Precios</button>'
+      +'</div>',300);
+    },1500);
+  }
 }
 
 function send(){
@@ -450,70 +860,34 @@ function send(){
   inp.value='';
   addMsg(m,'user');
 
-  if(state.step===0){
-    state.service=m;state.step=1;
-    setTimeout(function(){addMsg('¡Perfecto! Para reservarte una cita de '+state.service+', necesito algunos datos. 😊\n\n¿Cuál es tu nombre?');},800);
+  /* Capture steps */
+  if(state.step===1){
+    if(m.length<2){botSay('¿Me dices tu nombre, por favor? 😊',700);return;}
+    state.name=m.replace(/\s+/g,' ').trim();
+    /* Capitalize first letter */
+    state.name=state.name.charAt(0).toUpperCase()+state.name.slice(1);
+    state.step=2;
+    botSay('Perfecto '+state.name+' 😊\n\n¿Tu número de teléfono?',900);
+    return;
   }
-  else if(state.step===0.5){
-    state.service=m;state.step=1;
-    var btns=document.getElementById('svcBtns');if(btns)btns.remove();
-    setTimeout(function(){addMsg('¡Perfecto! Para reservarte una cita de '+state.service+', necesito algunos datos. 😊\n\n¿Cuál es tu nombre?');},800);
-  }
-  else if(state.step===1){
-    state.name=m;
-    if(state.urgent){
-      state.step=3;
-      setTimeout(function(){addMsg('Gracias '+state.name+'. ¿Cuál es tu teléfono móvil? Te llamamos en cuanto recibamos tu mensaje. 📞');},800);
-    }else{
-      state.step=2;
-      setTimeout(function(){addMsg('Encantada de conocerte, '+state.name+'. 😊\n\n¿Y tus apellidos?');},800);
+  if(state.step===2){
+    var digits=m.replace(/\D/g,'');
+    if(digits.length<9){
+      botSay('Necesito un número de 9 dígitos para poder llamarte. ¿Me lo confirmas?',700);
+      return;
     }
+    state.tel=digits.slice(-9);
+    finalizeCapture();
+    return;
   }
-  else if(state.step===2){
-    state.apellidos=m;state.step=3;
-    setTimeout(function(){addMsg('Perfecto, '+state.name+' '+state.apellidos+'. ¿Me das un número de teléfono móvil para contactarte?');},800);
+  if(state.step===3){
+    botSay('Si necesitas algo más, escríbeme por aquí. 😊',700);
+    return;
   }
-  else if(state.step===3){
-    state.tel=m;state.step=99;
-    setTimeout(function(){
-      var nombreCompleto=state.urgent?state.name:(state.name+' '+state.apellidos);
-      var servicio=state.urgent?('🚨 URGENCIA: '+state.urgentSubtype):state.service;
-      var titulo=state.urgent?'Urgencia registrada':'Cita preregistrada';
-      var resumen='<div class="lead-summary"><strong>✅ '+titulo+'</strong><br><br>Servicio: '+servicio+'<br>Nombre: '+nombreCompleto+'<br>Teléfono: '+state.tel+'</div>';
-      addHtml(resumen);
-      setTimeout(function(){
-        var msg=state.urgent
-          ?'🚨 ¡Recibido '+state.name+'! Tu urgencia es PRIORITARIA.\n\nTe llamaremos en los próximos minutos para atenderte hoy mismo. 📞'
-          :'✅ ¡Perfecto '+state.name+'! Hemos registrado tu solicitud.\n\nTe llamaremos en los próximos 15 minutos para confirmar el día y la hora que mejor te venga. 📞';
-        addMsg(msg);
-        setTimeout(showWaConfirm,700);
-      },700);
-    },800);
-  }
-  else if(state.step===99){
-    setTimeout(function(){addMsg('Si necesitas algo más, escríbeme por aquí. 😊');},800);
-  }
-}
 
-function showWaConfirm(){
-  var msg;
-  if(state.urgent){
-    msg='🚨 URGENCIA ('+state.urgentSubtype+'): Hola, soy '+state.name+'. Necesito atención hoy mismo. Mi teléfono: '+state.tel;
-  }else{
-    msg='Hola, soy '+state.name+' '+state.apellidos+'. Acabo de pedir cita para '+state.service+' desde la web. Mi teléfono: '+state.tel;
-  }
-  var url='https://wa.me/'+WA_NUMBER+'?text='+encodeURIComponent(msg);
-  var titulo=state.urgent?'¿Avisarnos por WhatsApp ahora?':'¿Quieres avisarnos por WhatsApp?';
-  var texto=state.urgent
-    ?'Pulsa el botón y abriremos WhatsApp con tu mensaje urgente listo para enviar.'
-    :'Pulsa el botón y abriremos WhatsApp con el mensaje ya redactado.';
-  var html='<div class="wa-confirm">'
-    +'<div class="wa-icon">📲</div>'
-    +'<div class="wa-title">'+titulo+'</div>'
-    +'<div class="wa-text">'+texto+'</div>'
-    +'<a href="'+url+'" target="_blank" rel="noopener" class="wa-btn">📲 Avisar por WhatsApp</a>'
-    +'</div>';
-  addHtml(html);
+  /* Idle → intent routing */
+  var intent=detectIntent(m);
+  routeIntent(intent);
 }
 </script>
 </body>
