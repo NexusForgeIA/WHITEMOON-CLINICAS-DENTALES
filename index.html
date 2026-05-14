@@ -3,119 +3,228 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>WhiteMoon Dental — Tu sonrisa empieza aquí</title>
-<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<title>WhiteMoon Dental — Tu sonrisa, nuestra pasión</title>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=Playfair+Display:wght@600;700;800&display=swap" rel="stylesheet">
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
 :root{
-  --primary:#0ea5e9;
-  --primary-dark:#0284c7;
-  --secondary:#06b6d4;
-  --success:#10b981;
+  --primary:#0891b2;
+  --primary-dark:#0e7490;
+  --primary-light:#e0f7fa;
+  --accent:#f59e0b;
+  --accent-dark:#d97706;
+  --dark:#0f172a;
+  --dark-2:#1e293b;
+  --text:#334155;
+  --text2:#64748b;
+  --white:#ffffff;
   --bg:#f8fafc;
-  --card:#ffffff;
-  --text:#0f172a;
-  --text-soft:#475569;
+  --glass:rgba(8,145,178,0.06);
+  --glass-border:rgba(8,145,178,0.15);
+  --success:#10b981;
   --border:#e2e8f0;
 }
-body{font-family:'Inter','Segoe UI',system-ui,-apple-system,sans-serif;background:#fff;color:var(--text-soft);margin:0;padding:0;min-height:100vh;line-height:1.6}
+html{scroll-behavior:smooth}
+body{font-family:'Outfit',system-ui,-apple-system,sans-serif;background:var(--white);color:var(--text);line-height:1.65;min-height:100vh;overflow-x:hidden}
 
-/* Fake clinic site */
-.site-header{background:#fff;border-bottom:1px solid var(--border);padding:18px 6%;display:flex;justify-content:space-between;align-items:center;position:sticky;top:0;z-index:10}
-.site-logo{font-weight:700;font-size:1.15rem;color:#1e293b;display:flex;align-items:center;gap:10px}
-.site-logo-icon{width:36px;height:36px;border-radius:8px;background:linear-gradient(135deg,#0ea5e9,#06b6d4);display:flex;align-items:center;justify-content:center;color:#fff;font-size:1.1rem}
-.site-nav{display:flex;gap:24px;font-size:.9rem}
-.site-nav a{color:var(--text-soft);text-decoration:none;transition:color .2s}
-.site-nav a:hover{color:var(--primary)}
+/* ─────────── NAVBAR GLASSMORPHISM ─────────── */
+.navbar{position:fixed;top:0;left:0;right:0;z-index:1000;padding:18px 6%;display:flex;justify-content:space-between;align-items:center;transition:all .35s ease;background:transparent}
+.navbar.scrolled{background:rgba(255,255,255,.78);backdrop-filter:blur(20px) saturate(180%);-webkit-backdrop-filter:blur(20px) saturate(180%);border-bottom:1px solid var(--glass-border);box-shadow:0 4px 30px rgba(8,145,178,.06)}
+.nav-logo{display:flex;align-items:center;gap:12px;font-weight:800;font-size:1.2rem;color:var(--dark);letter-spacing:-.02em}
+.nav-logo-icon{width:42px;height:42px;border-radius:12px;background:linear-gradient(135deg,var(--primary) 0%,var(--primary-dark) 100%);display:flex;align-items:center;justify-content:center;color:#fff;font-size:1.3rem;box-shadow:0 8px 24px rgba(8,145,178,.35)}
+.nav-logo-text small{display:block;font-size:.62rem;font-weight:500;color:var(--text2);letter-spacing:.15em;text-transform:uppercase;margin-top:-2px}
+.navbar.scrolled .nav-logo,.navbar.scrolled .nav-links a{color:var(--dark)}
+.nav-links{display:flex;gap:32px;align-items:center}
+.nav-links a{color:var(--dark);text-decoration:none;font-size:.93rem;font-weight:500;transition:color .25s;position:relative}
+.nav-links a:hover{color:var(--primary)}
+.nav-links a::after{content:'';position:absolute;left:0;bottom:-6px;width:0;height:2px;background:var(--primary);transition:width .25s}
+.nav-links a:hover::after{width:100%}
+.nav-cta{background:linear-gradient(135deg,var(--primary),var(--primary-dark));color:#fff !important;padding:11px 24px;border-radius:30px;font-weight:600 !important;font-size:.88rem !important;box-shadow:0 8px 22px rgba(8,145,178,.35);transition:transform .25s,box-shadow .25s}
+.nav-cta:hover{transform:translateY(-2px);box-shadow:0 12px 28px rgba(8,145,178,.45)}
+.nav-cta::after{display:none}
+.nav-toggle{display:none;background:none;border:none;color:var(--dark);font-size:1.5rem;cursor:pointer}
 
-.site-hero{position:relative;padding:90px 6% 80px;background:linear-gradient(135deg,#0ea5e9 0%,#06b6d4 60%,#f9a8d4 130%);text-align:center;color:#fff;overflow:hidden}
-.site-hero::before{content:'🦷';position:absolute;font-size:18rem;opacity:.07;right:-30px;top:50%;transform:translateY(-50%);pointer-events:none}
-.site-hero-inner{position:relative;z-index:1;max-width:780px;margin:0 auto}
-.site-hero h1{font-size:2.6rem;color:#fff;margin-bottom:16px;font-weight:700;line-height:1.2;text-shadow:0 2px 12px rgba(0,0,0,.18)}
-.site-hero p{font-size:1.1rem;color:rgba(255,255,255,.95);max-width:660px;margin:0 auto 26px}
-.site-hero-cta{display:inline-block;background:#fff;color:var(--primary);padding:14px 34px;border-radius:8px;text-decoration:none;font-weight:700;transition:transform .2s,box-shadow .2s;box-shadow:0 6px 20px rgba(0,0,0,.18)}
-.site-hero-cta:hover{transform:translateY(-2px);box-shadow:0 10px 28px rgba(0,0,0,.25)}
-.site-hero-trust{margin-top:24px;display:flex;justify-content:center;gap:28px;flex-wrap:wrap;font-size:.85rem;color:rgba(255,255,255,.92)}
-.site-hero-trust span{display:inline-flex;align-items:center;gap:6px}
+/* ─────────── HERO DARK ─────────── */
+.hero{position:relative;min-height:100vh;display:flex;align-items:center;padding:120px 6% 80px;background:linear-gradient(135deg,#0f172a 0%,#0a2535 50%,#0f172a 100%);overflow:hidden;color:#fff}
+.hero::before{content:'';position:absolute;inset:0;background:radial-gradient(circle at 20% 30%,rgba(8,145,178,.25) 0%,transparent 50%),radial-gradient(circle at 80% 70%,rgba(245,158,11,.12) 0%,transparent 50%);pointer-events:none}
+.orb{position:absolute;border-radius:50%;filter:blur(80px);opacity:.5;animation:floatOrb 18s ease-in-out infinite;pointer-events:none}
+.orb-1{width:420px;height:420px;background:radial-gradient(circle,#0891b2,transparent 70%);top:-100px;left:-100px}
+.orb-2{width:340px;height:340px;background:radial-gradient(circle,#06b6d4,transparent 70%);bottom:-80px;right:10%;animation-delay:-6s}
+.orb-3{width:280px;height:280px;background:radial-gradient(circle,#f59e0b,transparent 70%);top:40%;right:-80px;animation-delay:-12s;opacity:.3}
+@keyframes floatOrb{0%,100%{transform:translate(0,0) scale(1)}33%{transform:translate(40px,-30px) scale(1.08)}66%{transform:translate(-30px,40px) scale(.95)}}
 
-.site-section{padding:60px 6%;max-width:1200px;margin:0 auto}
-.site-section h2{font-size:1.8rem;color:#0f172a;margin-bottom:8px;text-align:center;font-weight:700}
-.site-section .section-sub{text-align:center;color:var(--text-soft);margin-bottom:32px;font-size:1rem}
+.hero-inner{position:relative;z-index:2;max-width:1280px;width:100%;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center}
+.hero-badge{display:inline-flex;align-items:center;gap:8px;background:rgba(8,145,178,.15);border:1px solid rgba(8,145,178,.35);padding:8px 16px;border-radius:30px;font-size:.78rem;font-weight:600;color:#67e8f9;margin-bottom:24px;backdrop-filter:blur(10px);width:fit-content}
+.hero-badge .dot{width:8px;height:8px;border-radius:50%;background:var(--success);box-shadow:0 0 0 4px rgba(16,185,129,.25);animation:pulse 2s infinite}
+@keyframes pulse{50%{box-shadow:0 0 0 8px rgba(16,185,129,0)}}
 
-.site-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:24px}
-.site-card{background:#fff5f7;border:1px solid #fce7eb;border-radius:14px;padding:28px 24px;transition:transform .2s,box-shadow .2s;display:flex;flex-direction:column;align-items:flex-start}
-.site-card:hover{transform:translateY(-4px);box-shadow:0 12px 28px rgba(15,23,42,.08);border-color:#f9bcc7}
-.site-card-icon{width:64px;height:64px;border-radius:16px;background:linear-gradient(135deg,#0ea5e9,#06b6d4);display:flex;align-items:center;justify-content:center;font-size:1.9rem;margin-bottom:16px;box-shadow:0 6px 16px rgba(14,165,233,.25)}
-.site-card h3{font-size:1.1rem;color:#0f172a;margin-bottom:8px;font-weight:600}
-.site-card p{font-size:.92rem;color:#64748b;flex:1;margin-bottom:16px;line-height:1.55}
-.site-card-cta{align-self:flex-start;background:var(--primary);color:#fff;border:none;padding:10px 20px;border-radius:8px;font-size:.85rem;font-weight:600;cursor:pointer;transition:background .2s;font-family:inherit}
-.site-card-cta:hover{background:var(--primary-dark)}
+.hero h1{font-family:'Playfair Display',serif;font-size:clamp(2.4rem,5vw,4rem);font-weight:800;line-height:1.05;margin-bottom:24px;letter-spacing:-.025em}
+.hero h1 .grad{background:linear-gradient(135deg,#67e8f9 0%,#22d3ee 40%,#f59e0b 100%);-webkit-background-clip:text;background-clip:text;color:transparent;display:inline-block}
+.hero p.lead{font-size:1.15rem;color:#cbd5e1;margin-bottom:36px;max-width:540px;line-height:1.7}
+.hero-ctas{display:flex;gap:14px;flex-wrap:wrap;margin-bottom:48px}
+.btn-primary{display:inline-flex;align-items:center;gap:10px;background:linear-gradient(135deg,var(--accent) 0%,var(--accent-dark) 100%);color:#fff;padding:16px 32px;border-radius:14px;text-decoration:none;font-weight:700;font-size:.98rem;box-shadow:0 14px 35px rgba(245,158,11,.4);transition:all .3s;border:none;cursor:pointer;font-family:inherit;letter-spacing:.01em}
+.btn-primary:hover{transform:translateY(-3px);box-shadow:0 18px 40px rgba(245,158,11,.55)}
+.btn-secondary{display:inline-flex;align-items:center;gap:10px;background:rgba(255,255,255,.08);color:#fff;padding:16px 32px;border-radius:14px;text-decoration:none;font-weight:600;font-size:.98rem;border:1px solid rgba(255,255,255,.18);backdrop-filter:blur(10px);transition:all .3s;font-family:inherit;cursor:pointer}
+.btn-secondary:hover{background:rgba(255,255,255,.14);border-color:rgba(255,255,255,.3);transform:translateY(-3px)}
 
-.site-team{background:#fdf0f3;padding:60px 6%}
-.site-team h2{font-size:1.8rem;color:#0f172a;margin-bottom:8px;text-align:center;font-weight:700}
-.site-team .section-sub{text-align:center;color:var(--text-soft);margin-bottom:32px}
-.site-team-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:28px;max-width:1000px;margin:0 auto}
-.site-team-card{text-align:center;background:#fff;border-radius:14px;padding:28px 18px;border:1px solid var(--border);transition:transform .2s,box-shadow .2s}
-.site-team-card:hover{transform:translateY(-3px);box-shadow:0 8px 22px rgba(15,23,42,.08)}
-.site-team-card h3{color:#0f172a;font-size:1.05rem;margin-bottom:4px;font-weight:600}
-.site-team-card p{color:var(--text-soft);font-size:.88rem}
-.site-team-avatar{width:110px;height:110px;border-radius:50%;background:linear-gradient(135deg,#0ea5e9,#06b6d4);margin:0 auto 14px;display:flex;align-items:center;justify-content:center;color:#fff;font-size:2rem;font-weight:700;letter-spacing:1px;box-shadow:0 6px 18px rgba(14,165,233,.3)}
-.site-team-avatar.pink{background:linear-gradient(135deg,#f472b6,#ec4899)}
-.site-team-spec{display:inline-block;margin-top:8px;font-size:.72rem;font-weight:600;color:var(--primary);background:#e0f2fe;padding:4px 10px;border-radius:12px;letter-spacing:.3px}
+.hero-stats{display:grid;grid-template-columns:repeat(4,1fr);gap:24px;padding-top:32px;border-top:1px solid rgba(255,255,255,.1)}
+.stat-num{font-family:'Playfair Display',serif;font-size:2.1rem;font-weight:800;background:linear-gradient(135deg,#67e8f9,#f59e0b);-webkit-background-clip:text;background-clip:text;color:transparent;line-height:1;margin-bottom:6px}
+.stat-label{font-size:.78rem;color:#94a3b8;font-weight:500;letter-spacing:.02em}
 
-.site-why{padding:60px 6%;background:#fff5f7}
-.site-why h2{font-size:1.8rem;color:#0f172a;margin-bottom:8px;text-align:center;font-weight:700}
-.site-why .section-sub{text-align:center;color:var(--text-soft);margin-bottom:36px}
-.why-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:20px;max-width:1100px;margin:0 auto}
-.why-card{background:#fff;border-radius:14px;padding:26px 22px;text-align:center;border:1px solid #fce7eb;transition:transform .2s,box-shadow .2s}
-.why-card:hover{transform:translateY(-3px);box-shadow:0 10px 24px rgba(15,23,42,.06)}
-.why-icon{font-size:2.2rem;margin-bottom:10px}
-.why-num{font-size:2rem;font-weight:800;color:var(--primary);margin-bottom:4px;line-height:1}
-.why-card h3{font-size:1rem;color:#0f172a;margin-bottom:6px;font-weight:600}
-.why-card p{font-size:.85rem;color:var(--text-soft);line-height:1.5}
+.hero-visual{position:relative;display:flex;justify-content:center;align-items:center}
+.hero-img-wrap{position:relative;width:100%;max-width:480px;aspect-ratio:4/5;border-radius:32px;overflow:hidden;box-shadow:0 40px 80px rgba(0,0,0,.5),0 0 0 1px rgba(255,255,255,.08)}
+.hero-img-wrap::after{content:'';position:absolute;inset:0;background:linear-gradient(180deg,transparent 50%,rgba(15,23,42,.4) 100%)}
+.hero-img-wrap img{width:100%;height:100%;object-fit:cover;display:block}
+.float-card{position:absolute;background:rgba(255,255,255,.95);backdrop-filter:blur(20px);border-radius:18px;padding:14px 18px;box-shadow:0 20px 40px rgba(0,0,0,.25);display:flex;align-items:center;gap:12px;animation:floatCard 4s ease-in-out infinite;z-index:3}
+.float-card-1{top:30px;left:-30px;animation-delay:0s}
+.float-card-2{bottom:60px;right:-20px;animation-delay:-2s}
+@keyframes floatCard{0%,100%{transform:translateY(0)}50%{transform:translateY(-12px)}}
+.float-icon{width:42px;height:42px;border-radius:12px;background:linear-gradient(135deg,var(--primary),var(--primary-dark));display:flex;align-items:center;justify-content:center;color:#fff;font-size:1.2rem}
+.float-card-1 .float-icon{background:linear-gradient(135deg,var(--accent),var(--accent-dark))}
+.float-text strong{display:block;color:var(--dark);font-size:.86rem;font-weight:700;line-height:1.2}
+.float-text span{font-size:.72rem;color:var(--text2)}
 
-.site-testimonials{padding:60px 6%}
-.site-testimonials h2{font-size:1.8rem;color:#0f172a;margin-bottom:8px;text-align:center;font-weight:700}
-.site-testimonials .section-sub{text-align:center;color:var(--text-soft);margin-bottom:36px}
-.testimonials-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:20px;max-width:1100px;margin:0 auto}
-.testimonial{background:#fff5f7;border-radius:14px;padding:24px;border:1px solid #fce7eb;display:flex;flex-direction:column}
-.testimonial-stars{color:#f59e0b;margin-bottom:10px;font-size:1rem;letter-spacing:2px}
-.testimonial-text{color:var(--text);font-size:.92rem;line-height:1.6;margin-bottom:14px;flex:1;font-style:italic}
-.testimonial-author{display:flex;align-items:center;gap:10px}
-.testimonial-avatar{width:40px;height:40px;border-radius:50%;background:linear-gradient(135deg,#0ea5e9,#06b6d4);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:.9rem}
-.testimonial-author-info strong{display:block;color:#0f172a;font-size:.88rem;font-weight:600}
-.testimonial-author-info span{color:var(--text-soft);font-size:.78rem}
+/* ─────────── SECCIÓN GENÉRICA ─────────── */
+.section{padding:100px 6%;position:relative}
+.section-inner{max-width:1280px;margin:0 auto}
+.section-head{text-align:center;margin-bottom:64px}
+.eyebrow{display:inline-block;color:var(--primary);font-size:.78rem;font-weight:700;letter-spacing:.15em;text-transform:uppercase;margin-bottom:14px}
+.section-title{font-family:'Playfair Display',serif;font-size:clamp(2rem,3.6vw,3rem);font-weight:800;color:var(--dark);line-height:1.15;margin-bottom:16px;letter-spacing:-.02em}
+.section-title .grad{background:linear-gradient(135deg,var(--primary) 0%,var(--accent) 100%);-webkit-background-clip:text;background-clip:text;color:transparent}
+.section-sub{font-size:1.08rem;color:var(--text2);max-width:640px;margin:0 auto}
 
-.site-footer{background:#0f172a;color:#94a3b8;padding:40px 6% 24px;text-align:center;font-size:.88rem}
-.site-footer-name{color:#fff;font-weight:600;margin-bottom:8px;font-size:1rem}
+/* ─────────── SERVICIOS (6 cards glass) ─────────── */
+.services{background:linear-gradient(180deg,#fff 0%,#f0fbfd 100%)}
+.services-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:28px}
+.service-card{background:rgba(255,255,255,.7);backdrop-filter:blur(20px);border:1px solid var(--glass-border);border-radius:24px;padding:36px 30px;transition:all .4s cubic-bezier(.4,0,.2,1);position:relative;overflow:hidden;cursor:pointer}
+.service-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--primary),var(--accent));transform:scaleX(0);transform-origin:left;transition:transform .4s}
+.service-card:hover{transform:translateY(-8px);box-shadow:0 30px 60px rgba(8,145,178,.18);border-color:rgba(8,145,178,.3)}
+.service-card:hover::before{transform:scaleX(1)}
+.service-icon{width:72px;height:72px;border-radius:20px;background:linear-gradient(135deg,var(--primary-light),#fff);display:flex;align-items:center;justify-content:center;font-size:2.2rem;margin-bottom:22px;border:1px solid var(--glass-border);transition:transform .4s}
+.service-card:hover .service-icon{transform:scale(1.08) rotate(-4deg)}
+.service-card h3{font-family:'Playfair Display',serif;font-size:1.32rem;color:var(--dark);margin-bottom:10px;font-weight:700}
+.service-card p{font-size:.94rem;color:var(--text2);margin-bottom:20px;line-height:1.65}
+.service-link{display:inline-flex;align-items:center;gap:6px;color:var(--primary);font-size:.86rem;font-weight:600;text-decoration:none;background:none;border:none;cursor:pointer;font-family:inherit;padding:0;transition:gap .25s}
+.service-link:hover{gap:10px;color:var(--primary-dark)}
 
-/* Floating chat button */
-.fab{position:fixed;bottom:24px;right:24px;width:64px;height:64px;border-radius:50%;background:linear-gradient(135deg,#0ea5e9,#06b6d4);border:none;cursor:pointer;box-shadow:0 8px 24px rgba(14,165,233,.4),0 0 0 0 rgba(14,165,233,.5);display:flex;align-items:center;justify-content:center;font-size:1.8rem;z-index:9998;transition:transform .2s,opacity .2s;animation:fabPulse 2.2s infinite;color:#fff}
+/* ─────────── QUIÉNES SOMOS ─────────── */
+.about{background:#fff;position:relative}
+.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center}
+.about-img-stack{position:relative;aspect-ratio:1/1.05}
+.about-img-main{position:absolute;top:0;left:0;width:78%;height:80%;border-radius:24px;overflow:hidden;box-shadow:0 30px 60px rgba(8,145,178,.25)}
+.about-img-main img{width:100%;height:100%;object-fit:cover}
+.about-img-sub{position:absolute;bottom:0;right:0;width:55%;height:55%;border-radius:24px;overflow:hidden;box-shadow:0 30px 60px rgba(0,0,0,.18);border:8px solid #fff}
+.about-img-sub img{width:100%;height:100%;object-fit:cover}
+.about-deco{position:absolute;top:10%;right:5%;width:90px;height:90px;border-radius:50%;background:linear-gradient(135deg,var(--accent),var(--accent-dark));display:flex;align-items:center;justify-content:center;color:#fff;font-family:'Playfair Display',serif;font-weight:800;text-align:center;line-height:1.1;box-shadow:0 20px 40px rgba(245,158,11,.4);z-index:2}
+.about-deco .big{font-size:1.6rem;display:block}
+.about-deco .sm{font-size:.62rem;font-weight:600;letter-spacing:.05em;text-transform:uppercase}
+
+.about-content .section-title{text-align:left}
+.about-lead{font-size:1.1rem;color:var(--text);margin:20px 0 28px;line-height:1.75}
+.about-badges{display:flex;flex-wrap:wrap;gap:14px;margin-bottom:32px}
+.badge{display:inline-flex;align-items:center;gap:10px;background:var(--primary-light);color:var(--primary-dark);padding:11px 18px;border-radius:30px;font-size:.88rem;font-weight:600;border:1px solid var(--glass-border)}
+.badge-icon{color:var(--success);font-weight:700}
+
+/* ─────────── EQUIPO ─────────── */
+.team{background:linear-gradient(180deg,#f0fbfd 0%,#fff 100%)}
+.team-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:32px;max-width:1100px;margin:0 auto}
+.doctor-card{position:relative;border-radius:24px;overflow:hidden;aspect-ratio:3/4;cursor:pointer;box-shadow:0 20px 40px rgba(15,23,42,.1)}
+.doctor-card img{width:100%;height:100%;object-fit:cover;transition:transform .6s cubic-bezier(.4,0,.2,1)}
+.doctor-card:hover img{transform:scale(1.08)}
+.doctor-overlay{position:absolute;inset:0;background:linear-gradient(180deg,transparent 40%,rgba(8,145,178,.55) 70%,rgba(14,116,144,.92) 100%);display:flex;flex-direction:column;justify-content:flex-end;padding:30px;color:#fff;transition:all .4s}
+.doctor-card:hover .doctor-overlay{background:linear-gradient(180deg,rgba(8,145,178,.3) 0%,rgba(14,116,144,.92) 100%)}
+.doctor-name{font-family:'Playfair Display',serif;font-size:1.4rem;font-weight:700;margin-bottom:4px}
+.doctor-spec{font-size:.86rem;color:#cbf2f8;font-weight:500;margin-bottom:12px}
+.doctor-bio{font-size:.84rem;opacity:0;max-height:0;overflow:hidden;transition:all .4s}
+.doctor-card:hover .doctor-bio{opacity:1;max-height:100px;margin-bottom:8px}
+
+/* ─────────── PRIMERA VISITA CTA ─────────── */
+.first-visit{padding:80px 6%;position:relative;background:linear-gradient(135deg,var(--primary) 0%,var(--primary-dark) 100%);overflow:hidden}
+.first-visit::before{content:'';position:absolute;inset:0;background:radial-gradient(circle at 20% 50%,rgba(245,158,11,.2),transparent 50%),radial-gradient(circle at 80% 50%,rgba(103,232,249,.2),transparent 50%)}
+.fv-inner{position:relative;z-index:2;max-width:1100px;margin:0 auto;display:grid;grid-template-columns:1.3fr 1fr;gap:60px;align-items:center;color:#fff}
+.fv-tag{display:inline-block;background:rgba(245,158,11,.25);border:1px solid rgba(245,158,11,.5);color:#fde68a;padding:8px 18px;border-radius:30px;font-size:.78rem;font-weight:700;letter-spacing:.1em;margin-bottom:18px;text-transform:uppercase}
+.fv-title{font-family:'Playfair Display',serif;font-size:clamp(2.1rem,4vw,3.2rem);font-weight:800;line-height:1.1;margin-bottom:18px;letter-spacing:-.02em}
+.fv-title em{font-style:normal;background:linear-gradient(135deg,#fde68a,#f59e0b);-webkit-background-clip:text;background-clip:text;color:transparent}
+.fv-text{font-size:1.1rem;color:rgba(255,255,255,.9);margin-bottom:30px;line-height:1.7}
+.fv-features{display:flex;flex-direction:column;gap:12px;margin-bottom:32px}
+.fv-feat{display:flex;align-items:center;gap:12px;font-size:.96rem;font-weight:500}
+.fv-feat-icon{width:34px;height:34px;border-radius:10px;background:rgba(255,255,255,.18);display:flex;align-items:center;justify-content:center;font-size:1rem;flex-shrink:0}
+.fv-card{background:rgba(255,255,255,.1);backdrop-filter:blur(20px);border:1px solid rgba(255,255,255,.22);border-radius:24px;padding:36px 30px;text-align:center}
+.fv-card-price{display:block;font-family:'Playfair Display',serif;font-size:3.6rem;font-weight:800;line-height:1;margin-bottom:6px;background:linear-gradient(135deg,#fff,#fde68a);-webkit-background-clip:text;background-clip:text;color:transparent}
+.fv-card-old{font-size:.92rem;color:rgba(255,255,255,.7);text-decoration:line-through;margin-bottom:18px}
+.fv-card-list{text-align:left;margin-bottom:24px;list-style:none}
+.fv-card-list li{padding:8px 0;font-size:.9rem;color:rgba(255,255,255,.95);display:flex;align-items:center;gap:10px}
+.fv-card-list li::before{content:'✓';color:var(--accent);font-weight:800;font-size:1rem}
+.fv-card .btn-primary{width:100%;justify-content:center}
+
+/* ─────────── TESTIMONIOS ─────────── */
+.testimonials{background:#fff}
+.tst-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:28px}
+.tst-card{background:linear-gradient(135deg,#fff 0%,#f0fbfd 100%);border:1px solid var(--glass-border);border-radius:24px;padding:34px 30px;position:relative;transition:all .35s}
+.tst-card:hover{transform:translateY(-6px);box-shadow:0 24px 50px rgba(8,145,178,.15)}
+.tst-quote{position:absolute;top:18px;right:24px;font-family:'Playfair Display',serif;font-size:4rem;color:var(--primary-light);line-height:1;font-weight:800;pointer-events:none}
+.tst-stars{color:var(--accent);font-size:1.05rem;letter-spacing:3px;margin-bottom:16px;position:relative}
+.tst-text{font-size:1rem;color:var(--text);line-height:1.7;margin-bottom:24px;font-style:italic;position:relative}
+.tst-author{display:flex;align-items:center;gap:14px}
+.tst-avatar{width:52px;height:52px;border-radius:50%;background:linear-gradient(135deg,var(--primary),var(--primary-dark));color:#fff;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:1rem;box-shadow:0 8px 18px rgba(8,145,178,.3)}
+.tst-author strong{display:block;color:var(--dark);font-size:.96rem;font-weight:700;margin-bottom:2px}
+.tst-author span{color:var(--text2);font-size:.82rem}
+
+/* ─────────── GALERÍA ─────────── */
+.gallery{background:linear-gradient(180deg,#fff 0%,#f0fbfd 100%)}
+.gallery-grid{display:grid;grid-template-columns:repeat(3,1fr);grid-auto-rows:240px;gap:18px}
+.gal-item{position:relative;border-radius:20px;overflow:hidden;cursor:pointer;box-shadow:0 12px 30px rgba(15,23,42,.08)}
+.gal-item img{width:100%;height:100%;object-fit:cover;transition:transform .6s}
+.gal-item::after{content:'';position:absolute;inset:0;background:linear-gradient(180deg,transparent 50%,rgba(8,145,178,.6) 100%);opacity:0;transition:opacity .35s}
+.gal-item:hover img{transform:scale(1.1)}
+.gal-item:hover::after{opacity:1}
+.gal-item.tall{grid-row:span 2}
+
+/* ─────────── FAQ ─────────── */
+.faq{background:#fff}
+.faq-list{max-width:820px;margin:0 auto;display:flex;flex-direction:column;gap:14px}
+.faq-item{background:#f8fafc;border:1px solid var(--border);border-radius:18px;overflow:hidden;transition:all .3s}
+.faq-item.open{background:#fff;border-color:var(--glass-border);box-shadow:0 12px 30px rgba(8,145,178,.1)}
+.faq-q{padding:22px 26px;display:flex;justify-content:space-between;align-items:center;cursor:pointer;font-weight:600;color:var(--dark);font-size:1rem;user-select:none}
+.faq-toggle{width:28px;height:28px;border-radius:50%;background:var(--primary-light);color:var(--primary);display:flex;align-items:center;justify-content:center;font-size:1.1rem;font-weight:700;transition:transform .3s;flex-shrink:0}
+.faq-item.open .faq-toggle{transform:rotate(45deg);background:var(--primary);color:#fff}
+.faq-a{max-height:0;overflow:hidden;transition:max-height .35s ease,padding .35s ease;padding:0 26px;color:var(--text2);font-size:.94rem;line-height:1.7}
+.faq-item.open .faq-a{max-height:300px;padding:0 26px 22px}
+
+/* ─────────── CONTACTO / FOOTER ─────────── */
+.contact{background:var(--dark);color:#cbd5e1;padding:80px 6% 30px;position:relative;overflow:hidden}
+.contact::before{content:'';position:absolute;top:-100px;right:-100px;width:400px;height:400px;border-radius:50%;background:radial-gradient(circle,rgba(8,145,178,.2),transparent 70%);filter:blur(60px)}
+.contact-grid{position:relative;z-index:2;max-width:1280px;margin:0 auto;display:grid;grid-template-columns:1.5fr 1fr 1fr 1fr;gap:48px;padding-bottom:48px;border-bottom:1px solid rgba(255,255,255,.08)}
+.contact-brand .nav-logo{color:#fff;margin-bottom:18px}
+.contact-brand p{font-size:.92rem;line-height:1.7;color:#94a3b8;margin-bottom:18px;max-width:340px}
+.social-row{display:flex;gap:10px}
+.social-row a{width:38px;height:38px;border-radius:10px;background:rgba(255,255,255,.06);display:flex;align-items:center;justify-content:center;color:#cbd5e1;text-decoration:none;transition:all .25s;border:1px solid rgba(255,255,255,.08)}
+.social-row a:hover{background:var(--primary);color:#fff;border-color:var(--primary);transform:translateY(-3px)}
+.contact-col h4{color:#fff;font-size:.86rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;margin-bottom:18px}
+.contact-col ul{list-style:none;display:flex;flex-direction:column;gap:10px}
+.contact-col a,.contact-col li{color:#94a3b8;text-decoration:none;font-size:.92rem;transition:color .25s;display:flex;align-items:center;gap:8px}
+.contact-col a:hover{color:var(--primary)}
+.contact-bottom{position:relative;z-index:2;max-width:1280px;margin:24px auto 0;display:flex;justify-content:space-between;align-items:center;font-size:.82rem;color:#64748b;flex-wrap:wrap;gap:12px}
+
+/* ─────────── CHAT WIDGET (preservado, repaletizado) ─────────── */
+.fab{position:fixed;bottom:24px;right:24px;width:64px;height:64px;border-radius:50%;background:linear-gradient(135deg,var(--primary) 0%,var(--primary-dark) 100%);border:none;cursor:pointer;box-shadow:0 8px 24px rgba(8,145,178,.4),0 0 0 0 rgba(8,145,178,.5);display:flex;align-items:center;justify-content:center;font-size:1.8rem;z-index:9998;transition:transform .2s,opacity .2s;animation:fabPulse 2.2s infinite;color:#fff}
 .fab:hover{transform:scale(1.08)}
 .fab.open{animation:none}
 .fab.hidden{opacity:0;pointer-events:none;transform:scale(.6)}
-@keyframes fabPulse{
-  0%,100%{box-shadow:0 8px 24px rgba(14,165,233,.4),0 0 0 0 rgba(14,165,233,.5)}
-  50%{box-shadow:0 8px 24px rgba(14,165,233,.4),0 0 0 16px rgba(14,165,233,0)}
-}
+@keyframes fabPulse{0%,100%{box-shadow:0 8px 24px rgba(8,145,178,.4),0 0 0 0 rgba(8,145,178,.5)}50%{box-shadow:0 8px 24px rgba(8,145,178,.4),0 0 0 16px rgba(8,145,178,0)}}
 
-/* Teaser bubble */
 .teaser{position:fixed;bottom:42px;right:104px;background:#fff;color:var(--text);padding:14px 18px;border-radius:16px 16px 4px 16px;box-shadow:0 12px 32px rgba(15,23,42,.18);font-family:'Outfit',sans-serif;font-size:.92rem;font-weight:500;max-width:260px;line-height:1.4;z-index:9997;display:none;align-items:center;gap:10px}
 .teaser.show{display:flex;animation:teaserIn .35s ease-out}
-@keyframes teaserIn{
-  from{opacity:0;transform:translateX(20px)}
-  to{opacity:1;transform:translateX(0)}
-}
+@keyframes teaserIn{from{opacity:0;transform:translateX(20px)}to{opacity:1;transform:translateX(0)}}
 .teaser-text{flex:1}
 .teaser-text-mobile{display:none}
 .teaser-close{background:none;border:none;color:#94a3b8;cursor:pointer;font-size:1rem;padding:2px 6px;border-radius:4px;line-height:1;flex-shrink:0;transition:all .2s;font-family:inherit}
 .teaser-close:hover{background:#f1f5f9;color:var(--text)}
 
-/* Chat widget */
-.chat-container{position:fixed;bottom:100px;right:24px;width:380px;height:600px;max-height:calc(100vh - 130px);border-radius:16px;box-shadow:0 20px 60px rgba(15,23,42,.25);z-index:9999;display:none;flex-direction:column;overflow:hidden;background:#fff;border:1px solid var(--border);font-family:'Outfit',sans-serif}
+.chat-container{position:fixed;bottom:100px;right:24px;width:380px;height:600px;max-height:calc(100vh - 130px);border-radius:20px;box-shadow:0 30px 70px rgba(15,23,42,.3);z-index:9999;display:none;flex-direction:column;overflow:hidden;background:#fff;border:1px solid var(--border);font-family:'Outfit',sans-serif}
 .chat-container.open{display:flex;animation:slideUp .25s ease-out}
 @keyframes slideUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
-.chat-head{background:linear-gradient(135deg,#0ea5e9 0%,#06b6d4 100%);padding:16px;color:#fff;display:flex;justify-content:space-between;align-items:center;flex-shrink:0}
+.chat-head{background:linear-gradient(135deg,var(--primary) 0%,var(--primary-dark) 100%);padding:16px;color:#fff;display:flex;justify-content:space-between;align-items:center;flex-shrink:0}
 .chat-head-info{display:flex;align-items:center;gap:12px}
 .chat-avatar{width:42px;height:42px;border-radius:50%;background:rgba(255,255,255,.2);display:flex;align-items:center;justify-content:center;font-size:1.4rem;border:2px solid rgba(255,255,255,.35)}
 .chat-head-name{font-weight:700;font-size:.92rem}
@@ -134,7 +243,6 @@ body{font-family:'Inter','Segoe UI',system-ui,-apple-system,sans-serif;backgroun
 .msg.user{background:var(--primary);color:#fff;margin-left:auto;border-radius:16px 16px 4px 16px}
 .msg.system{background:rgba(16,185,129,.08);border:1px solid rgba(16,185,129,.2);color:var(--success);border-radius:12px;text-align:center;max-width:100%;font-weight:500;font-size:.82rem}
 
-/* Typing indicator */
 .typing{display:inline-flex;gap:4px;background:#f1f5f9;padding:14px 18px;border-radius:16px 16px 16px 4px;margin-bottom:10px;animation:msgIn .3s ease-out}
 .typing span{width:7px;height:7px;border-radius:50%;background:#94a3b8;animation:typingDot 1.2s infinite}
 .typing span:nth-child(2){animation-delay:.15s}
@@ -150,7 +258,7 @@ body{font-family:'Inter','Segoe UI',system-ui,-apple-system,sans-serif;backgroun
 .service-info{background:#f1f5f9;border-left:3px solid var(--primary);border-radius:10px;padding:14px 16px;margin-bottom:10px;font-size:.85rem;color:var(--text);line-height:1.6}
 .service-info-title{color:var(--primary);font-size:.92rem;font-weight:700;margin-bottom:8px;display:block}
 .service-info ul{list-style:none;padding:0;margin:8px 0}
-.service-info li{padding:2px 0;color:var(--text-soft)}
+.service-info li{padding:2px 0;color:var(--text2)}
 .service-info-cta{margin-top:8px;color:var(--text);font-weight:500}
 .service-actions{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:10px}
 
@@ -165,29 +273,50 @@ body{font-family:'Inter','Segoe UI',system-ui,-apple-system,sans-serif;backgroun
 .chat-input input{flex:1;background:#f8fafc;border:1px solid var(--border);border-radius:22px;padding:11px 16px;font-size:.88rem;color:var(--text);font-family:inherit;outline:none;transition:all .2s;min-width:0}
 .chat-input input:focus{border-color:var(--primary);background:#fff}
 .chat-input input::placeholder{color:#94a3b8}
-.send-btn{width:42px;height:42px;border-radius:50%;background:var(--primary);border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .2s;box-shadow:0 3px 12px rgba(14,165,233,.3);flex-shrink:0}
+.send-btn{width:42px;height:42px;border-radius:50%;background:var(--primary);border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .2s;box-shadow:0 3px 12px rgba(8,145,178,.3);flex-shrink:0}
 .send-btn:hover{background:var(--primary-dark);transform:scale(1.05)}
 .send-btn svg{width:16px;height:16px;stroke:#fff;fill:none;stroke-width:2}
 
 .wa-confirm{background:rgba(16,185,129,.06);border:1px solid rgba(16,185,129,.2);border-radius:14px;padding:16px;margin-bottom:10px;text-align:center}
 .wa-confirm .wa-icon{font-size:2rem;margin-bottom:8px}
 .wa-confirm .wa-title{font-weight:700;color:var(--success);font-size:.9rem;margin-bottom:4px}
-.wa-confirm .wa-text{font-size:.78rem;color:var(--text-soft);line-height:1.5}
+.wa-confirm .wa-text{font-size:.78rem;color:var(--text2);line-height:1.5}
 .wa-confirm .wa-btn{display:inline-block;margin-top:12px;background:var(--primary);color:#fff;text-decoration:none;padding:10px 22px;border-radius:20px;font-size:.82rem;font-weight:600;transition:all .2s;font-family:inherit}
 .wa-confirm .wa-btn:hover{background:var(--primary-dark);transform:translateY(-1px)}
 
 .lead-summary{background:rgba(16,185,129,.06);border-left:3px solid var(--success);border-radius:8px;padding:12px 14px;margin-bottom:10px;line-height:1.6;font-size:.82rem;color:var(--text)}
 .lead-summary strong{color:var(--success)}
 
+/* ─────────── REVEAL ON SCROLL ─────────── */
+.reveal{opacity:0;transform:translateY(30px);transition:opacity .8s ease,transform .8s ease}
+.reveal.in{opacity:1;transform:translateY(0)}
+
+/* ─────────── RESPONSIVE ─────────── */
+@media(max-width:1024px){
+  .hero-inner{grid-template-columns:1fr;gap:40px;text-align:center}
+  .hero-badge,.hero-ctas{justify-content:center;margin-left:auto;margin-right:auto}
+  .hero p.lead{margin-left:auto;margin-right:auto}
+  .hero-visual{max-width:420px;margin:0 auto}
+  .hero-stats{max-width:600px;margin:0 auto}
+  .services-grid,.tst-grid,.team-grid{grid-template-columns:repeat(2,1fr)}
+  .about-grid,.fv-inner{grid-template-columns:1fr;gap:48px}
+  .about-content .section-title{text-align:center}
+  .about-badges{justify-content:center}
+  .contact-grid{grid-template-columns:1fr 1fr;gap:36px}
+  .gallery-grid{grid-template-columns:repeat(2,1fr)}
+}
 @media(max-width:768px){
-  .site-nav{display:none}
-  .site-hero h1{font-size:1.8rem}
-  .site-hero{padding:60px 6%}
-  .site-section{padding:40px 6%}
-  .site-team{padding:40px 6%}
-  .site-why{padding:40px 6%}
-  .site-testimonials{padding:40px 6%}
-  .site-team-avatar{width:90px;height:90px;font-size:1.7rem}
+  .nav-links{display:none}
+  .nav-toggle{display:block}
+  .nav-links.mobile-open{display:flex;position:absolute;top:100%;left:0;right:0;background:#fff;flex-direction:column;padding:24px;gap:18px;box-shadow:0 20px 40px rgba(0,0,0,.1);border-top:1px solid var(--border)}
+  .section{padding:70px 6%}
+  .hero{padding:110px 6% 60px}
+  .hero-stats{grid-template-columns:repeat(2,1fr);gap:20px}
+  .services-grid,.tst-grid,.team-grid{grid-template-columns:1fr}
+  .gallery-grid{grid-template-columns:1fr;grid-auto-rows:220px}
+  .gal-item.tall{grid-row:span 1}
+  .contact-grid{grid-template-columns:1fr;gap:32px}
+  .float-card{display:none}
 }
 @media(max-width:480px){
   .fab{width:56px;height:56px;bottom:16px;right:16px;font-size:1.5rem}
@@ -195,181 +324,385 @@ body{font-family:'Inter','Segoe UI',system-ui,-apple-system,sans-serif;backgroun
   .teaser{bottom:84px;right:16px;left:auto;max-width:calc(100vw - 90px);font-size:.86rem;padding:12px 14px}
   .teaser-text-desktop{display:none}
   .teaser-text-mobile{display:inline}
+  .hero-ctas{flex-direction:column}
+  .btn-primary,.btn-secondary{width:100%;justify-content:center}
 }
 </style>
 </head>
 <body>
 
-<header class="site-header">
-  <div class="site-logo">
-    <div class="site-logo-icon">🦷</div>
-    WhiteMoon Dental
+<!-- NAVBAR -->
+<header class="navbar" id="navbar">
+  <div class="nav-logo">
+    <div class="nav-logo-icon">🦷</div>
+    <div class="nav-logo-text">
+      WhiteMoon Dental
+      <small>Clínica Premium</small>
+    </div>
   </div>
-  <nav class="site-nav">
-    <a href="#servicios">Servicios</a>
+  <nav class="nav-links" id="navLinks">
+    <a href="#servicios">Tratamientos</a>
+    <a href="#nosotros">Nosotros</a>
     <a href="#equipo">Equipo</a>
-    <a href="#porque">Por qué nosotros</a>
     <a href="#opiniones">Opiniones</a>
-    <a href="#contacto">Contacto</a>
+    <a href="#galeria">Galería</a>
+    <a href="#" class="nav-cta" onclick="openChatFromCta(event)">Pedir cita</a>
   </nav>
+  <button class="nav-toggle" onclick="toggleNav()" aria-label="Menú">☰</button>
 </header>
 
-<section class="site-hero">
-  <div class="site-hero-inner">
-    <h1>Cuidamos tu sonrisa con tecnología y cercanía</h1>
-    <p>Más de 15 años ayudando a pacientes a recuperar su confianza con tratamientos personalizados, materiales de primera calidad y un equipo humano excepcional.</p>
-    <a href="#" class="site-hero-cta" onclick="openChatFromCta(event)">Pide tu primera visita</a>
-    <div class="site-hero-trust">
-      <span>✓ Primera visita gratuita</span>
-      <span>✓ Financiación sin intereses</span>
-      <span>✓ Garantía de por vida</span>
-    </div>
-  </div>
-</section>
+<!-- HERO -->
+<section class="hero">
+  <div class="orb orb-1"></div>
+  <div class="orb orb-2"></div>
+  <div class="orb orb-3"></div>
 
-<section class="site-section" id="servicios">
-  <h2>Nuestros servicios</h2>
-  <p class="section-sub">Tratamientos integrales con la última tecnología</p>
-  <div class="site-grid">
-    <div class="site-card">
-      <div class="site-card-icon">🦷</div>
-      <h3>Implantes dentales</h3>
-      <p>Tecnología 3D guiada con garantía de por vida y financiación a medida.</p>
-      <button class="site-card-cta" onclick="openChatService('Implantes dentales')">Pedir cita</button>
-    </div>
-    <div class="site-card">
-      <div class="site-card-icon">😬</div>
-      <h3>Ortodoncia invisible</h3>
-      <p>Brackets e Invisalign con plan personalizado por especialistas certificados.</p>
-      <button class="site-card-cta" onclick="openChatService('Ortodoncia / Invisalign')">Pedir cita</button>
-    </div>
-    <div class="site-card">
-      <div class="site-card-icon">✨</div>
-      <h3>Estética dental</h3>
-      <p>Blanqueamiento profesional LED y carillas para una sonrisa natural.</p>
-      <button class="site-card-cta" onclick="openChatService('Blanqueamiento dental')">Pedir cita</button>
-    </div>
-    <div class="site-card">
-      <div class="site-card-icon">🪥</div>
-      <h3>Higiene y prevención</h3>
-      <p>Limpiezas profesionales y revisiones periódicas para mantener tu salud bucal.</p>
-      <button class="site-card-cta" onclick="openChatService('Limpieza profesional')">Pedir cita</button>
-    </div>
-    <div class="site-card">
-      <div class="site-card-icon">🩺</div>
-      <h3>Endodoncia</h3>
-      <p>Tratamiento de conductos para conservar tus dientes naturales con la última tecnología.</p>
-      <button class="site-card-cta" onclick="openChatService('Endodoncia')">Pedir cita</button>
-    </div>
-    <div class="site-card">
-      <div class="site-card-icon">🧒</div>
-      <h3>Odontología infantil</h3>
-      <p>Cuidamos la salud bucal de los más pequeños con paciencia, cariño y juegos.</p>
-      <button class="site-card-cta" onclick="openChatService('Odontología infantil')">Pedir cita</button>
-    </div>
-  </div>
-</section>
-
-<section class="site-team" id="equipo">
-  <h2>Nuestro equipo</h2>
-  <p class="section-sub">Profesionales con vocación y experiencia</p>
-  <div class="site-team-grid">
-    <div class="site-team-card">
-      <div class="site-team-avatar">DR</div>
-      <h3>Dra. Ramos</h3>
-      <p>Implantología</p>
-      <span class="site-team-spec">15 años exp.</span>
-    </div>
-    <div class="site-team-card">
-      <div class="site-team-avatar">DM</div>
-      <h3>Dr. Martín</h3>
-      <p>Ortodoncia</p>
-      <span class="site-team-spec">Invisalign Diamond</span>
-    </div>
-    <div class="site-team-card">
-      <div class="site-team-avatar pink">DL</div>
-      <h3>Dra. López</h3>
-      <p>Estética dental</p>
-      <span class="site-team-spec">Diseño de sonrisa</span>
-    </div>
-  </div>
-</section>
-
-<section class="site-why" id="porque">
-  <h2>¿Por qué WhiteMoon Dental?</h2>
-  <p class="section-sub">Más de 15 años cuidando sonrisas en Madrid</p>
-  <div class="why-grid">
-    <div class="why-card">
-      <div class="why-icon">😊</div>
-      <div class="why-num">5.000+</div>
-      <h3>Pacientes felices</h3>
-      <p>Familias que confían en nosotros año tras año.</p>
-    </div>
-    <div class="why-card">
-      <div class="why-icon">🏆</div>
-      <div class="why-num">15+</div>
-      <h3>Años de experiencia</h3>
-      <p>Especialistas con formación continua y certificaciones internacionales.</p>
-    </div>
-    <div class="why-card">
-      <div class="why-icon">💳</div>
-      <div class="why-num">24</div>
-      <h3>Meses sin intereses</h3>
-      <p>Financiación cómoda para todos los tratamientos.</p>
-    </div>
-    <div class="why-card">
-      <div class="why-icon">⚡</div>
-      <div class="why-num">2h</div>
-      <h3>Respuesta urgencias</h3>
-      <p>Atendemos urgencias dentales el mismo día.</p>
-    </div>
-  </div>
-</section>
-
-<section class="site-testimonials" id="opiniones">
-  <h2>Lo que dicen nuestros pacientes</h2>
-  <p class="section-sub">Opiniones reales de pacientes verificados</p>
-  <div class="testimonials-grid">
-    <div class="testimonial">
-      <div class="testimonial-stars">★★★★★</div>
-      <p class="testimonial-text">"Llegué con mucho miedo y salí encantada. Me explicaron todo paso a paso y la financiación me permitió hacerme los implantes sin agobios."</p>
-      <div class="testimonial-author">
-        <div class="testimonial-avatar">MG</div>
-        <div class="testimonial-author-info">
-          <strong>María G.</strong>
-          <span>Implantes dentales</span>
+  <div class="hero-inner">
+    <div class="hero-content">
+      <div class="hero-badge">
+        <span class="dot"></span>
+        Aceptando nuevos pacientes · Madrid
+      </div>
+      <h1>Tu sonrisa, <span class="grad">nuestra obra<br>maestra</span></h1>
+      <p class="lead">15 años cuidando sonrisas con tecnología 3D, materiales premium y un equipo humano excepcional. Primera visita y diagnóstico completo <strong style="color:#fde68a">gratis</strong>.</p>
+      <div class="hero-ctas">
+        <button class="btn-primary" onclick="openChatFromCta(event)">Pedir primera visita gratis →</button>
+        <a class="btn-secondary" href="#servicios">Ver tratamientos</a>
+      </div>
+      <div class="hero-stats">
+        <div>
+          <div class="stat-num" data-target="15" data-suffix="+">0</div>
+          <div class="stat-label">Años de experiencia</div>
+        </div>
+        <div>
+          <div class="stat-num" data-target="3000" data-suffix="+">0</div>
+          <div class="stat-label">Pacientes felices</div>
+        </div>
+        <div>
+          <div class="stat-num" data-target="4" data-suffix="">0</div>
+          <div class="stat-label">Especialistas</div>
+        </div>
+        <div>
+          <div class="stat-num" data-target="98" data-suffix="%">0</div>
+          <div class="stat-label">Satisfacción</div>
         </div>
       </div>
     </div>
-    <div class="testimonial">
-      <div class="testimonial-stars">★★★★★</div>
-      <p class="testimonial-text">"Trato de 10. Mi hijo de 6 años va contento al dentista, eso lo dice todo. El equipo infantil es maravilloso."</p>
-      <div class="testimonial-author">
-        <div class="testimonial-avatar">CR</div>
-        <div class="testimonial-author-info">
-          <strong>Carlos R.</strong>
-          <span>Odontología infantil</span>
+
+    <div class="hero-visual">
+      <div class="hero-img-wrap">
+        <img src="https://images.unsplash.com/photo-1581585099522-f6ac2efe8b6b?w=700&q=80" alt="Sonrisa perfecta WhiteMoon Dental" loading="eager">
+      </div>
+      <div class="float-card float-card-1">
+        <div class="float-icon">⭐</div>
+        <div class="float-text">
+          <strong>4.9 / 5</strong>
+          <span>+800 reseñas Google</span>
         </div>
       </div>
-    </div>
-    <div class="testimonial">
-      <div class="testimonial-stars">★★★★★</div>
-      <p class="testimonial-text">"El Invisalign cambió mi sonrisa en un año. La Dra. López y el Dr. Martín son cercanos y profesionales. 100% recomendable."</p>
-      <div class="testimonial-author">
-        <div class="testimonial-avatar">LF</div>
-        <div class="testimonial-author-info">
-          <strong>Lucía F.</strong>
-          <span>Ortodoncia Invisalign</span>
+      <div class="float-card float-card-2">
+        <div class="float-icon">🛡️</div>
+        <div class="float-text">
+          <strong>Garantía total</strong>
+          <span>Tratamientos certificados</span>
         </div>
       </div>
     </div>
   </div>
 </section>
 
-<footer class="site-footer" id="contacto">
-  <div class="site-footer-name">WhiteMoon Dental</div>
-  <div>Calle Mayor 123 · 28001 Madrid · 📞 911 234 567</div>
-  <div style="margin-top:14px;font-size:.78rem;opacity:.6">© 2026 WhiteMoon Dental · Todos los derechos reservados</div>
+<!-- SERVICIOS -->
+<section class="section services" id="servicios">
+  <div class="section-inner">
+    <div class="section-head reveal">
+      <div class="eyebrow">Nuestros tratamientos</div>
+      <h2 class="section-title">Soluciones <span class="grad">integrales</span> para cada sonrisa</h2>
+      <p class="section-sub">Combinamos tecnología 3D guiada con un trato humano y cercano para que tu experiencia sea perfecta.</p>
+    </div>
+    <div class="services-grid">
+      <div class="service-card reveal">
+        <div class="service-icon">🔩</div>
+        <h3>Implantes Dentales</h3>
+        <p>Tecnología 3D guiada, materiales de titanio premium y garantía de por vida. Recupera tu sonrisa con seguridad.</p>
+        <button class="service-link" onclick="openChatService('Implantes dentales')">Pedir valoración →</button>
+      </div>
+      <div class="service-card reveal">
+        <div class="service-icon">😬</div>
+        <h3>Ortodoncia e Invisalign</h3>
+        <p>Brackets estéticos e Invisalign con plan personalizado. Resultados visibles desde los primeros meses.</p>
+        <button class="service-link" onclick="openChatService('Ortodoncia / Invisalign')">Pedir valoración →</button>
+      </div>
+      <div class="service-card reveal">
+        <div class="service-icon">✨</div>
+        <h3>Estética Dental</h3>
+        <p>Blanqueamiento LED, carillas de porcelana y diseño digital de sonrisa para una imagen radiante.</p>
+        <button class="service-link" onclick="openChatService('Estética dental')">Pedir valoración →</button>
+      </div>
+      <div class="service-card reveal">
+        <div class="service-icon">🧼</div>
+        <h3>Higiene y Prevención</h3>
+        <p>Limpiezas profesionales, revisiones periódicas y educación bucal para mantener tu sonrisa sana.</p>
+        <button class="service-link" onclick="openChatService('Limpieza y revisión')">Pedir cita →</button>
+      </div>
+      <div class="service-card reveal">
+        <div class="service-icon">🦷</div>
+        <h3>Endodoncia</h3>
+        <p>Tratamientos de conducto con microscopio dental. Indoloros, en 1-2 sesiones y conservando tu diente natural.</p>
+        <button class="service-link" onclick="openChatService('Endodoncia')">Pedir valoración →</button>
+      </div>
+      <div class="service-card reveal">
+        <div class="service-icon">👶</div>
+        <h3>Odontopediatría</h3>
+        <p>Especialistas en niños y adolescentes. Cuidamos su salud bucal con paciencia, cariño y mucho juego.</p>
+        <button class="service-link" onclick="openChatService('Odontología infantil')">Pedir cita →</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- QUIÉNES SOMOS -->
+<section class="section about" id="nosotros">
+  <div class="section-inner">
+    <div class="about-grid">
+      <div class="about-img-stack reveal">
+        <div class="about-deco">
+          <span class="big">15</span>
+          <span class="sm">años</span>
+        </div>
+        <div class="about-img-main">
+          <img src="https://images.unsplash.com/photo-1606811841689-23dfddce3e95?w=700&q=80" alt="Clínica WhiteMoon Dental" loading="lazy">
+        </div>
+        <div class="about-img-sub">
+          <img src="https://images.unsplash.com/photo-1629909613654-28e377c37b09?w=500&q=80" alt="Equipo dental" loading="lazy">
+        </div>
+      </div>
+      <div class="about-content reveal">
+        <div class="eyebrow">Quiénes somos</div>
+        <h2 class="section-title">Más de 15 años <span class="grad">cuidando sonrisas</span></h2>
+        <p class="about-lead">En WhiteMoon Dental combinamos lo mejor de la odontología moderna con un trato 100% personalizado. Cada paciente es único y cada plan de tratamiento también. Por eso miles de familias confían en nosotros año tras año.</p>
+        <div class="about-badges">
+          <span class="badge"><span class="badge-icon">✅</span> Colegiados</span>
+          <span class="badge"><span class="badge-icon">✅</span> Tecnología 3D</span>
+          <span class="badge"><span class="badge-icon">✅</span> Financiación disponible</span>
+          <span class="badge"><span class="badge-icon">✅</span> Garantía de por vida</span>
+        </div>
+        <button class="btn-primary" onclick="openChatFromCta(event)">Conoce nuestra clínica →</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EQUIPO -->
+<section class="section team" id="equipo">
+  <div class="section-inner">
+    <div class="section-head reveal">
+      <div class="eyebrow">Nuestro equipo</div>
+      <h2 class="section-title">Especialistas con <span class="grad">vocación</span></h2>
+      <p class="section-sub">Un equipo multidisciplinar con formación continua e internacional para ofrecerte lo mejor.</p>
+    </div>
+    <div class="team-grid">
+      <div class="doctor-card reveal">
+        <img src="https://images.unsplash.com/photo-1537368910025-700350fe46c7?w=600&q=80" alt="Dr. Ramos" loading="lazy">
+        <div class="doctor-overlay">
+          <div class="doctor-name">Dr. Ramos</div>
+          <div class="doctor-spec">Implantología avanzada</div>
+          <div class="doctor-bio">15 años de experiencia. Más de 2.500 implantes colocados con tecnología 3D guiada.</div>
+        </div>
+      </div>
+      <div class="doctor-card reveal">
+        <img src="https://images.unsplash.com/photo-1622253692010-333f2da6031d?w=600&q=80" alt="Dr. Martín" loading="lazy">
+        <div class="doctor-overlay">
+          <div class="doctor-name">Dr. Martín</div>
+          <div class="doctor-spec">Ortodoncia e Invisalign</div>
+          <div class="doctor-bio">Invisalign Diamond Provider. Especialista en ortodoncia adulta y adolescente.</div>
+        </div>
+      </div>
+      <div class="doctor-card reveal">
+        <img src="https://images.unsplash.com/photo-1559839734-2b71ea197ec2?w=600&q=80" alt="Dra. López" loading="lazy">
+        <div class="doctor-overlay">
+          <div class="doctor-name">Dra. López</div>
+          <div class="doctor-spec">Estética dental</div>
+          <div class="doctor-bio">Diseño digital de sonrisa. Carillas y blanqueamiento profesional con resultados naturales.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PRIMERA VISITA GRATIS -->
+<section class="first-visit">
+  <div class="fv-inner">
+    <div class="reveal">
+      <span class="fv-tag">🎁 Oferta exclusiva</span>
+      <h2 class="fv-title">Tu primera visita es <em>GRATIS</em></h2>
+      <p class="fv-text">Sin compromiso. Diagnóstico completo, radiografía panorámica y plan de tratamiento personalizado totalmente gratis. Ven a conocernos.</p>
+      <div class="fv-features">
+        <div class="fv-feat"><span class="fv-feat-icon">🔍</span> Exploración completa por especialista</div>
+        <div class="fv-feat"><span class="fv-feat-icon">📸</span> Radiografía panorámica digital</div>
+        <div class="fv-feat"><span class="fv-feat-icon">📋</span> Plan de tratamiento por escrito</div>
+        <div class="fv-feat"><span class="fv-feat-icon">💳</span> Estudio de financiación sin intereses</div>
+      </div>
+    </div>
+    <div class="fv-card reveal">
+      <span class="fv-card-price">0€</span>
+      <div class="fv-card-old">Antes 89€</div>
+      <ul class="fv-card-list">
+        <li>Diagnóstico completo</li>
+        <li>Radiografía panorámica</li>
+        <li>Plan personalizado</li>
+        <li>Sin compromiso</li>
+      </ul>
+      <button class="btn-primary" onclick="openChatFromCta(event)">Reservar mi visita →</button>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIOS -->
+<section class="section testimonials" id="opiniones">
+  <div class="section-inner">
+    <div class="section-head reveal">
+      <div class="eyebrow">Lo que dicen de nosotros</div>
+      <h2 class="section-title">Pacientes que ya <span class="grad">sonríen</span></h2>
+      <p class="section-sub">Más de 800 reseñas verificadas con un promedio de 4.9/5 ⭐</p>
+    </div>
+    <div class="tst-grid">
+      <div class="tst-card reveal">
+        <div class="tst-quote">"</div>
+        <div class="tst-stars">★★★★★</div>
+        <p class="tst-text">"Llevaba años con miedo al dentista. El equipo me hizo sentir tranquilo desde el primer momento. ¡Recomendado 100%!"</p>
+        <div class="tst-author">
+          <div class="tst-avatar">MG</div>
+          <div>
+            <strong>María G.</strong>
+            <span>Implantes dentales</span>
+          </div>
+        </div>
+      </div>
+      <div class="tst-card reveal">
+        <div class="tst-quote">"</div>
+        <div class="tst-stars">★★★★★</div>
+        <p class="tst-text">"Me hicieron los implantes y quedé encantada. Calidad y precio insuperables. El trato del personal es exquisito."</p>
+        <div class="tst-author">
+          <div class="tst-avatar">JM</div>
+          <div>
+            <strong>Juan M.</strong>
+            <span>Implantología</span>
+          </div>
+        </div>
+      </div>
+      <div class="tst-card reveal">
+        <div class="tst-quote">"</div>
+        <div class="tst-stars">★★★★★</div>
+        <p class="tst-text">"La ortodoncia invisible cambió mi vida. Resultados en tiempo récord y un seguimiento espectacular. Mil gracias al equipo."</p>
+        <div class="tst-author">
+          <div class="tst-avatar">AP</div>
+          <div>
+            <strong>Ana P.</strong>
+            <span>Ortodoncia Invisalign</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- GALERÍA -->
+<section class="section gallery" id="galeria">
+  <div class="section-inner">
+    <div class="section-head reveal">
+      <div class="eyebrow">Galería</div>
+      <h2 class="section-title">Nuestras <span class="grad">instalaciones</span></h2>
+      <p class="section-sub">Un espacio diseñado para tu comodidad con la última tecnología dental.</p>
+    </div>
+    <div class="gallery-grid">
+      <div class="gal-item tall reveal"><img src="https://images.unsplash.com/photo-1629909613654-28e377c37b09?w=700&q=80" alt="Clínica" loading="lazy"></div>
+      <div class="gal-item reveal"><img src="https://images.unsplash.com/photo-1588776814546-1ffbb045dcc4?w=700&q=80" alt="Sala de tratamiento" loading="lazy"></div>
+      <div class="gal-item reveal"><img src="https://images.unsplash.com/photo-1606811841689-23dfddce3e95?w=700&q=80" alt="Equipo dental" loading="lazy"></div>
+      <div class="gal-item reveal"><img src="https://images.unsplash.com/photo-1537368910025-700350fe46c7?w=700&q=80" alt="Doctor" loading="lazy"></div>
+      <div class="gal-item tall reveal"><img src="https://images.unsplash.com/photo-1622253692010-333f2da6031d?w=700&q=80" alt="Especialista" loading="lazy"></div>
+      <div class="gal-item reveal"><img src="https://images.unsplash.com/photo-1559839734-2b71ea197ec2?w=700&q=80" alt="Sonrisa" loading="lazy"></div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="section faq">
+  <div class="section-inner">
+    <div class="section-head reveal">
+      <div class="eyebrow">Preguntas frecuentes</div>
+      <h2 class="section-title">Resolvemos tus <span class="grad">dudas</span></h2>
+    </div>
+    <div class="faq-list">
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">¿La primera visita es realmente gratis? <span class="faq-toggle">+</span></div>
+        <div class="faq-a">Sí. Sin coste y sin compromiso. Incluye exploración, radiografía panorámica y plan de tratamiento personalizado por escrito.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">¿Ofrecéis financiación? <span class="faq-toggle">+</span></div>
+        <div class="faq-a">Sí, hasta 24 meses sin intereses para cualquier tratamiento. Estudiamos cada caso para darte la mejor solución.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">¿Atendéis urgencias dentales? <span class="faq-toggle">+</span></div>
+        <div class="faq-a">Sí. Atendemos urgencias el mismo día. Llámanos al 911 234 567 o avísanos por WhatsApp y te recibimos cuanto antes.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">¿Qué garantía tienen los tratamientos? <span class="faq-toggle">+</span></div>
+        <div class="faq-a">Implantes con garantía de por vida y resto de tratamientos con garantía extendida según protocolo. Todo por escrito.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACTO / FOOTER -->
+<footer class="contact" id="contacto">
+  <div class="contact-grid">
+    <div class="contact-brand">
+      <div class="nav-logo">
+        <div class="nav-logo-icon">🦷</div>
+        <div class="nav-logo-text">
+          WhiteMoon Dental
+          <small>Clínica Premium</small>
+        </div>
+      </div>
+      <p>15 años cuidando sonrisas en Madrid. Tecnología 3D, equipo humano excepcional y financiación a medida.</p>
+      <div class="social-row">
+        <a href="#" aria-label="Instagram">📷</a>
+        <a href="#" aria-label="Facebook">📘</a>
+        <a href="#" aria-label="WhatsApp">💬</a>
+        <a href="#" aria-label="Google">🔍</a>
+      </div>
+    </div>
+    <div class="contact-col">
+      <h4>Clínica</h4>
+      <ul>
+        <li>📍 Calle Mayor 123</li>
+        <li>28001 Madrid</li>
+        <li>📞 <a href="tel:+34911234567">911 234 567</a></li>
+        <li>✉️ <a href="mailto:hola@whitemoon.es">hola@whitemoon.es</a></li>
+      </ul>
+    </div>
+    <div class="contact-col">
+      <h4>Horario</h4>
+      <ul>
+        <li>Lun-Vie · 9:00 — 21:00</li>
+        <li>Sábado · 10:00 — 14:00</li>
+        <li>Urgencias · 24/7</li>
+      </ul>
+    </div>
+    <div class="contact-col">
+      <h4>Enlaces</h4>
+      <ul>
+        <li><a href="#servicios">Tratamientos</a></li>
+        <li><a href="#equipo">Equipo</a></li>
+        <li><a href="#opiniones">Opiniones</a></li>
+        <li><a href="#" onclick="openChatFromCta(event)">Pedir cita</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="contact-bottom">
+    <div>© 2026 WhiteMoon Dental · Todos los derechos reservados</div>
+    <div>Aviso legal · Política de privacidad · Cookies</div>
+  </div>
 </footer>
 
 <!-- Teaser bubble -->
@@ -404,20 +737,62 @@ body{font-family:'Inter','Segoe UI',system-ui,-apple-system,sans-serif;backgroun
 </div>
 
 <script>
+/* ─────────── UI Enhancements ─────────── */
+var navbar=document.getElementById('navbar');
+window.addEventListener('scroll',function(){
+  if(window.scrollY>40)navbar.classList.add('scrolled');
+  else navbar.classList.remove('scrolled');
+},{passive:true});
+
+function toggleNav(){document.getElementById('navLinks').classList.toggle('mobile-open');}
+document.querySelectorAll('#navLinks a').forEach(function(a){
+  a.addEventListener('click',function(){document.getElementById('navLinks').classList.remove('mobile-open');});
+});
+
+function toggleFaq(el){
+  var item=el.parentElement;
+  var wasOpen=item.classList.contains('open');
+  document.querySelectorAll('.faq-item').forEach(function(i){i.classList.remove('open');});
+  if(!wasOpen)item.classList.add('open');
+}
+
+/* Reveal on scroll */
+var io=new IntersectionObserver(function(entries){
+  entries.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}});
+},{threshold:.12,rootMargin:'0px 0px -50px 0px'});
+document.querySelectorAll('.reveal').forEach(function(el){io.observe(el);});
+
+/* Counter animation */
+function animateCounter(el){
+  var target=parseInt(el.dataset.target,10);
+  var suffix=el.dataset.suffix||'';
+  var duration=1800;
+  var start=performance.now();
+  function step(now){
+    var p=Math.min((now-start)/duration,1);
+    var eased=1-Math.pow(1-p,3);
+    var val=Math.round(target*eased);
+    el.textContent=(val>=1000?(val/1000).toFixed(val%1000===0?0:1)+'k':val)+suffix;
+    if(p<1)requestAnimationFrame(step);
+    else el.textContent=(target>=1000?(target/1000).toFixed(target%1000===0?0:1)+'k':target)+suffix;
+  }
+  requestAnimationFrame(step);
+}
+var counterIo=new IntersectionObserver(function(entries){
+  entries.forEach(function(e){if(e.isIntersecting){animateCounter(e.target);counterIo.unobserve(e.target);}});
+},{threshold:.5});
+document.querySelectorAll('.stat-num').forEach(function(el){counterIo.observe(el);});
+
+/* ─────────── Chatbot (lógica preservada) ─────────── */
 var WA_NUMBER='643199580';
 var CLINIC_PHONE='911234567';
-/* state.step: 0 = idle/choosing, 1 = capturing name, 2 = capturing phone, 3 = done */
 var state={step:0,service:'',name:'',tel:'',context:''};
 var chatStarted=false;
 
-/* ---------- Widget toggle + teaser ---------- */
 function toggleChat(){
   var c=document.getElementById('chatContainer');
   var fab=document.getElementById('fab');
-  /* Block close if capturing data */
-  if(c.classList.contains('open') && state.step>=1 && state.step<3){
-    return;
-  }
+  if(c.classList.contains('open') && state.step>=1 && state.step<3){return;}
   var isOpen=c.classList.toggle('open');
   fab.classList.toggle('open',isOpen);
   fab.textContent=isOpen?'✕':'🦷';
@@ -430,7 +805,7 @@ function toggleChat(){
 }
 
 function openChatFromCta(e){
-  if(e)e.preventDefault();
+  if(e&&e.preventDefault)e.preventDefault();
   var c=document.getElementById('chatContainer');
   if(!c.classList.contains('open'))toggleChat();
 }
@@ -439,9 +814,7 @@ function openChatService(service){
   var c=document.getElementById('chatContainer');
   if(!c.classList.contains('open'))toggleChat();
   setTimeout(function(){
-    if(state.step===0){
-      handleService(service);
-    }
+    if(state.step===0){handleService(service);}
   },chatStarted?400:1700);
 }
 
@@ -452,9 +825,7 @@ function dismissTeaser(){
 }
 
 function showTeaser(){
-  try{
-    if(sessionStorage.getItem('wm_teaser_dismissed')==='1')return;
-  }catch(e){}
+  try{if(sessionStorage.getItem('wm_teaser_dismissed')==='1')return;}catch(e){}
   var c=document.getElementById('chatContainer');
   if(c&&c.classList.contains('open'))return;
   var t=document.getElementById('teaser');
@@ -464,7 +835,6 @@ function showTeaser(){
 setTimeout(showTeaser,5000);
 window.addEventListener('scroll',function(){dismissTeaser();},{passive:true,once:true});
 
-/* ---------- UI capture lock ---------- */
 function lockUI(){
   document.getElementById('fab').classList.add('hidden');
   document.getElementById('chatClose').classList.add('hidden');
@@ -474,7 +844,6 @@ function unlockUI(){
   document.getElementById('chatClose').classList.remove('hidden');
 }
 
-/* ---------- Chat helpers ---------- */
 function addMsg(text,type){
   var c=document.getElementById('msgs');
   var d=document.createElement('div');
@@ -504,39 +873,24 @@ function showTyping(){
   c.scrollTop=c.scrollHeight;
 }
 
-function hideTyping(){
-  var t=document.getElementById('typingIndicator');
-  if(t)t.remove();
-}
+function hideTyping(){var t=document.getElementById('typingIndicator');if(t)t.remove();}
 
 function botSay(text,delay){
   delay=delay||900;
   showTyping();
-  setTimeout(function(){
-    hideTyping();
-    addMsg(text,'bot');
-  },delay);
+  setTimeout(function(){hideTyping();addMsg(text,'bot');},delay);
 }
 
 function botHtml(html,delay){
   delay=delay||900;
   showTyping();
-  setTimeout(function(){
-    hideTyping();
-    addHtml(html);
-  },delay);
+  setTimeout(function(){hideTyping();addHtml(html);},delay);
 }
 
-function removeButtons(id){
-  var b=document.getElementById(id);
-  if(b)b.remove();
-}
+function removeButtons(id){var b=document.getElementById(id);if(b)b.remove();}
 
-function clearAllQuickBtns(){
-  document.querySelectorAll('.quick-btns,.urgency-grid,.service-actions').forEach(function(x){x.remove();});
-}
+function clearAllQuickBtns(){document.querySelectorAll('.quick-btns,.urgency-grid,.service-actions').forEach(function(x){x.remove();});}
 
-/* ---------- Conversation start ---------- */
 function startConversation(){
   setTimeout(function(){
     showTyping();
@@ -558,14 +912,7 @@ function startConversation(){
 }
 
 function quickStart(key){
-  var labels={
-    cita:'Pedir primera visita',
-    implantes:'Implantes',
-    ortodoncia:'Ortodoncia',
-    estetica:'Estética dental',
-    limpieza:'Limpieza y revisión',
-    precios:'Precios y financiación'
-  };
+  var labels={cita:'Pedir primera visita',implantes:'Implantes',ortodoncia:'Ortodoncia',estetica:'Estética dental',limpieza:'Limpieza y revisión',precios:'Precios y financiación'};
   addMsg(labels[key]||key,'user');
   removeButtons('initBtns');
   if(key==='cita')handleGenericAppointment();
@@ -576,7 +923,6 @@ function quickStart(key){
   else if(key==='precios')flowPricing();
 }
 
-/* ---------- Service flows ---------- */
 function flowImplants(){
   state.context='implantes';
   state.service='Implantes dentales';
@@ -701,10 +1047,7 @@ function flowHygiene(){
 
 function pickHygieneTime(t){
   removeButtons('hygieneTime');
-  var labels={reciente:'Hace menos de 6 meses',
-              '1ano':'Hace más de 1 año',
-              mucho:'Hace mucho tiempo',
-              primera:'Primera vez'};
+  var labels={reciente:'Hace menos de 6 meses','1ano':'Hace más de 1 año',mucho:'Hace mucho tiempo',primera:'Primera vez'};
   addMsg(labels[t],'user');
   if(t==='mucho'||t==='primera'){
     botSay('No te preocupes, nunca es tarde para empezar a cuidar tu salud bucal 😊\n\nTe haremos una revisión completa sin prisas. ¿Reservamos?',900);
@@ -817,7 +1160,6 @@ function handleGenericAppointment(){
   },1700);
 }
 
-/* Map a service name (from CTA buttons in cards) to a flow */
 function handleService(service){
   if(/implant/i.test(service))flowImplants();
   else if(/ortodonc|invisalign/i.test(service))flowOrthodontics();
@@ -835,12 +1177,9 @@ function needMoreInfo(){
   setTimeout(startCapture,1700);
 }
 
-/* ---------- Capture flow ---------- */
 function startCapture(){
-  /* Avoid double-press */
   if(state.step>=1)return;
   removeButtons('confirmBtns');
-  /* Add a user msg only if triggered by primary button */
   state.step=1;
   lockUI();
   botSay('Para reservar tu cita necesito un par de datos.\n\n¿Me dices tu nombre?',900);
@@ -878,14 +1217,10 @@ function showWaConfirm(){
   addHtml(html);
 }
 
-/* ---------- Text input router ---------- */
-function normalize(s){
-  return (s||'').toString().toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g,'');
-}
+function normalize(s){return (s||'').toString().toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g,'');}
 
 function detectIntent(text){
   var t=normalize(text);
-  /* Order matters — urgency first */
   if(/\b(urgenci|dolor|muela|roto|partido|accidente|emergencia|duele)\b/.test(t))return 'urgencia';
   if(/\b(miedo|nervios|ansiedad|fobia|panico)\b/.test(t))return 'miedo';
   if(/\b(implant|coron|hueso)\b/.test(t)||/\b(falta).*(diente)\b/.test(t))return 'implantes';
@@ -937,11 +1272,9 @@ function send(){
   inp.value='';
   addMsg(m,'user');
 
-  /* Capture steps */
   if(state.step===1){
     if(m.length<2){botSay('¿Me dices tu nombre, por favor? 😊',700);return;}
     state.name=m.replace(/\s+/g,' ').trim();
-    /* Capitalize first letter */
     state.name=state.name.charAt(0).toUpperCase()+state.name.slice(1);
     state.step=2;
     botSay('Perfecto '+state.name+' 😊\n\n¿Tu número de teléfono?',900);
@@ -962,7 +1295,6 @@ function send(){
     return;
   }
 
-  /* Idle → intent routing */
   var intent=detectIntent(m);
   routeIntent(intent);
 }
