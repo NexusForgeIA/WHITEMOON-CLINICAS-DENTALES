@@ -835,15 +835,6 @@ function showTeaser(){
 setTimeout(showTeaser,5000);
 window.addEventListener('scroll',function(){dismissTeaser();},{passive:true,once:true});
 
-function lockUI(){
-  document.getElementById('fab').classList.add('hidden');
-  document.getElementById('chatClose').classList.add('hidden');
-}
-function unlockUI(){
-  document.getElementById('fab').classList.remove('hidden');
-  document.getElementById('chatClose').classList.remove('hidden');
-}
-
 function addMsg(text,type){
   var c=document.getElementById('msgs');
   var d=document.createElement('div');
@@ -1248,38 +1239,6 @@ function proceedToCapture(){
   botSay('¡Perfecto! 🎉 Tu cita está confirmada.\n\nRecibirás un email con todos los detalles.\n\n¡Hasta pronto!',900);
 }
 
-function finalizeCapture(){
-  state.step=3;
-  unlockUI();
-  var summary='<div class="lead-summary">'
-    +'<strong>✅ Cita registrada</strong><br><br>'
-    +'Servicio: '+state.service+'<br>'
-    +'Nombre: '+state.name+'<br>'
-    +'Teléfono: +34'+state.tel
-  +'</div>';
-  addHtml(summary);
-  setTimeout(function(){
-    botSay('¡Listo '+state.name+'! He anotado tu solicitud 🦷\n\nNuestro equipo te llamará en menos de 2 horas para confirmar día y hora.\n\nTambién puedes escribirnos ahora mismo:',900);
-    setTimeout(showWaConfirm,1900);
-  },600);
-}
-
-function showWaConfirm(){
-  var msg='🦷 *CITA — WhiteMoon Dental*\n\n'
-    +'👤 *Paciente:* '+state.name+'\n'
-    +'📞 *Tel:* +34'+state.tel+'\n'
-    +'🔍 *Consulta:* '+state.service+'\n\n'
-    +'_Vía chatbot WhiteMoon · whitemoon.es_';
-  var url='https://wa.me/'+WA_NUMBER+'?text='+encodeURIComponent(msg);
-  var html='<div class="wa-confirm">'
-    +'<div class="wa-icon">📲</div>'
-    +'<div class="wa-title">¿Avisarnos por WhatsApp?</div>'
-    +'<div class="wa-text">Pulsa el botón y abriremos WhatsApp con tu mensaje listo para enviar.</div>'
-    +'<a href="'+url+'" target="_blank" rel="noopener" class="wa-btn">📲 Avisar por WhatsApp</a>'
-  +'</div>';
-  addHtml(html);
-}
-
 function normalize(s){return (s||'').toString().toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g,'');}
 
 function detectIntent(text){
@@ -1335,31 +1294,13 @@ function send(){
   inp.value='';
   addMsg(m,'user');
 
-  if(state.step===1){
-    if(m.length<2){botSay('¿Me dices tu nombre, por favor? 😊',700);return;}
-    state.name=m.replace(/\s+/g,' ').trim();
-    state.name=state.name.charAt(0).toUpperCase()+state.name.slice(1);
-    state.step=2;
-    botSay('Perfecto '+state.name+' 😊\n\n¿Tu número de teléfono?',900);
-    return;
-  }
-  if(state.step===2){
-    var digits=m.replace(/\D/g,'');
-    if(digits.length<9){
-      botSay('Necesito un número de 9 dígitos para poder llamarte. ¿Me lo confirmas?',700);
-      return;
-    }
-    state.tel=digits.slice(-9);
-    finalizeCapture();
-    return;
-  }
   if(state.step===3){
     botSay('Si necesitas algo más, escríbeme por aquí. 😊',700);
     return;
   }
 
   if(state.calShown && state.step===0){
-    botSay('Cuando veas un hueco que te encaje, pulsa "Continuar y dejar mis datos" y seguimos 😊',700);
+    botSay('Cuando veas un hueco que te encaje, pulsa "Ya he reservado mi cita" y seguimos 😊',700);
     return;
   }
 
