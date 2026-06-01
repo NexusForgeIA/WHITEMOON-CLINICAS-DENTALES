@@ -1185,13 +1185,13 @@ function startCapture(){
 }
 
 function showCalendar(){
-  botSay('Mira nuestra disponibilidad y elige el hueco que prefieras 📅\n\nEn cuanto lo veas, te pido tus datos y lo confirmamos por WhatsApp.',900);
+  botSay('Mira nuestra disponibilidad y reserva el hueco que prefieras directamente aquí 📅\n\nCuando termines, pulsa el botón de abajo.',900);
   setTimeout(function(){
     addHtml('<div id="cal-embed" style="min-height:400px;width:100%;border-radius:12px;overflow:hidden;margin-bottom:10px"></div>');
     initCalEmbed();
     setTimeout(function(){
       botHtml('<div class="quick-btns" id="calContinue">'
-        +'<button class="quick-btn primary" onclick="proceedToCapture()">✅ Continuar y dejar mis datos</button>'
+        +'<button class="quick-btn primary" onclick="proceedToCapture()">✅ Ya he reservado mi cita</button>'
       +'</div>',300);
     },1000);
   },1700);
@@ -1244,9 +1244,8 @@ function initCalEmbed(){
 
 function proceedToCapture(){
   removeButtons('calContinue');
-  state.step=1;
-  lockUI();
-  botSay('Para confirmar tu cita necesito un par de datos.\n\n¿Me dices tu nombre?',900);
+  state.step=3;
+  botSay('¡Perfecto! 🎉 Tu cita está confirmada.\n\nRecibirás un email con todos los detalles.\n\n¡Hasta pronto!',900);
 }
 
 function finalizeCapture(){
