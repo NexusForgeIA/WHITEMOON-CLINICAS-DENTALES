@@ -785,8 +785,8 @@ document.querySelectorAll('.stat-num').forEach(function(el){counterIo.observe(el
 
 /* ─────────── Chatbot (lógica preservada) ─────────── */
 var WA_NUMBER='643199580';
-var CLINIC_PHONE='911234567';
-var state={step:0,service:'',name:'',tel:'',context:''};
+var CLINIC_PHONE='643199580';
+var state={step:0,service:'',name:'',tel:'',context:'',calShown:false};
 var chatStarted=false;
 
 function toggleChat(){
@@ -1155,7 +1155,7 @@ function handleGenericAppointment(){
   botSay('¡Perfecto! La primera visita es gratuita e incluye revisión completa y plan de tratamiento personalizado.\n\n¿Reservamos?',900);
   setTimeout(function(){
     botHtml('<div class="quick-btns" id="confirmBtns">'
-      +'<button class="quick-btn primary" onclick="startCapture()">Sí, reservar</button>'
+      +'<button class="quick-btn primary" onclick="startCapture()">📅 Ver disponibilidad y reservar</button>'
     +'</div>',300);
   },1700);
 }
@@ -1178,11 +1178,75 @@ function needMoreInfo(){
 }
 
 function startCapture(){
-  if(state.step>=1)return;
+  if(state.step>=1||state.calShown)return;
   removeButtons('confirmBtns');
+  state.calShown=true;
+  showCalendar();
+}
+
+function showCalendar(){
+  botSay('Mira nuestra disponibilidad y elige el hueco que prefieras 📅\n\nEn cuanto lo veas, te pido tus datos y lo confirmamos por WhatsApp.',900);
+  setTimeout(function(){
+    addHtml('<div id="cal-embed" style="min-height:400px;width:100%;border-radius:12px;overflow:hidden;margin-bottom:10px"></div>');
+    initCalEmbed();
+    setTimeout(function(){
+      botHtml('<div class="quick-btns" id="calContinue">'
+        +'<button class="quick-btn primary" onclick="proceedToCapture()">✅ Continuar y dejar mis datos</button>'
+      +'</div>',300);
+    },1000);
+  },1700);
+}
+
+function initCalEmbed(){
+  if(window.__wmCalInited)return;
+  window.__wmCalInited=true;
+  (function (C, A, L) {
+    let p = function (a, ar) { a.q.push(ar); };
+    let d = C.document;
+    C.Cal = C.Cal || function () {
+      let cal = C.Cal;
+      let ar = arguments;
+      if (!cal.loaded) {
+        cal.ns = {};
+        cal.q = cal.q || [];
+        d.head.appendChild(d.createElement("script")).src = A;
+        cal.loaded = true;
+      }
+      if (ar[0] === L) {
+        const api = function () { p(api, arguments); };
+        const namespace = ar[1];
+        api.q = api.q || [];
+        if(typeof namespace === "string"){
+          cal.ns[namespace] = cal.ns[namespace] || api;
+          p(cal.ns[namespace], ar);
+          p(cal, ["-queue", namespace]);
+        } else {
+          p(cal, ar);
+        }
+        return;
+      }
+      p(cal, ar);
+    };
+  })(window, "https://app.cal.com/embed/embed.js", "init");
+
+  Cal("init", "dental", {origin:"https://cal.com"});
+  Cal.ns.dental("inline", {
+    elementOrSelector:"#cal-embed",
+    calLink: "whitemoon/15min",
+    layout: "month_view"
+  });
+  Cal.ns.dental("ui", {
+    theme: "dark",
+    styles: { branding: { brandColor: "#7c4dff" } },
+    hideEventTypeDetails: false
+  });
+}
+
+function proceedToCapture(){
+  removeButtons('calContinue');
   state.step=1;
   lockUI();
-  botSay('Para reservar tu cita necesito un par de datos.\n\n¿Me dices tu nombre?',900);
+  botSay('Para confirmar tu cita necesito un par de datos.\n\n¿Me dices tu nombre?',900);
 }
 
 function finalizeCapture(){
@@ -1292,6 +1356,11 @@ function send(){
   }
   if(state.step===3){
     botSay('Si necesitas algo más, escríbeme por aquí. 😊',700);
+    return;
+  }
+
+  if(state.calShown && state.step===0){
+    botSay('Cuando veas un hueco que te encaje, pulsa "Continuar y dejar mis datos" y seguimos 😊',700);
     return;
   }
 
