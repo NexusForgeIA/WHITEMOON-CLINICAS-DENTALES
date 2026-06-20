@@ -110,6 +110,16 @@ section{padding:100px 40px}
   border-radius:8px;padding:9px 18px;font-size:0.85rem;font-weight:600;cursor:pointer;transition:all .2s;font-family:'Sora',sans-serif}
 .service-link:hover{background:var(--accent);color:#fff}
 
+/* ============ CARDS CON VÍDEO ============ */
+.service-card{position:relative;overflow:hidden;min-height:280px}
+.card-video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:0;opacity:0;transition:opacity 0.6s ease}
+.card-video-overlay{position:absolute;inset:0;z-index:1;
+  background:linear-gradient(to bottom,rgba(8,8,13,0.75) 0%,rgba(8,8,13,0.5) 40%,rgba(8,8,13,0.85) 100%)}
+.service-card .card-content{position:relative;z-index:2;display:flex;flex-direction:column;flex:1}
+.service-card.video-active .card-video{opacity:1}
+@media(max-width:768px){.card-video{display:none}}
+@media(prefers-reduced-motion:reduce){.card-video{display:none}}
+
 /* ============ PRIMERA VISITA ============ */
 .first-visit{background:var(--bg2)}
 .fv-card{max-width:520px;margin:0 auto;background:var(--card);border:1px solid var(--accent);
@@ -356,40 +366,82 @@ footer{background:var(--bg2);padding:60px 48px 32px;border-top:1px solid rgba(14
   </div>
   <div class="services-grid">
     <div class="service-card">
-      <div class="service-icon">🔩</div>
-      <h3>Implantes Dentales</h3>
-      <p>Tecnología 3D guiada, materiales de titanio premium y garantía de por vida. Recupera tu sonrisa con seguridad.</p>
-      <button class="service-link" onclick="openChat()">Pedir valoración →</button>
+      <video class="card-video" muted loop playsinline preload="none"
+             data-src="assets/video/treatments/implantes.mp4">
+        <source data-src="assets/video/treatments/implantes.mp4" type="video/mp4">
+      </video>
+      <div class="card-video-overlay"></div>
+      <div class="card-content">
+        <div class="service-icon">🔩</div>
+        <h3>Implantes Dentales</h3>
+        <p>Tecnología 3D guiada, materiales de titanio premium y garantía de por vida. Recupera tu sonrisa con seguridad.</p>
+        <button class="service-link" onclick="openChat()">Pedir valoración →</button>
+      </div>
     </div>
     <div class="service-card">
-      <div class="service-icon">😬</div>
-      <h3>Ortodoncia e Invisalign</h3>
-      <p>Brackets estéticos e Invisalign con plan personalizado. Resultados visibles desde los primeros meses.</p>
-      <button class="service-link" onclick="openChat()">Pedir valoración →</button>
+      <video class="card-video" muted loop playsinline preload="none"
+             data-src="assets/video/treatments/ortodoncia.mp4">
+        <source data-src="assets/video/treatments/ortodoncia.mp4" type="video/mp4">
+      </video>
+      <div class="card-video-overlay"></div>
+      <div class="card-content">
+        <div class="service-icon">😬</div>
+        <h3>Ortodoncia e Invisalign</h3>
+        <p>Brackets estéticos e Invisalign con plan personalizado. Resultados visibles desde los primeros meses.</p>
+        <button class="service-link" onclick="openChat()">Pedir valoración →</button>
+      </div>
     </div>
     <div class="service-card">
-      <div class="service-icon">✨</div>
-      <h3>Estética Dental</h3>
-      <p>Blanqueamiento LED, carillas de porcelana y diseño digital de sonrisa para una imagen radiante.</p>
-      <button class="service-link" onclick="openChat()">Pedir valoración →</button>
+      <video class="card-video" muted loop playsinline preload="none"
+             data-src="assets/video/treatments/estetica.mp4">
+        <source data-src="assets/video/treatments/estetica.mp4" type="video/mp4">
+      </video>
+      <div class="card-video-overlay"></div>
+      <div class="card-content">
+        <div class="service-icon">✨</div>
+        <h3>Estética Dental</h3>
+        <p>Blanqueamiento LED, carillas de porcelana y diseño digital de sonrisa para una imagen radiante.</p>
+        <button class="service-link" onclick="openChat()">Pedir valoración →</button>
+      </div>
     </div>
     <div class="service-card">
-      <div class="service-icon">🧼</div>
-      <h3>Higiene y Prevención</h3>
-      <p>Limpiezas profesionales, revisiones periódicas y educación bucal para mantener tu sonrisa sana.</p>
-      <button class="service-link" onclick="openChat()">Pedir cita →</button>
+      <video class="card-video" muted loop playsinline preload="none"
+             data-src="assets/video/treatments/higiene.mp4">
+        <source data-src="assets/video/treatments/higiene.mp4" type="video/mp4">
+      </video>
+      <div class="card-video-overlay"></div>
+      <div class="card-content">
+        <div class="service-icon">🧼</div>
+        <h3>Higiene y Prevención</h3>
+        <p>Limpiezas profesionales, revisiones periódicas y educación bucal para mantener tu sonrisa sana.</p>
+        <button class="service-link" onclick="openChat()">Pedir cita →</button>
+      </div>
     </div>
     <div class="service-card">
-      <div class="service-icon">🦷</div>
-      <h3>Endodoncia</h3>
-      <p>Tratamientos de conducto con microscopio dental. Indoloros, en 1-2 sesiones y conservando tu diente natural.</p>
-      <button class="service-link" onclick="openChat()">Pedir valoración →</button>
+      <video class="card-video" muted loop playsinline preload="none"
+             data-src="assets/video/treatments/endodoncia.mp4">
+        <source data-src="assets/video/treatments/endodoncia.mp4" type="video/mp4">
+      </video>
+      <div class="card-video-overlay"></div>
+      <div class="card-content">
+        <div class="service-icon">🦷</div>
+        <h3>Endodoncia</h3>
+        <p>Tratamientos de conducto con microscopio dental. Indoloros, en 1-2 sesiones y conservando tu diente natural.</p>
+        <button class="service-link" onclick="openChat()">Pedir valoración →</button>
+      </div>
     </div>
     <div class="service-card">
-      <div class="service-icon">👶</div>
-      <h3>Odontopediatría</h3>
-      <p>Especialistas en niños y adolescentes. Cuidamos su salud bucal con paciencia, cariño y mucho juego.</p>
-      <button class="service-link" onclick="openChat()">Pedir cita →</button>
+      <video class="card-video" muted loop playsinline preload="none"
+             data-src="assets/video/treatments/odontopediatria.mp4">
+        <source data-src="assets/video/treatments/odontopediatria.mp4" type="video/mp4">
+      </video>
+      <div class="card-video-overlay"></div>
+      <div class="card-content">
+        <div class="service-icon">👶</div>
+        <h3>Odontopediatría</h3>
+        <p>Especialistas en niños y adolescentes. Cuidamos su salud bucal con paciencia, cariño y mucho juego.</p>
+        <button class="service-link" onclick="openChat()">Pedir cita →</button>
+      </div>
     </div>
   </div>
 </section>
@@ -771,6 +823,46 @@ function chatSend(){
     });
   }
 }
+</script>
+
+<script>
+// Lazy load + autoplay vídeos en cards al entrar en viewport
+(function() {
+  // Solo desktop
+  if (window.innerWidth <= 768) return;
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+  const cards = document.querySelectorAll('.service-card');
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      const card = entry.target;
+      const video = card.querySelector('.card-video');
+      if (!video) return;
+
+      if (entry.isIntersecting) {
+        // Lazy load: asignar src solo cuando entra en viewport
+        if (!video.src && video.dataset.src) {
+          video.src = video.dataset.src;
+          const source = video.querySelector('source');
+          if (source && source.dataset.src) {
+            source.src = source.dataset.src;
+          }
+          video.load();
+        }
+        video.play().catch(() => {});
+        card.classList.add('video-active');
+      } else {
+        video.pause();
+        card.classList.remove('video-active');
+      }
+    });
+  }, {
+    threshold: 0.3
+  });
+
+  cards.forEach(card => observer.observe(card));
+})();
 </script>
 </body>
 </html>
