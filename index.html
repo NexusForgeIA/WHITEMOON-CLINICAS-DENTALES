@@ -242,6 +242,9 @@ footer{background:var(--bg2);padding:60px 48px 32px;border-top:1px solid rgba(14
 .quick-btn{background:rgba(14,165,233,0.1);border:1px solid rgba(14,165,233,0.3);border-radius:20px;
   padding:7px 14px;font-size:0.8rem;color:var(--text);cursor:pointer;font-family:'Sora',sans-serif;transition:all 0.2s}
 .quick-btn:hover{background:var(--accent);color:#fff;border-color:var(--accent)}
+/* chips de agenda (día / hora): mismo lenguaje visual, target táctil mayor */
+.quick-btns.slots{gap:6px}
+.quick-btns.slots .quick-btn{display:inline-flex;align-items:center;min-height:38px;padding:9px 13px}
 .chat-input-area{padding:12px 16px;border-top:1px solid rgba(14,165,233,0.15);display:flex;gap:8px;align-items:center}
 .chat-input{flex:1;background:rgba(255,255,255,0.04);border:1px solid rgba(14,165,233,0.2);border-radius:10px;
   padding:10px 14px;font-family:'Sora',sans-serif;font-size:0.875rem;color:var(--text);outline:none;transition:border-color 0.2s;min-width:0}
@@ -278,6 +281,7 @@ footer{background:var(--bg2);padding:60px 48px 32px;border-top:1px solid rgba(14
 @media(max-width:480px){
   .chat-panel{width:calc(100vw - 32px);right:16px;bottom:88px;height:75vh}
   .chat-fab{bottom:24px;right:16px}
+  .quick-btns.slots .quick-btn{min-height:42px;padding:9px 12px;font-size:0.78rem}
 }
 @media(prefers-reduced-motion:reduce){
   .badge-dot,.scroll-cue span,.chat-fab,.ticker,.typing span{animation:none!important}
@@ -644,11 +648,13 @@ function toggleFaq(el){
   setInterval(rotate,2200);
 })();
 
-/* ============ CHATBOT — flujo CallMeBot → WhatsApp ============ */
-var WA_NUMBER='34643199580';
-var CALLMEBOT_APIKEY='CALLMEBOT_KEY_CLINICA_DENTAL'; /* placeholder — Cris la reemplaza */
+/* ============ CHATBOT — lead a Supabase + aviso Telegram ============ */
+/* La anon key es pública por diseño (RLS: leads_web solo permite INSERT a anon).
+   El token de Telegram vive server-side en la Edge Function dental-notify. */
+var SB_URL='https://mlaqtniujnvfxcvcourm.supabase.co';
+var SB_ANON='eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im1sYXF0bml1am52ZnhjdmNvdXJtIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Nzc4MzUyMzIsImV4cCI6MjA5MzQxMTIzMn0.Neh7VUS8ADsxf0DPab0JoJyGXOAXnLIaXzXbKzj2BGs';
 
-var chat={open:false,started:false,await:null,lead:{interes:'',urgencia:'',name:'',tel:''}};
+var chat={open:false,started:false,await:null,lead:{interes:'',motivo:'',dia:'',hora:'',urgencia:'',name:'',tel:''}};
 var fabEl=document.getElementById('chatFab');
 var panelEl=document.getElementById('chatPanel');
 var msgsEl=document.getElementById('chatMessages');
@@ -684,8 +690,8 @@ function botSay(html,cb){
     if(cb)cb();
   },800);
 }
-function quickBtns(items){
-  var wrap=document.createElement('div');wrap.className='quick-btns';
+function quickBtns(items,extraClass){
+  var wrap=document.createElement('div');wrap.className='quick-btns'+(extraClass?' '+extraClass:'');
   items.forEach(function(it){
     var b=document.createElement('button');b.className='quick-btn';b.textContent=it.label;
     b.onclick=function(){
@@ -710,35 +716,111 @@ function botWelcome(){
   });
 }
 
+/* ---- AGENDA: días y franjas según el horario real de la clínica ----
+   Lun-Vie 9:00-21:00 · Sábado 10:00-14:00 · Domingos CERRADO.
+   Las horas son ILUSTRATIVAS de demo: no hay calendario real sincronizado. */
+var DIAS_ABR=['Dom','Lun','Mar','Mié','Jue','Vie','Sáb'];
+var MESES_ABR=['ene','feb','mar','abr','may','jun','jul','ago','sep','oct','nov','dic'];
+
+function proximosDias(n){
+  var out=[],d=new Date();
+  d.setHours(0,0,0,0);
+  while(out.length<n){
+    d.setDate(d.getDate()+1);        /* desde mañana, nunca hoy mismo */
+    if(d.getDay()===0)continue;      /* domingo cerrado */
+    out.push({
+      label:DIAS_ABR[d.getDay()]+' '+d.getDate()+' '+MESES_ABR[d.getMonth()],
+      sabado:d.getDay()===6
+    });
+  }
+  return out;
+}
+
+function franjasDe(esSabado){
+  var out=[],h;
+  if(esSabado){
+    /* 10:00 → 13:30 en tramos de 30 min (cierre 14:00) */
+    for(h=10;h<=13;h++){out.push(h+':00');out.push(h+':30');}
+  }else{
+    /* 9:00 → 20:00 en tramos de 60 min (cierre 21:00) */
+    for(h=9;h<=20;h++)out.push(h+':00');
+  }
+  return out;
+}
+
 function flowVisita(){
-  chat.lead.interes='Primera visita';
-  botSay('¡Perfecto! La primera visita es completamente GRATIS 🎉\nIncluye exploración, radiografía panorámica y plan de tratamiento.\n¿Para qué tratamiento necesitas valoración?',function(){
+  botSay('¡Perfecto! La primera visita es completamente GRATIS 🎉\nIncluye exploración, radiografía panorámica y plan de tratamiento.',function(){
+    askMotivo();
+  });
+}
+
+function askMotivo(){
+  botSay('¿Para qué necesitas la cita? 🦷',function(){
     quickBtns([
-      {label:'Implantes',fn:function(){chat.lead.interes='Implantes';askName();}},
-      {label:'Ortodoncia',fn:function(){chat.lead.interes='Ortodoncia';askName();}},
-      {label:'Blanqueamiento',fn:function(){chat.lead.interes='Blanqueamiento';askName();}},
-      {label:'Otro',fn:function(){chat.lead.interes='Primera visita (otro)';askName();}}
+      {label:'Primera visita GRATIS',fn:function(){pedirDia('Primera visita gratis');}},
+      {label:'Implantes',fn:function(){pedirDia('Implantes');}},
+      {label:'Ortodoncia / Invisalign',fn:function(){pedirDia('Ortodoncia / Invisalign');}},
+      {label:'Estética dental',fn:function(){pedirDia('Estética dental');}},
+      {label:'Endodoncia',fn:function(){pedirDia('Endodoncia');}},
+      {label:'Odontopediatría',fn:function(){pedirDia('Odontopediatría');}},
+      {label:'🚨 Urgencia',fn:flowUrgencia}
     ]);
+  });
+}
+
+function pedirDia(motivo){
+  chat.lead.motivo=motivo;
+  chat.lead.interes=motivo;
+  askDia();
+}
+
+function askDia(){
+  var dias=proximosDias(7);
+  botSay('Anotado: '+chat.lead.motivo+' 📋\n¿Qué día te viene mejor?\n(Lun-Vie 9:00-21:00 · Sáb 10:00-14:00 · domingos cerrado)',function(){
+    quickBtns(dias.map(function(d){
+      return {label:d.label,fn:function(){
+        chat.lead.dia=d.label;
+        askHora(d.sabado);
+      }};
+    }),'slots');
+  });
+}
+
+function askHora(esSabado){
+  botSay('¿A qué hora del '+chat.lead.dia+'? 🕐',function(){
+    quickBtns(franjasDe(esSabado).map(function(h){
+      return {label:h,fn:function(){
+        chat.lead.hora=h;
+        askName();
+      }};
+    }),'slots');
   });
 }
 
 function flowPrecios(){
   botSay('Estos son nuestros tratamientos principales:\n🦷 Implantes desde 890€\n😬 Ortodoncia desde 1.200€\n✨ Blanqueamiento desde 180€\n🧼 Limpieza profesional desde 60€\nLa primera visita diagnóstica es GRATIS. ¿Te interesa alguno?',function(){
     quickBtns([
-      {label:'Sí, quiero pedir cita',fn:function(){chat.lead.interes='Consulta de precios';askName();}},
+      {label:'Sí, quiero pedir cita',fn:askMotivo},
       {label:'Tengo más dudas',fn:flowDuda}
     ]);
   });
 }
 
+/* Urgencia: se deriva rápido, SIN agenda (urgencias 24/7). */
 function flowUrgencia(){
   chat.lead.urgencia='Sí';
-  botSay('Entiendo, las urgencias no esperan 🚨\nTe atendemos el mismo día. ¿Cuál es el problema?',function(){
+  chat.lead.dia='';chat.lead.hora='';
+  function urg(tipo){
+    chat.lead.motivo='Urgencia: '+tipo;
+    chat.lead.interes=chat.lead.motivo;
+    askName();
+  }
+  botSay('Entiendo, las urgencias no esperan 🚨\nAtendemos urgencias 24/7 y no hace falta que elijas hora: te llamamos enseguida.\n¿Cuál es el problema?',function(){
     quickBtns([
-      {label:'Dolor fuerte',fn:function(){chat.lead.interes='Urgencia: dolor fuerte';askName();}},
-      {label:'Diente roto',fn:function(){chat.lead.interes='Urgencia: diente roto';askName();}},
-      {label:'Hinchazón',fn:function(){chat.lead.interes='Urgencia: hinchazón';askName();}},
-      {label:'Otro',fn:function(){chat.lead.interes='Urgencia: otro';askName();}}
+      {label:'Dolor fuerte',fn:function(){urg('dolor fuerte');}},
+      {label:'Diente roto',fn:function(){urg('diente roto');}},
+      {label:'Hinchazón',fn:function(){urg('hinchazón');}},
+      {label:'Otro',fn:function(){urg('otro');}}
     ]);
   });
 }
@@ -764,30 +846,56 @@ function dudaResp(txt){
 
 function askName(){
   chat.await='name';
-  botSay('Perfecto. Para reservarte la cita de valoración gratuita, ¿cómo te llamas?',function(){
+  var ctx=chat.lead.dia
+    ? 'Para solicitar tu cita del '+chat.lead.dia+' a las '+chat.lead.hora+', ¿cómo te llamas?'
+    : 'Perfecto. ¿Cómo te llamas?';
+  botSay(ctx,function(){
     inputEl.focus();
   });
 }
 function askPhone(){
   chat.await='phone';
-  botSay('Encantado/a, '+chat.lead.name+' 😊\n¿Cuál es tu teléfono para confirmar la cita?',function(){
+  botSay('Encantado/a, '+chat.lead.name+' 😊\n¿Cuál es tu teléfono de contacto?',function(){
     inputEl.focus();
   });
 }
 function finish(){
   chat.await=null;
-  sendCallMeBot();
-  botSay('¡Todo listo, '+chat.lead.name+'! ✅\nEn menos de 2 horas te llamamos para confirmar tu cita.\nPrimera visita completamente GRATIS 🦷');
+  sendLead();
+  if(chat.lead.urgencia==='Sí'){
+    botSay('Recibido, '+chat.lead.name+' 🚨\nUrgencias 24/7: te llamamos enseguida al '+chat.lead.tel+'.\nSi el dolor es intenso, llámanos ya al 643 199 580.');
+  }else if(chat.lead.dia&&chat.lead.hora){
+    /* SOLICITUD de cita, no reserva confirmada: la clínica confirma. */
+    botSay('Solicitud enviada ✅\nLa clínica te confirmará tu cita del '+chat.lead.dia+' a las '+chat.lead.hora+' para '+chat.lead.motivo+'.\nTe llamamos al '+chat.lead.tel+' para cerrarla 🦷');
+  }else{
+    botSay('¡Gracias, '+chat.lead.name+'! ✅\nHemos enviado tu solicitud a la clínica. Te llamamos al '+chat.lead.tel+' para darte cita 🦷');
+  }
 }
-function sendCallMeBot(){
-  var msg='🦷 NUEVO LEAD CLÍNICA DENTAL\n'+
-    'Nombre: '+chat.lead.name+'\n'+
-    'Tel: '+chat.lead.tel+'\n'+
-    'Interés: '+(chat.lead.interes||'No indicado')+'\n'+
-    'Urgencia: '+(chat.lead.urgencia||'No')+'\n'+
-    'Web: WhiteMoon Clínicas Dentales Demo';
-  var url='https://api.callmebot.com/whatsapp.php?phone='+WA_NUMBER+'&text='+encodeURIComponent(msg)+'&apikey='+CALLMEBOT_APIKEY;
-  fetch(url).catch(function(){});
+/* Lead → tabla leads_web (RLS: anon solo INSERT) + aviso Telegram vía Edge Function. */
+function sendLead(){
+  var l=chat.lead;
+  var motivo=l.motivo||l.interes||'No indicado';
+  fetch(SB_URL+'/rest/v1/leads_web',{
+    method:'POST',
+    headers:{'Content-Type':'application/json','apikey':SB_ANON,
+             'Authorization':'Bearer '+SB_ANON,'Prefer':'return=minimal'},
+    body:JSON.stringify({
+      nombre:l.name,telefono:l.tel,
+      sector:'Clínica dental',interes:motivo,
+      origen:'dental-demo',preferencia:'llamada',
+      cita_dia:l.dia||null,cita_hora:l.hora||null,
+      mensaje:(l.urgencia==='Sí'?'URGENCIA · ':'')+'Solicitud de cita vía chatbot Marcos (demo)'
+    })
+  }).catch(function(){});
+  fetch(SB_URL+'/functions/v1/dental-notify',{
+    method:'POST',
+    headers:{'Content-Type':'application/json'},
+    body:JSON.stringify({
+      nombre:l.name,telefono:l.tel,motivo:motivo,
+      dia:l.dia,hora:l.hora,
+      urgencia:l.urgencia==='Sí',origen:'dental-demo'
+    })
+  }).catch(function(){});
 }
 
 function chatSend(){
