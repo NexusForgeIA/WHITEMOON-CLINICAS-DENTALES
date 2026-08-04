@@ -1,0 +1,18 @@
+User-agent: *
+Allow: /
+
+# LLMs / motores generativos
+User-agent: GPTBot
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+Sitemap: https://nexusforgeia.github.io/WHITEMOON-CLINICAS-DENTALES/sitemap.xml
+LLMs: https://nexusforgeia.github.io/WHITEMOON-CLINICAS-DENTALES/llms.txt
