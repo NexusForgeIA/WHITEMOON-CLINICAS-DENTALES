@@ -3,10 +3,35 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>WhiteMoon Dental — Tu sonrisa, nuestra pasión</title>
-<meta name="description" content="WhiteMoon Dental — Clínica dental premium en Madrid. Implantes, ortodoncia Invisalign, estética dental y más. Primera visita y diagnóstico gratis.">
+<meta name="theme-color" content="#08080d">
+<title>Clínica dental en Madrid | Pide cita 24/7 · WhiteMoon</title>
+<meta name="description" content="Clínica dental en Madrid: carillas, coronas, blanqueamiento e implantes. Pide cita 24/7 sin llamar con Marcos, el asistente con IA. Demo WhiteMoon.">
+<meta name="robots" content="index,follow,max-image-preview:large">
+<link rel="canonical" href="https://nexusforgeia.github.io/WHITEMOON-CLINICAS-DENTALES/">
+<link rel="alternate" hreflang="es" href="https://nexusforgeia.github.io/WHITEMOON-CLINICAS-DENTALES/">
+<link rel="alternate" hreflang="x-default" href="https://nexusforgeia.github.io/WHITEMOON-CLINICAS-DENTALES/">
+
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="WhiteMoon Dental">
+<meta property="og:locale" content="es_ES">
+<meta property="og:title" content="Clínica dental en Madrid | Pide cita 24/7 · WhiteMoon">
+<meta property="og:description" content="Carillas, coronas, blanqueamiento e implantes en Madrid. Marcos, el asistente con IA, recoge tu solicitud de cita a cualquier hora, sin llamar.">
+<meta property="og:url" content="https://nexusforgeia.github.io/WHITEMOON-CLINICAS-DENTALES/">
+<meta property="og:image" content="https://images.pexels.com/photos/3881296/pexels-photo-3881296.jpeg?auto=compress&amp;cs=tinysrgb&amp;w=1200&amp;h=630&amp;fit=crop">
+<meta property="og:image:type" content="image/jpeg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Dos profesionales atendiendo a una paciente en un gabinete dental">
+
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Clínica dental en Madrid | Pide cita 24/7 · WhiteMoon">
+<meta name="twitter:description" content="Carillas, coronas, blanqueamiento e implantes en Madrid. Marcos, el asistente con IA, recoge tu solicitud de cita a cualquier hora, sin llamar.">
+<meta name="twitter:image" content="https://images.pexels.com/photos/3881296/pexels-photo-3881296.jpeg?auto=compress&amp;cs=tinysrgb&amp;w=1200&amp;h=630&amp;fit=crop">
+
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preconnect" href="https://images.pexels.com" crossorigin>
+<link rel="preload" as="image" fetchpriority="high" href="https://images.pexels.com/photos/3881296/pexels-photo-3881296.jpeg?auto=compress&amp;cs=tinysrgb&amp;w=1600">
 <link href="https://fonts.googleapis.com/css2?family=Sora:wght@200;300;400;500;600;700&display=swap" rel="stylesheet">
 <style>
 :root{
@@ -15,639 +40,835 @@
   --card:#111118;
   --p:#7c4dff;
   --p2:#9d70ff;
-  --accent:#0EA5E9;
-  --accent2:#38BDF8;
-  --gold:#f5c842;
+  --g:#00d4aa;
   --ok:#00d4aa;
+  /* El chat conserva sus tokens: se reapuntan al morado WhiteMoon */
+  --accent:#7c4dff;
+  --accent2:#9d70ff;
   --text:#f0f0f5;
   --muted:#8888a0;
-  --border:rgba(14,165,233,0.2);
+  --line:rgba(240,240,245,.10);
+  --line-p:rgba(124,77,255,.28);
+  --glass:rgba(255,255,255,.04);
+  --r:12px;
+  --r2:12px;
+  --ease:cubic-bezier(.22,1,.36,1);
 }
+@media(min-width:768px){:root{--r2:16px}}
+
 *{margin:0;padding:0;box-sizing:border-box}
-html{scroll-behavior:smooth}
-body{font-family:'Sora',system-ui,sans-serif;font-weight:300;background:var(--bg);color:var(--text);line-height:1.6;overflow-x:hidden}
-h1,h2,h3,h4{font-family:'Sora',sans-serif;font-weight:600;letter-spacing:-.5px}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{font-family:'Sora',system-ui,sans-serif;font-weight:300;background:var(--bg);color:var(--text);
+  line-height:1.6;-webkit-font-smoothing:antialiased}
+h1,h2,h3,h4{font-family:'Sora',sans-serif;font-weight:600;letter-spacing:-.03em;line-height:1.08}
 a{color:inherit;text-decoration:none}
-img{max-width:100%;display:block}
+img{display:block;max-width:100%}
+button{font-family:inherit}
+:focus-visible{outline:2px solid var(--p2);outline-offset:3px;border-radius:4px}
+.wrap{width:100%;max-width:1240px;margin:0 auto;padding:0 20px}
+@media(min-width:768px){.wrap{padding:0 clamp(28px,4vw,48px)}}
+.eyebrow{font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--p2);font-weight:500}
+.lead{color:var(--muted);font-size:clamp(.95rem,1.6vw,1.05rem);line-height:1.7}
+
+/* ============ SPLASH ============ */
+body.splash-on{overflow:hidden}
+.splash{position:fixed;inset:0;z-index:12000;background:var(--bg);display:flex;align-items:center;
+  justify-content:center;transition:opacity .6s var(--ease)}
+.splash.out{opacity:0}
+.splash-inner{width:min(420px,calc(100vw - 40px));text-align:center}
+.splash-mark{font-size:12px;letter-spacing:.28em;text-transform:uppercase;color:var(--muted);margin-bottom:22px}
+.splash-count{font-size:clamp(3rem,14vw,5.5rem);font-weight:200;letter-spacing:-.05em;line-height:1;
+  color:var(--text);font-variant-numeric:tabular-nums}
+.splash-count .pct{font-size:.32em;color:var(--p2);vertical-align:super;margin-left:6px;letter-spacing:0}
+.splash-bar{margin-top:26px;height:1px;background:var(--line);overflow:hidden}
+.splash-bar span{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--p),var(--p2))}
 
 /* ============ NAV ============ */
-.nav{position:fixed;top:0;left:0;right:0;z-index:1000;padding:14px 48px;
-  background:rgba(8,8,13,0.92);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);
-  border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;transition:padding .3s}
-.nav.scrolled{padding:10px 48px}
-.nav-logo-link{text-decoration:none;display:flex;align-items:center}
-.nav-logo-img{height:36px;width:auto;object-fit:contain}
-.nav-links{display:flex;gap:30px;align-items:center}
-.nav-links a{font-size:14px;color:var(--text);opacity:.85;transition:color .2s,opacity .2s}
-.nav-links a:hover{color:var(--accent);opacity:1}
-.btn-nav{background:var(--accent);color:#fff;border:none;cursor:pointer;border-radius:8px;
-  padding:10px 22px;font-family:'Sora',sans-serif;font-size:14px;font-weight:600;transition:all .2s}
-.btn-nav:hover{background:var(--accent2);transform:translateY(-2px);box-shadow:0 8px 24px rgba(14,165,233,.4)}
-.menu-tog{display:none;background:none;border:none;color:var(--accent);font-size:26px;cursor:pointer}
+.nav{position:fixed;top:0;left:0;right:0;z-index:1000;background:rgba(8,8,13,.72);
+  backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);border-bottom:1px solid transparent;
+  transition:border-color .3s,background .3s}
+.nav.scrolled{border-bottom-color:var(--line);background:rgba(8,8,13,.92)}
+.nav-in{display:flex;align-items:center;justify-content:space-between;gap:16px;min-height:64px}
+.nav-brand{display:flex;align-items:center;gap:10px;min-width:0}
+.nav-logo-img{height:26px;width:auto;object-fit:contain}
+.nav-brand span{font-size:14px;font-weight:500;letter-spacing:-.01em;white-space:nowrap}
+.nav-links{display:flex;align-items:center;gap:28px}
+.nav-links a{font-size:13.5px;color:rgba(240,240,245,.72);transition:color .2s}
+.nav-links a:hover{color:var(--text)}
+.btn-nav{background:var(--p);color:#fff;border:none;cursor:pointer;border-radius:100px;
+  padding:10px 20px;font-size:13.5px;font-weight:500;transition:background .2s,transform .2s}
+.btn-nav:hover{background:var(--p2);transform:translateY(-1px)}
+.menu-tog{display:none;background:none;border:1px solid var(--line);border-radius:8px;color:var(--text);
+  width:38px;height:38px;cursor:pointer;align-items:center;justify-content:center;flex:0 0 auto}
+.menu-tog svg{width:18px;height:18px}
+@media(max-width:767px){
+  .nav-links{position:absolute;top:100%;left:0;right:0;display:none;flex-direction:column;
+    align-items:stretch;gap:0;background:rgba(8,8,13,.98);border-bottom:1px solid var(--line);padding:8px 20px 18px}
+  .nav-links.open{display:flex}
+  .nav-links a{padding:13px 0;border-bottom:1px solid var(--line);font-size:15px}
+  .nav-links .btn-nav{margin-top:14px;width:100%;padding:13px 20px}
+  .menu-tog{display:inline-flex}
+  .nav-brand span{font-size:13px}
+}
+
+/* ============ REVEAL ============ */
+[data-reveal]{opacity:0;transform:translateY(24px);
+  transition:opacity .8s var(--ease),transform .8s var(--ease)}
+[data-reveal].in{opacity:1;transform:none}
+
+/* ============ MASKED CARDS ============ */
+.mask{display:grid;gap:10px}
+@media(min-width:768px){.mask{gap:14px}}
+.mask-card{position:relative;overflow:hidden;border-radius:var(--r2);background:#14141c;
+  border:1px solid var(--line);min-width:0}
+.mask-img{position:absolute;top:0;left:0;max-width:none;will-change:transform}
+.mask-card.is-cover .mask-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.mask-card::after{content:'';position:absolute;inset:0;pointer-events:none;
+  background:linear-gradient(to top,rgba(8,8,13,.55),rgba(8,8,13,0) 55%)}
+.mask-tag{position:absolute;left:14px;bottom:12px;z-index:2;font-size:10.5px;letter-spacing:.16em;
+  text-transform:uppercase;color:rgba(240,240,245,.9);background:rgba(8,8,13,.45);
+  border:1px solid rgba(240,240,245,.16);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);
+  padding:6px 11px;border-radius:100px}
+/* Móvil: el troquelado se degrada a una sola imagen completa por sección
+   (apilar copias de la misma foto en franjas finas no aporta nada). */
+@media(max-width:767px){
+  .mask .mask-card:nth-child(n+2){display:none}
+  .mask .mask-card:first-child{aspect-ratio:4/3}
+}
 
 /* ============ HERO ============ */
-.hero{position:relative;height:100vh;min-height:600px;overflow:hidden}
-.hero-video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:0}
-.hero-overlay{position:absolute;inset:0;z-index:1;
-  background:linear-gradient(to bottom,rgba(8,8,13,0.6) 0%,rgba(8,8,13,0.3) 40%,rgba(14,165,233,0.1) 75%,rgba(8,8,13,0.92) 100%)}
-.hero-content{position:relative;z-index:2;display:flex;flex-direction:column;align-items:flex-start;
-  justify-content:center;height:100%;max-width:1200px;margin:0 auto;padding:0 48px;padding-top:80px;animation:fadeUp 1s ease}
-@keyframes fadeUp{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:translateY(0)}}
-.hero-badge{display:inline-flex;align-items:center;gap:10px;background:rgba(14,165,233,0.12);
-  border:1px solid rgba(14,165,233,0.35);border-radius:100px;padding:8px 18px;font-size:13px;
-  color:rgba(240,240,245,0.85);margin-bottom:28px}
-.badge-dot{width:8px;height:8px;border-radius:50%;background:var(--accent);animation:pulse-dot 2s infinite}
-@keyframes pulse-dot{
-  0%{box-shadow:0 0 0 0 rgba(14,165,233,0.6)}
-  70%{box-shadow:0 0 0 10px rgba(14,165,233,0)}
-  100%{box-shadow:0 0 0 0 rgba(14,165,233,0)}
-}
-.hero-title{font-size:clamp(2.8rem,6vw,5rem);font-weight:700;line-height:1.1;color:var(--text);
-  margin-bottom:20px;text-shadow:0 2px 20px rgba(0,0,0,0.5)}
-.hero-word-rotate{display:block;color:var(--accent);min-height:1.2em}
-.hero-subtitle{font-size:1.1rem;color:rgba(240,240,245,0.75);line-height:1.6;margin-bottom:36px;max-width:520px}
-.hero-subtitle strong{color:var(--accent2);font-weight:600}
-.hero-ctas{display:flex;gap:16px;flex-wrap:wrap;margin-bottom:48px}
-.btn-primary{background:var(--accent);color:#fff;border:none;border-radius:8px;padding:16px 32px;
-  font-size:1rem;font-family:'Sora',sans-serif;font-weight:600;cursor:pointer;transition:all .2s}
-.btn-primary:hover{background:var(--accent2);transform:translateY(-2px);box-shadow:0 8px 24px rgba(14,165,233,0.4)}
-.btn-ghost{color:var(--text);border:1px solid rgba(240,240,245,0.3);border-radius:8px;padding:16px 32px;
-  font-size:1rem;font-family:'Sora',sans-serif;font-weight:500;text-decoration:none;transition:all .2s;display:inline-flex;align-items:center}
-.btn-ghost:hover{border-color:var(--accent);color:var(--accent)}
-.hero-stats{display:flex;align-items:center;background:rgba(8,8,13,0.6);backdrop-filter:blur(12px);
-  -webkit-backdrop-filter:blur(12px);border:1px solid rgba(14,165,233,0.2);border-radius:14px;padding:20px 32px;gap:32px}
-.stat{display:flex;flex-direction:column;align-items:center;gap:4px}
-.stat-num{font-size:1.5rem;font-weight:700;color:var(--accent)}
-.stat-label{font-size:0.75rem;color:var(--muted);text-transform:uppercase;letter-spacing:0.05em}
-.stat-div{width:1px;height:36px;background:rgba(14,165,233,0.25)}
-.scroll-cue{position:absolute;bottom:32px;left:50%;transform:translateX(-50%);z-index:2}
-.scroll-cue span{display:block;width:2px;height:40px;background:linear-gradient(to bottom,var(--accent),transparent);
-  animation:scroll-line 1.5s ease-in-out infinite}
-@keyframes scroll-line{0%,100%{opacity:1;transform:scaleY(1)}50%{opacity:.3;transform:scaleY(.5)}}
+.hero{padding:104px 0 0}
+@media(min-width:768px){.hero{padding:128px 0 0}}
+.hero-head{max-width:820px}
+.hero h1{font-size:clamp(2.15rem,7vw,4.3rem);margin:18px 0 20px;font-weight:600}
+.hero h1 em{font-style:normal;color:var(--p2)}
+.hero-sub{max-width:560px;color:rgba(240,240,245,.66);font-size:clamp(1rem,1.8vw,1.12rem);line-height:1.65}
+.hero-ctas{display:flex;flex-wrap:wrap;gap:12px;margin:30px 0 44px}
+.btn-primary{background:var(--p);color:#fff;border:none;border-radius:100px;padding:15px 28px;
+  font-size:.95rem;font-weight:500;cursor:pointer;transition:background .2s,transform .2s,box-shadow .2s}
+.btn-primary:hover{background:var(--p2);transform:translateY(-2px);box-shadow:0 12px 30px rgba(124,77,255,.28)}
+.btn-ghost{display:inline-flex;align-items:center;gap:9px;color:var(--text);border:1px solid var(--line);
+  border-radius:100px;padding:15px 26px;font-size:.95rem;font-weight:400;transition:border-color .2s,background .2s}
+.btn-ghost:hover{border-color:var(--line-p);background:var(--glass)}
+.btn-ghost svg{width:15px;height:15px;opacity:.75}
+@media(min-width:768px){.hero-mask{grid-template-columns:1.55fr 1fr 1.2fr;height:clamp(300px,42vw,540px)}}
 
-/* ============ TICKER ============ */
-.ticker-wrap{overflow:hidden;background:var(--accent);padding:12px 0;white-space:nowrap}
-.ticker{display:inline-block;animation:ticker 35s linear infinite;font-size:0.85rem;font-weight:600;color:#fff;letter-spacing:0.04em}
-@keyframes ticker{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+/* ============ FEATURE BARS ============ */
+.features{margin-top:14px;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.features-in{display:grid;gap:0}
+.feature{display:flex;align-items:baseline;gap:12px;padding:20px 0;border-bottom:1px solid var(--line)}
+.feature:last-child{border-bottom:none}
+.feature b{font-size:11px;font-weight:500;color:var(--p2);letter-spacing:.14em}
+.feature span{font-size:.95rem;font-weight:400;color:rgba(240,240,245,.86)}
+@media(min-width:768px){
+  .features-in{grid-template-columns:repeat(3,1fr)}
+  .feature{padding:26px 28px 26px 0;border-bottom:none;border-right:1px solid var(--line)}
+  .feature:last-child{border-right:none;padding-right:0}
+  .feature+.feature{padding-left:28px}
+}
 
 /* ============ SECTIONS ============ */
-section{padding:100px 40px}
-.sec-head{text-align:center;max-width:760px;margin:0 auto 56px}
-.sec-head .eyebrow{font-size:12px;letter-spacing:3px;text-transform:uppercase;color:var(--accent);margin-bottom:14px;font-weight:600}
-.sec-head h2{font-size:clamp(2rem,4vw,3.2rem);margin-bottom:16px;color:var(--text);font-weight:700}
-.sec-head p{color:var(--muted);font-size:16px}
+.sec{padding:clamp(64px,10vw,120px) 0}
+.sec-head{max-width:660px;margin-bottom:clamp(32px,5vw,56px)}
+.sec-head h2{font-size:clamp(1.75rem,4.4vw,2.9rem);margin:16px 0 14px}
 
-/* ============ SERVICIOS ============ */
-.services{background:var(--bg)}
-.services-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;max-width:1200px;margin:0 auto}
-.service-card{background:var(--card);border:1px solid rgba(14,165,233,0.15);border-radius:14px;padding:28px;
-  display:flex;flex-direction:column;transition:all .3s}
-.service-card:hover{transform:translateY(-6px);border-color:var(--accent);box-shadow:0 24px 48px rgba(0,0,0,.5)}
-.service-icon{font-size:2.2rem;margin-bottom:16px}
-.service-card h3{font-size:1.2rem;font-weight:600;color:var(--text);margin-bottom:10px}
-.service-card p{font-size:0.9rem;color:var(--muted);line-height:1.6;margin-bottom:22px;flex:1}
-.service-link{align-self:flex-start;background:transparent;color:var(--accent);border:1px solid var(--accent);
-  border-radius:8px;padding:9px 18px;font-size:0.85rem;font-weight:600;cursor:pointer;transition:all .2s;font-family:'Sora',sans-serif}
-.service-link:hover{background:var(--accent);color:#fff}
+/* ============ TRATAMIENTOS ============ */
+.tx-grid{display:grid;gap:clamp(28px,4vw,56px)}
+@media(min-width:768px){.tx-grid{grid-template-columns:minmax(0,1fr) minmax(0,1.02fr);align-items:start}}
+.svc-list{display:flex;flex-direction:column;border-top:1px solid var(--line)}
+.svc{display:grid;grid-template-columns:auto 1fr;gap:6px 16px;align-items:baseline;width:100%;
+  text-align:left;background:none;border:none;border-bottom:1px solid var(--line);
+  padding:20px 0 20px 14px;cursor:pointer;color:inherit;position:relative;transition:padding .3s var(--ease)}
+.svc::before{content:'';position:absolute;left:0;top:18px;bottom:18px;width:2px;background:transparent;
+  transition:background .3s var(--ease)}
+.svc-n{font-size:11px;letter-spacing:.14em;color:var(--muted);font-weight:500;transition:color .3s}
+.svc-t{font-size:clamp(1.15rem,2.6vw,1.6rem);font-weight:500;letter-spacing:-.02em;
+  color:rgba(240,240,245,.6);transition:color .3s}
+.svc-d{grid-column:1/-1;font-size:.9rem;line-height:1.65;color:var(--muted);max-height:0;opacity:0;
+  overflow:hidden;transition:max-height .45s var(--ease),opacity .35s var(--ease),margin .45s var(--ease)}
+.svc[aria-pressed="true"]::before{background:var(--p)}
+.svc[aria-pressed="true"] .svc-n{color:var(--p2)}
+.svc[aria-pressed="true"] .svc-t{color:var(--text)}
+.svc[aria-pressed="true"] .svc-d{max-height:180px;opacity:1;margin-top:10px}
+.svc:hover .svc-t{color:var(--text)}
+@media(min-width:768px){.tx-mask{grid-template-columns:1fr 1fr;height:clamp(420px,52vw,660px)}}
 
-/* ============ CARDS CON VÍDEO ============ */
-.service-card{position:relative;overflow:hidden;min-height:280px}
-.card-video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:0;opacity:0;transition:opacity 0.6s ease}
-.card-video-overlay{position:absolute;inset:0;z-index:1;
-  background:linear-gradient(to bottom,rgba(8,8,13,0.75) 0%,rgba(8,8,13,0.5) 40%,rgba(8,8,13,0.85) 100%)}
-.service-card .card-content{position:relative;z-index:2;display:flex;flex-direction:column;flex:1}
-.service-card.video-active .card-video{opacity:1}
-@media(max-width:768px){.card-video{display:none}}
-@media(prefers-reduced-motion:reduce){.card-video{display:none}}
-
-/* ============ PRIMERA VISITA ============ */
-.first-visit{background:var(--bg2)}
-.fv-card{max-width:520px;margin:0 auto;background:var(--card);border:1px solid var(--accent);
-  border-radius:20px;padding:44px 40px;text-align:center;box-shadow:0 24px 60px rgba(14,165,233,.12)}
-.fv-tag{display:inline-block;background:rgba(14,165,233,0.12);border:1px solid rgba(14,165,233,0.35);
-  color:var(--accent2);padding:7px 16px;border-radius:100px;font-size:12px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;margin-bottom:20px}
-.fv-price{font-size:4rem;font-weight:700;color:var(--accent);line-height:1}
-.fv-old{font-size:0.95rem;color:var(--muted);text-decoration:line-through;margin-bottom:22px}
-.fv-list{list-style:none;text-align:left;max-width:300px;margin:0 auto 28px;display:grid;gap:10px}
-.fv-list li{display:flex;align-items:center;gap:10px;font-size:0.95rem;color:var(--text)}
-.fv-list li::before{content:'✓';color:var(--accent);font-weight:700}
-.fv-card .btn-primary{width:100%;justify-content:center}
-
-/* ============ NOSOTROS ============ */
-.about{background:var(--bg)}
-.about-grid{display:grid;grid-template-columns:1.5fr 1fr;gap:56px;align-items:center;max-width:1150px;margin:0 auto}
-.about-text .eyebrow{font-size:12px;letter-spacing:3px;text-transform:uppercase;color:var(--accent);margin-bottom:14px;font-weight:600}
-.about-text h2{font-size:clamp(2rem,3.5vw,2.9rem);margin-bottom:20px;color:var(--text);font-weight:700;line-height:1.15}
-.about-text > p{color:var(--muted);margin-bottom:26px;font-size:15px;line-height:1.7}
-.about-badges{display:flex;flex-wrap:wrap;gap:12px}
-.about-badge{display:inline-flex;align-items:center;gap:8px;background:rgba(14,165,233,0.1);
-  border:1px solid rgba(14,165,233,0.25);color:var(--text);padding:9px 16px;border-radius:100px;font-size:14px}
-.about-stats{display:flex;flex-direction:column;gap:24px;background:var(--card);border:1px solid var(--border);border-radius:18px;padding:40px 36px}
-.about-stat .big{font-size:3rem;font-weight:700;color:var(--accent);line-height:1}
-.about-stat .lbl{color:var(--muted);font-size:14px;margin-top:6px}
-.about-stat+.about-stat{border-top:1px solid var(--border);padding-top:24px}
-
-/* ============ EQUIPO ============ */
-.team{background:var(--bg2)}
-.team-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;max-width:1050px;margin:0 auto}
-.doctor-card{background:var(--card);border:1px solid rgba(14,165,233,0.15);border-radius:16px;padding:32px 26px;text-align:center;transition:all .3s}
-.doctor-card:hover{transform:translateY(-5px);border-color:var(--accent)}
-.doctor-avatar{width:84px;height:84px;border-radius:50%;margin:0 auto 18px;
-  background:linear-gradient(135deg,var(--accent),#0369A1);display:flex;align-items:center;justify-content:center;
-  color:#fff;font-size:2rem;font-weight:700}
-.doctor-name{font-size:1.25rem;font-weight:600;color:var(--text);margin-bottom:4px}
-.doctor-spec{font-size:0.85rem;color:var(--accent2);font-weight:500;margin-bottom:12px}
-.doctor-bio{font-size:0.88rem;color:var(--muted);line-height:1.6}
-
-/* ============ TESTIMONIOS ============ */
-.testimonials{background:var(--bg)}
-.tst-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;max-width:1150px;margin:0 auto}
-.tst-card{background:var(--card);border:1px solid rgba(14,165,233,0.15);border-radius:16px;padding:30px}
-.tst-stars{color:var(--gold);font-size:1rem;letter-spacing:2px;margin-bottom:16px}
-.tst-text{font-size:1rem;color:var(--text);line-height:1.7;margin-bottom:22px;font-weight:300}
-.tst-author{display:flex;align-items:center;gap:14px}
-.tst-avatar{width:48px;height:48px;border-radius:50%;background:linear-gradient(135deg,var(--accent),#0369A1);
-  color:#fff;display:flex;align-items:center;justify-content:center;font-weight:600;font-size:0.95rem;flex-shrink:0}
-.tst-author strong{display:block;color:var(--text);font-size:0.95rem;font-weight:600}
-.tst-author span{color:var(--muted);font-size:0.82rem}
+/* ============ AGENTE IA ============ */
+.ag-grid{display:grid;gap:clamp(28px,4vw,56px);align-items:center}
+@media(min-width:768px){.ag-grid{grid-template-columns:minmax(0,1.05fr) minmax(0,1fr)}}
+.ag-steps{list-style:none;margin:26px 0 30px;display:grid;gap:2px}
+.ag-steps li{display:grid;grid-template-columns:auto 1fr;gap:14px;align-items:baseline;
+  padding:14px 0;border-bottom:1px solid var(--line);font-size:.95rem;color:rgba(240,240,245,.82)}
+.ag-steps li b{font-size:11px;letter-spacing:.14em;color:var(--p2);font-weight:500}
+.ag-figs{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+@media(min-width:768px){.ag-figs{gap:14px}}
+.ag-fig{position:relative;overflow:hidden;border-radius:var(--r2);border:1px solid var(--line);
+  aspect-ratio:4/3;background:#14141c}
+.ag-fig img{width:100%;height:100%;object-fit:cover}
+.ag-fig figcaption{position:absolute;left:12px;bottom:10px;font-size:10.5px;letter-spacing:.14em;
+  text-transform:uppercase;color:rgba(240,240,245,.9);background:rgba(8,8,13,.5);
+  border:1px solid rgba(240,240,245,.16);padding:5px 10px;border-radius:100px}
 
 /* ============ FAQ ============ */
-.faq{background:var(--bg2)}
-.faq-list{max-width:800px;margin:0 auto;display:flex;flex-direction:column;gap:12px}
-.faq-item{background:var(--card);border:1px solid rgba(14,165,233,0.15);border-radius:14px;overflow:hidden;transition:border-color .3s}
-.faq-item.open{border-color:var(--accent)}
-.faq-q{padding:20px 24px;display:flex;justify-content:space-between;align-items:center;cursor:pointer;
-  font-weight:500;color:var(--text);font-size:1rem;gap:16px;user-select:none}
-.faq-toggle{width:26px;height:26px;border-radius:50%;background:rgba(14,165,233,0.12);color:var(--accent);
-  display:flex;align-items:center;justify-content:center;font-size:1.1rem;transition:transform .3s;flex-shrink:0}
-.faq-item.open .faq-toggle{transform:rotate(45deg);background:var(--accent);color:#fff}
-.faq-a{max-height:0;overflow:hidden;transition:max-height .35s ease,padding .35s ease;padding:0 24px;color:var(--muted);font-size:0.94rem;line-height:1.7}
-.faq-item.open .faq-a{max-height:300px;padding:0 24px 20px}
+.faq-list{max-width:820px;border-top:1px solid var(--line)}
+.faq-item{border-bottom:1px solid var(--line)}
+.faq-q{width:100%;display:flex;justify-content:space-between;align-items:center;gap:20px;
+  background:none;border:none;color:var(--text);text-align:left;cursor:pointer;
+  padding:22px 0;font-size:clamp(.98rem,2vw,1.1rem);font-weight:400;line-height:1.4}
+.faq-toggle{flex:0 0 auto;width:26px;height:26px;border-radius:50%;border:1px solid var(--line);
+  display:flex;align-items:center;justify-content:center;color:var(--p2);font-size:16px;
+  transition:transform .35s var(--ease),background .3s,color .3s}
+.faq-item.open .faq-toggle{transform:rotate(45deg);background:var(--p);color:#fff;border-color:var(--p)}
+.faq-a{max-height:0;overflow:hidden;transition:max-height .4s var(--ease),padding .4s var(--ease);
+  color:var(--muted);font-size:.94rem;line-height:1.75;max-width:70ch}
+.faq-item.open .faq-a{max-height:340px;padding:0 0 22px}
+
+/* ============ DEMO STRIP ============ */
+.demo-strip{display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:10px;
+  padding:16px 20px;border-top:1px solid var(--line);border-bottom:1px solid var(--line);
+  background:rgba(124,77,255,.04);font-size:12.5px;color:var(--muted);text-align:center}
+.demo-strip b{font-weight:500;color:rgba(240,240,245,.86)}
+.demo-strip .demo-dot{width:6px;height:6px;border-radius:50%;background:var(--g);flex:0 0 auto}
+.demo-strip .demo-go{color:var(--p2)}
+.demo-strip:hover .demo-go{text-decoration:underline}
 
 /* ============ FOOTER ============ */
-footer{background:var(--bg2);padding:60px 48px 32px;border-top:1px solid rgba(14,165,233,0.2)}
-.foot-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:32px;max-width:1100px;margin:0 auto 32px}
-.foot-col h4{color:var(--accent);font-size:15px;margin-bottom:14px;font-weight:600}
+footer{background:var(--bg2);padding:clamp(48px,7vw,72px) 0 28px}
+.foot-grid{display:grid;gap:32px;margin-bottom:36px}
+@media(min-width:768px){.foot-grid{grid-template-columns:1.4fr repeat(3,1fr);gap:40px}}
+.foot-col h4{font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--p2);
+  margin-bottom:14px;font-weight:500}
 .foot-col p{color:var(--muted);font-size:14px;margin-bottom:8px}
 .foot-col a{color:var(--muted);transition:color .2s}
-.foot-col a:hover{color:var(--accent)}
-.foot-logo-img{height:34px;width:auto;margin-bottom:14px}
-.foot-logo-fallback{display:none;color:var(--text);font-weight:600;font-size:1.1rem;margin-bottom:14px}
-.copyright{max-width:1100px;margin:0 auto;padding-top:24px;border-top:1px solid rgba(14,165,233,0.12);font-size:13px;color:var(--muted);text-align:center}
-.copyright b{color:var(--text)}
+.foot-col a:hover{color:var(--text)}
+.foot-logo-img{height:26px;width:auto;margin-bottom:14px}
+.foot-note{font-size:13px;color:var(--muted);max-width:34ch}
+.copyright{padding-top:24px;border-top:1px solid var(--line);font-size:12.5px;color:var(--muted);
+  display:flex;flex-wrap:wrap;gap:8px 18px;justify-content:space-between}
 .copyright a{color:var(--p2)}
 
 /* ============ CHATBOT (Marcos) ============ */
-.chat-fab{position:fixed;bottom:32px;right:32px;z-index:9999;width:60px;height:60px;border-radius:50%;
-  background:linear-gradient(135deg,var(--accent) 0%,#0369A1 100%);border:none;cursor:pointer;
-  box-shadow:0 4px 20px rgba(14,165,233,0.5);animation:fab-pulse 3s infinite;
-  display:flex;align-items:center;justify-content:center;font-size:24px;transition:transform 0.2s;color:#fff}
-.chat-fab:hover{transform:scale(1.08)}
+.chat-fab{position:fixed;bottom:24px;right:20px;z-index:9999;width:56px;height:56px;border-radius:50%;
+  background:var(--p);border:none;cursor:pointer;color:#fff;
+  box-shadow:0 10px 30px rgba(124,77,255,.42);animation:fab-pulse 3s infinite;
+  display:flex;align-items:center;justify-content:center;transition:transform .2s,background .2s}
+.chat-fab:hover{transform:scale(1.06);background:var(--p2)}
+.chat-fab svg{width:24px;height:24px}
+.chat-fab .ic-close{display:none}
+.chat-fab.is-open .ic-chat{display:none}
+.chat-fab.is-open .ic-close{display:block}
+@media(min-width:768px){.chat-fab{bottom:32px;right:32px;width:60px;height:60px}}
 @keyframes fab-pulse{
-  0%,100%{box-shadow:0 4px 20px rgba(14,165,233,0.5),0 0 0 0 rgba(14,165,233,0.3)}
-  50%{box-shadow:0 4px 20px rgba(14,165,233,0.5),0 0 0 12px rgba(14,165,233,0)}
+  0%,100%{box-shadow:0 10px 30px rgba(124,77,255,.42),0 0 0 0 rgba(124,77,255,.3)}
+  50%{box-shadow:0 10px 30px rgba(124,77,255,.42),0 0 0 12px rgba(124,77,255,0)}
 }
-.chat-panel{position:fixed;bottom:104px;right:32px;z-index:9998;width:360px;max-height:560px;height:560px;
-  border-radius:20px;background:var(--bg2);border:1px solid rgba(14,165,233,0.25);
-  box-shadow:0 24px 60px rgba(0,0,0,0.6);display:flex;flex-direction:column;overflow:hidden;
-  transform:translateY(16px) scale(0.97);opacity:0;pointer-events:none;transition:all 0.25s cubic-bezier(0.34,1.56,0.64,1)}
+.chat-panel{position:fixed;bottom:92px;right:20px;z-index:9998;width:min(360px,calc(100vw - 40px));
+  height:min(560px,calc(100vh - 132px));border-radius:18px;background:var(--bg2);
+  border:1px solid var(--line-p);box-shadow:0 24px 60px rgba(0,0,0,.6);display:flex;flex-direction:column;
+  overflow:hidden;transform:translateY(16px) scale(.97);opacity:0;pointer-events:none;
+  transition:all .25s cubic-bezier(.34,1.56,.64,1)}
+@media(min-width:768px){.chat-panel{bottom:104px;right:32px}}
 .chat-panel.open{transform:translateY(0) scale(1);opacity:1;pointer-events:all}
-.chat-header{background:linear-gradient(135deg,rgba(14,165,233,0.15),rgba(3,105,161,0.1));
-  border-bottom:1px solid rgba(14,165,233,0.2);padding:16px 20px;display:flex;align-items:center;gap:12px}
-.chat-avatar{width:40px;height:40px;border-radius:50%;background:linear-gradient(135deg,var(--accent),#0369A1);
-  display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0}
-.chat-agent-name{font-weight:600;font-size:0.95rem;color:var(--text)}
-.chat-agent-role{font-size:0.75rem;color:var(--muted)}
-.chat-online{display:flex;align-items:center;gap:6px;font-size:0.72rem;color:var(--ok);margin-top:2px}
+.chat-header{background:linear-gradient(135deg,rgba(124,77,255,.16),rgba(124,77,255,.04));
+  border-bottom:1px solid var(--line-p);padding:14px 16px;display:flex;align-items:center;gap:12px}
+.chat-avatar{width:38px;height:38px;border-radius:50%;background:linear-gradient(135deg,var(--p),#4c1fd6);
+  display:flex;align-items:center;justify-content:center;font-size:15px;font-weight:600;color:#fff;flex-shrink:0}
+.chat-agent-name{font-weight:500;font-size:.92rem;color:var(--text)}
+.chat-agent-role{font-size:.72rem;color:var(--muted)}
+.chat-online{display:flex;align-items:center;gap:6px;font-size:.7rem;color:var(--ok);margin-top:2px}
 .chat-online::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--ok)}
-.chat-close{background:none;border:none;color:var(--muted);cursor:pointer;font-size:18px;margin-left:auto;transition:color .2s}
+.chat-close{background:none;border:none;color:var(--muted);cursor:pointer;margin-left:auto;
+  display:flex;align-items:center;transition:color .2s;padding:4px}
+.chat-close svg{width:16px;height:16px}
 .chat-close:hover{color:var(--text)}
-.chat-messages{flex:1;overflow-y:auto;padding:20px 16px;display:flex;flex-direction:column;gap:12px;
-  scrollbar-width:thin;scrollbar-color:rgba(14,165,233,0.3) transparent}
+.chat-messages{flex:1;overflow-y:auto;padding:18px 14px;display:flex;flex-direction:column;gap:12px;
+  scrollbar-width:thin;scrollbar-color:rgba(124,77,255,.35) transparent}
 .chat-messages::-webkit-scrollbar{width:5px}
-.chat-messages::-webkit-scrollbar-thumb{background:rgba(14,165,233,0.3);border-radius:3px}
-.msg-bot{align-self:flex-start;max-width:82%;animation:msgIn .3s ease}
-.msg-user{align-self:flex-end;max-width:82%;animation:msgIn .3s ease}
+.chat-messages::-webkit-scrollbar-thumb{background:rgba(124,77,255,.35);border-radius:3px}
+.msg-bot{align-self:flex-start;max-width:86%;animation:msgIn .3s ease}
+.msg-user{align-self:flex-end;max-width:86%;animation:msgIn .3s ease}
 @keyframes msgIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
-.msg-bubble{padding:10px 14px;border-radius:14px;font-size:0.875rem;line-height:1.5;color:var(--text);white-space:pre-line}
-.msg-bot .msg-bubble{background:rgba(255,255,255,0.05);border:1px solid rgba(14,165,233,0.15);border-radius:4px 14px 14px 14px}
-.msg-user .msg-bubble{background:linear-gradient(135deg,var(--accent),#0369A1);color:#fff;border-radius:14px 14px 4px 14px}
-.typing{align-self:flex-start;display:inline-flex;gap:4px;background:rgba(255,255,255,0.05);
-  border:1px solid rgba(14,165,233,0.15);padding:12px 16px;border-radius:4px 14px 14px 14px}
-.typing span{width:7px;height:7px;border-radius:50%;background:var(--accent);animation:tdot 1.2s infinite}
+.msg-bubble{padding:10px 14px;border-radius:14px;font-size:.86rem;line-height:1.55;color:var(--text);white-space:pre-line}
+.msg-bot .msg-bubble{background:rgba(255,255,255,.05);border:1px solid var(--line);border-radius:4px 14px 14px 14px}
+.msg-user .msg-bubble{background:var(--p);color:#fff;border-radius:14px 14px 4px 14px}
+.typing{align-self:flex-start;display:inline-flex;gap:4px;background:rgba(255,255,255,.05);
+  border:1px solid var(--line);padding:12px 16px;border-radius:4px 14px 14px 14px}
+.typing span{width:7px;height:7px;border-radius:50%;background:var(--p2);animation:tdot 1.2s infinite}
 .typing span:nth-child(2){animation-delay:.15s}
 .typing span:nth-child(3){animation-delay:.3s}
 @keyframes tdot{0%,60%,100%{opacity:.3;transform:translateY(0)}30%{opacity:1;transform:translateY(-4px)}}
 .quick-btns{display:flex;flex-wrap:wrap;gap:8px;padding:0 0 4px;align-self:stretch}
-.quick-btn{background:rgba(14,165,233,0.1);border:1px solid rgba(14,165,233,0.3);border-radius:20px;
-  padding:7px 14px;font-size:0.8rem;color:var(--text);cursor:pointer;font-family:'Sora',sans-serif;transition:all 0.2s}
-.quick-btn:hover{background:var(--accent);color:#fff;border-color:var(--accent)}
-/* chips de agenda (día / hora): mismo lenguaje visual, target táctil mayor */
+.quick-btn{background:rgba(124,77,255,.1);border:1px solid var(--line-p);border-radius:20px;
+  padding:7px 14px;font-size:.79rem;color:var(--text);cursor:pointer;transition:all .2s;line-height:1.3}
+.quick-btn:hover{background:var(--p);color:#fff;border-color:var(--p)}
 .quick-btns.slots{gap:6px}
 .quick-btns.slots .quick-btn{display:inline-flex;align-items:center;min-height:38px;padding:9px 13px}
-.chat-input-area{padding:12px 16px;border-top:1px solid rgba(14,165,233,0.15);display:flex;gap:8px;align-items:center}
-.chat-input{flex:1;background:rgba(255,255,255,0.04);border:1px solid rgba(14,165,233,0.2);border-radius:10px;
-  padding:10px 14px;font-family:'Sora',sans-serif;font-size:0.875rem;color:var(--text);outline:none;transition:border-color 0.2s;min-width:0}
-.chat-input:focus{border-color:var(--accent)}
+.chat-input-area{padding:12px 14px;border-top:1px solid var(--line);display:flex;gap:8px;align-items:center}
+.chat-input{flex:1;background:rgba(255,255,255,.04);border:1px solid var(--line);border-radius:10px;
+  padding:10px 14px;font-family:'Sora',sans-serif;font-size:.86rem;color:var(--text);outline:none;
+  transition:border-color .2s;min-width:0}
+.chat-input:focus{border-color:var(--p)}
 .chat-input::placeholder{color:var(--muted)}
-.chat-send{width:38px;height:38px;border-radius:10px;background:var(--accent);border:none;cursor:pointer;color:#fff;
-  font-size:16px;display:flex;align-items:center;justify-content:center;transition:all 0.2s;flex-shrink:0}
-.chat-send:hover{background:var(--accent2);transform:scale(1.05)}
-.chat-footer{text-align:center;padding:8px;font-size:0.65rem;color:rgba(136,136,160,0.5);border-top:1px solid rgba(14,165,233,0.08)}
-.chat-footer a{color:rgba(124,77,255,0.7);text-decoration:none}
+.chat-send{width:38px;height:38px;border-radius:10px;background:var(--p);border:none;cursor:pointer;color:#fff;
+  display:flex;align-items:center;justify-content:center;transition:all .2s;flex-shrink:0}
+.chat-send svg{width:16px;height:16px}
+.chat-send:hover{background:var(--p2);transform:scale(1.05)}
+.chat-footer{text-align:center;padding:8px;font-size:.62rem;letter-spacing:.1em;text-transform:uppercase;
+  color:rgba(136,136,160,.55);border-top:1px solid rgba(124,77,255,.08)}
+.chat-footer a{color:rgba(157,112,255,.75)}
 
-/* ============ RESPONSIVE ============ */
-@media(max-width:1024px){
-  .services-grid,.tst-grid,.team-grid{grid-template-columns:repeat(2,1fr)}
-  .about-grid{grid-template-columns:1fr;gap:40px}
-}
-@media(max-width:900px){
-  .nav{padding:12px 20px}
-  .nav-links{display:none;position:absolute;top:100%;left:0;right:0;flex-direction:column;background:var(--bg);
-    padding:24px;gap:18px;border-bottom:1px solid var(--border)}
-  .nav-links.open{display:flex}
-  .menu-tog{display:block}
-  section{padding:70px 24px}
-}
-@media(max-width:768px){
-  .hero-video{display:none}
-  .hero{background:linear-gradient(135deg,#08080d 0%,#071520 50%,#08080d 100%)}
-  .hero-content{padding:0 24px;padding-top:80px;align-items:center;text-align:center}
-  .hero-subtitle{margin-left:auto;margin-right:auto}
-  .hero-stats{flex-wrap:wrap;gap:16px;padding:16px 20px;justify-content:center}
-  .stat-div{display:none}
-  .services-grid,.tst-grid,.team-grid{grid-template-columns:1fr}
-}
-@media(max-width:480px){
-  .chat-panel{width:calc(100vw - 32px);right:16px;bottom:88px;height:75vh}
-  .chat-fab{bottom:24px;right:16px}
-  .quick-btns.slots .quick-btn{min-height:42px;padding:9px 12px;font-size:0.78rem}
-}
 @media(prefers-reduced-motion:reduce){
-  .badge-dot,.scroll-cue span,.chat-fab,.ticker,.typing span{animation:none!important}
-  .hero-word-rotate{transition:none!important}
   html{scroll-behavior:auto}
+  [data-reveal]{opacity:1!important;transform:none!important;transition:none!important}
+  .chat-fab,.typing span{animation:none!important}
+  *{transition-duration:.01ms!important}
 }
 </style>
+<script>
+/* Fallbacks de imagen: si una URL falla, se prueba la siguiente de data-fb */
+function wmImgFallback(img){
+  var fb=(img.getAttribute('data-fb')||'').split('|').filter(Boolean);
+  var i=parseInt(img.getAttribute('data-fbi')||'0',10);
+  if(i<fb.length){img.setAttribute('data-fbi',i+1);img.src=fb[i];}
+}
+</script>
+<noscript><style>.splash{display:none}[data-reveal]{opacity:1;transform:none}</style></noscript>
 </head>
-<body>
+<body class="splash-on">
 
-<!-- ============ NAV ============ -->
-<nav class="nav" id="nav">
-  <a href="/" class="nav-logo-link" aria-label="WhiteMoon Dental — inicio">
-    <img src="https://whitemoon.es/logo.webp" alt="WhiteMoon" class="nav-logo-img"
-         width="140" height="36"
-         onerror="this.style.display='none';this.nextElementSibling.style.display='block'">
-    <span class="nav-logo-fallback" style="display:none;color:#f0f0f5;font-family:Sora,sans-serif;font-weight:600;">✦ WhiteMoon Dental</span>
-  </a>
-  <div class="nav-links" id="navlinks">
-    <a href="#servicios">Tratamientos</a>
-    <a href="#nosotros">Nosotros</a>
-    <a href="#equipo">Equipo</a>
-    <a href="#opiniones">Opiniones</a>
-    <a href="#faq">FAQ</a>
-    <button class="btn-nav" onclick="openChat()">Pedir cita gratis</button>
-  </div>
-  <button class="menu-tog" onclick="document.getElementById('navlinks').classList.toggle('open')" aria-label="Menú">☰</button>
-</nav>
-
-<!-- ============ HERO ============ -->
-<section class="hero">
-  <video autoplay muted loop playsinline preload="none" poster="assets/video/dental-poster.jpg" class="hero-video">
-    <source src="assets/video/dental-clinica.mp4" type="video/mp4">
-  </video>
-  <div class="hero-overlay"></div>
-
-  <div class="hero-content">
-    <div class="hero-badge">
-      <span class="badge-dot"></span>
-      Clínica Dental Premium · Madrid
-    </div>
-
-    <h1 class="hero-title">
-      Tu clínica de<br>
-      <span class="hero-word-rotate">implantes</span>
-    </h1>
-
-    <p class="hero-subtitle">
-      Tecnología 3D, materiales premium y 15 años de experiencia.<br>
-      Primera visita y diagnóstico completo <strong>gratis</strong>.
-    </p>
-
-    <div class="hero-ctas">
-      <button class="btn-primary" onclick="openChat()">🦷 Pedir primera visita gratis</button>
-      <a href="#servicios" class="btn-ghost">Ver tratamientos ↓</a>
-    </div>
-
-    <div class="hero-stats">
-      <div class="stat"><span class="stat-num">15+</span><span class="stat-label">Años exp.</span></div>
-      <div class="stat-div"></div>
-      <div class="stat"><span class="stat-num">+2.000</span><span class="stat-label">Pacientes</span></div>
-      <div class="stat-div"></div>
-      <div class="stat"><span class="stat-num">4.9★</span><span class="stat-label">Google</span></div>
-      <div class="stat-div"></div>
-      <div class="stat"><span class="stat-num">6</span><span class="stat-label">Especialistas</span></div>
-    </div>
-  </div>
-
-  <div class="scroll-cue"><span></span></div>
-</section>
-
-<!-- ============ TICKER ============ -->
-<div class="ticker-wrap">
-  <div class="ticker">
-    🦷 Implantes Dentales &nbsp;·&nbsp; 🦷 Ortodoncia Invisalign &nbsp;·&nbsp; 🦷 Blanqueamiento LED &nbsp;·&nbsp; 🦷 Estética Dental &nbsp;·&nbsp; 🦷 Endodoncia &nbsp;·&nbsp; 🦷 Odontopediatría &nbsp;·&nbsp; 🦷 Primera visita GRATIS &nbsp;·&nbsp; 🦷 Financiación sin intereses &nbsp;·&nbsp;
-    🦷 Implantes Dentales &nbsp;·&nbsp; 🦷 Ortodoncia Invisalign &nbsp;·&nbsp; 🦷 Blanqueamiento LED &nbsp;·&nbsp; 🦷 Estética Dental &nbsp;·&nbsp; 🦷 Endodoncia &nbsp;·&nbsp; 🦷 Odontopediatría &nbsp;·&nbsp; 🦷 Primera visita GRATIS &nbsp;·&nbsp; 🦷 Financiación sin intereses &nbsp;·&nbsp;
+<!-- ============ SPLASH ============ -->
+<div class="splash" id="splash" role="status" aria-label="Cargando la página">
+  <div class="splash-inner">
+    <div class="splash-mark">WhiteMoon Dental · Madrid</div>
+    <div class="splash-count"><span id="splashNum">0</span><span class="pct">%</span></div>
+    <div class="splash-bar"><span id="splashBar"></span></div>
   </div>
 </div>
 
-<!-- ============ SERVICIOS ============ -->
-<section class="services" id="servicios">
-  <div class="sec-head">
-    <div class="eyebrow">Nuestros tratamientos</div>
-    <h2>Soluciones integrales para cada sonrisa</h2>
-    <p>Combinamos tecnología 3D guiada con un trato humano y cercano para que tu experiencia sea perfecta.</p>
+<!-- ============ NAV ============ -->
+<nav class="nav" id="nav">
+  <div class="wrap nav-in">
+    <a href="#inicio" class="nav-brand" aria-label="WhiteMoon Dental — inicio">
+      <img src="https://whitemoon.es/logo.webp" alt="WhiteMoon" class="nav-logo-img" width="104" height="26"
+           onerror="this.style.display='none'">
+      <span>WhiteMoon Dental</span>
+    </a>
+    <div class="nav-links" id="navlinks">
+      <a href="#tratamientos">Tratamientos</a>
+      <a href="#agente">Agente IA</a>
+      <a href="#faq">Preguntas</a>
+      <a href="#contacto">Contacto</a>
+      <button class="btn-nav" onclick="openChat()">Pedir cita</button>
+    </div>
+    <button class="menu-tog" id="menuTog" aria-label="Abrir menú" aria-expanded="false" aria-controls="navlinks">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
+        <path d="M3 6h18M3 12h18M3 18h18"/></svg>
+    </button>
   </div>
-  <div class="services-grid">
-    <div class="service-card">
-      <video class="card-video" muted loop playsinline preload="none"
-             data-src="assets/video/treatments/implantes.mp4">
-        <source data-src="assets/video/treatments/implantes.mp4" type="video/mp4">
-      </video>
-      <div class="card-video-overlay"></div>
-      <div class="card-content">
-        <h3>Implantes Dentales</h3>
-        <p>Tecnología 3D guiada, materiales de titanio premium y garantía de por vida. Recupera tu sonrisa con seguridad.</p>
-        <button class="service-link" onclick="openChat()">Pedir valoración →</button>
+</nav>
+
+<main id="inicio">
+
+<!-- ============ HERO ============ -->
+<section class="hero">
+  <div class="wrap">
+    <div class="hero-head">
+      <p class="eyebrow" data-reveal>Clínica dental · Madrid</p>
+      <h1 data-reveal>Odontología en Madrid<br><em>con cita sin llamadas</em></h1>
+      <p class="hero-sub" data-reveal>Marcos, nuestro asistente con IA, atiende el chat a cualquier hora:
+        eliges tratamiento, día y franja, y la clínica te llama para confirmar la cita.</p>
+      <div class="hero-ctas" data-reveal>
+        <button class="btn-primary" onclick="openChat()">Pedir cita con Marcos</button>
+        <a class="btn-ghost" href="tel:+34643199580">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true">
+            <path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8.1 9.8a16 16 0 0 0 6 6l1.2-1.2a2 2 0 0 1 2.1-.5c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.7 2Z"/></svg>
+          Llamar · 643 199 580
+        </a>
       </div>
     </div>
-    <div class="service-card">
-      <video class="card-video" muted loop playsinline preload="none"
-             data-src="assets/video/treatments/ortodoncia.mp4">
-        <source data-src="assets/video/treatments/ortodoncia.mp4" type="video/mp4">
-      </video>
-      <div class="card-video-overlay"></div>
-      <div class="card-content">
-        <h3>Ortodoncia e Invisalign</h3>
-        <p>Brackets estéticos e Invisalign con plan personalizado. Resultados visibles desde los primeros meses.</p>
-        <button class="service-link" onclick="openChat()">Pedir valoración →</button>
+  </div>
+
+  <div class="wrap">
+    <div class="mask hero-mask" data-mask data-natw="1600" data-nath="1067" data-focalx="0.7" data-focaly="0.42" data-reveal>
+      <div class="mask-card">
+        <img class="mask-img" src="https://images.pexels.com/photos/3881296/pexels-photo-3881296.jpeg?auto=compress&amp;cs=tinysrgb&amp;w=1600"
+             data-fb="https://images.pexels.com/photos/37458097/pexels-photo-37458097.jpeg?auto=compress&amp;cs=tinysrgb&amp;w=1600|https://images.pexels.com/photos/8413334/pexels-photo-8413334.jpeg?auto=compress&amp;cs=tinysrgb&amp;w=1600"
+             onerror="wmImgFallback(this)" width="1600" height="1067" fetchpriority="high"
+             alt="Higienista atendiendo a una paciente en el sillón de un gabinete dental">
+        <span class="mask-tag">Gabinete</span>
+      </div>
+      <div class="mask-card">
+        <img class="mask-img" src="https://images.pexels.com/photos/3881296/pexels-photo-3881296.jpeg?auto=compress&amp;cs=tinysrgb&amp;w=1600"
+             data-fb="https://images.pexels.com/photos/37458097/pexels-photo-37458097.jpeg?auto=compress&amp;cs=tinysrgb&amp;w=1600|https://images.pexels.com/photos/8413334/pexels-photo-8413334.jpeg?auto=compress&amp;cs=tinysrgb&amp;w=1600"
+             onerror="wmImgFallback(this)" width="1600" height="1067"
+             alt="Odontóloga con mascarilla trabajando junto a la lámpara del sillón dental">
+        <span class="mask-tag">Equipo</span>
+      </div>
+      <div class="mask-card">
+        <img class="mask-img" src="https://images.pexels.com/photos/3881296/pexels-photo-3881296.jpeg?auto=compress&amp;cs=tinysrgb&amp;w=1600"
+             data-fb="https://images.pexels.com/photos/37458097/pexels-photo-37458097.jpeg?auto=compress&amp;cs=tinysrgb&amp;w=1600|https://images.pexels.com/photos/8413334/pexels-photo-8413334.jpeg?auto=compress&amp;cs=tinysrgb&amp;w=1600"
+             onerror="wmImgFallback(this)" width="1600" height="1067"
+             alt="Bandeja con instrumental dental preparado en la consulta">
+        <span class="mask-tag">Instrumental</span>
       </div>
     </div>
-    <div class="service-card">
-      <video class="card-video" muted loop playsinline preload="none"
-             data-src="assets/video/treatments/estetica.mp4">
-        <source data-src="assets/video/treatments/estetica.mp4" type="video/mp4">
-      </video>
-      <div class="card-video-overlay"></div>
-      <div class="card-content">
-        <h3>Estética Dental</h3>
-        <p>Blanqueamiento LED, carillas de porcelana y diseño digital de sonrisa para una imagen radiante.</p>
-        <button class="service-link" onclick="openChat()">Pedir valoración →</button>
-      </div>
-    </div>
-    <div class="service-card">
-      <video class="card-video" muted loop playsinline preload="none"
-             data-src="assets/video/treatments/higiene.mp4">
-        <source data-src="assets/video/treatments/higiene.mp4" type="video/mp4">
-      </video>
-      <div class="card-video-overlay"></div>
-      <div class="card-content">
-        <h3>Higiene y Prevención</h3>
-        <p>Limpiezas profesionales, revisiones periódicas y educación bucal para mantener tu sonrisa sana.</p>
-        <button class="service-link" onclick="openChat()">Pedir cita →</button>
-      </div>
-    </div>
-    <div class="service-card">
-      <video class="card-video" muted loop playsinline preload="none"
-             data-src="assets/video/treatments/endodoncia.mp4">
-        <source data-src="assets/video/treatments/endodoncia.mp4" type="video/mp4">
-      </video>
-      <div class="card-video-overlay"></div>
-      <div class="card-content">
-        <h3>Endodoncia</h3>
-        <p>Tratamientos de conducto con microscopio dental. Indoloros, en 1-2 sesiones y conservando tu diente natural.</p>
-        <button class="service-link" onclick="openChat()">Pedir valoración →</button>
-      </div>
-    </div>
-    <div class="service-card">
-      <video class="card-video" muted loop playsinline preload="none"
-             data-src="assets/video/treatments/odontopediatria.mp4">
-        <source data-src="assets/video/treatments/odontopediatria.mp4" type="video/mp4">
-      </video>
-      <div class="card-video-overlay"></div>
-      <div class="card-content">
-        <h3>Odontopediatría</h3>
-        <p>Especialistas en niños y adolescentes. Cuidamos su salud bucal con paciencia, cariño y mucho juego.</p>
-        <button class="service-link" onclick="openChat()">Pedir cita →</button>
+  </div>
+
+  <!-- feature bars -->
+  <div class="features">
+    <div class="wrap">
+      <div class="features-in">
+        <div class="feature" data-reveal><b>01</b><span>Odontología avanzada</span></div>
+        <div class="feature" data-reveal><b>02</b><span>Equipo de última generación</span></div>
+        <div class="feature" data-reveal><b>03</b><span>Trato cercano</span></div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ============ PRIMERA VISITA GRATIS ============ -->
-<section class="first-visit">
-  <div class="fv-card">
-    <span class="fv-tag">🎁 Oferta exclusiva</span>
-    <div class="fv-price">0€</div>
-    <div class="fv-old">Antes 89€</div>
-    <ul class="fv-list">
-      <li>Diagnóstico completo</li>
-      <li>Radiografía panorámica</li>
-      <li>Plan personalizado</li>
-      <li>Sin compromiso</li>
-    </ul>
-    <button class="btn-primary" onclick="openChat()">Reservar mi visita →</button>
-  </div>
-</section>
+<!-- ============ TRATAMIENTOS ============ -->
+<section class="sec" id="tratamientos">
+  <div class="wrap">
+    <div class="tx-grid">
+      <div>
+        <div class="sec-head">
+          <p class="eyebrow" data-reveal>Tratamientos</p>
+          <h2 data-reveal>Lo que podemos valorar en tu primera visita</h2>
+          <p class="lead" data-reveal>Cada caso se estudia antes de proponer nada. En la consulta te explicamos
+            las opciones y te entregamos el presupuesto por escrito, sin compromiso.</p>
+        </div>
+        <div class="svc-list" data-reveal>
+          <button class="svc" type="button" aria-pressed="true">
+            <span class="svc-n">01</span>
+            <span class="svc-t">Carillas dentales</span>
+            <span class="svc-d">Láminas finas que se adhieren a la cara visible del diente para corregir forma,
+              color o pequeños desajustes. El resultado depende del estado previo de cada sonrisa.</span>
+          </button>
+          <button class="svc" type="button" aria-pressed="false">
+            <span class="svc-n">02</span>
+            <span class="svc-t">Coronas y fundas</span>
+            <span class="svc-d">Recubren un diente dañado para devolverle forma y función cuando una
+              reconstrucción simple no es suficiente.</span>
+          </button>
+          <button class="svc" type="button" aria-pressed="false">
+            <span class="svc-n">03</span>
+            <span class="svc-t">Blanqueamiento</span>
+            <span class="svc-d">Tratamiento para aclarar el tono del esmalte. Antes se revisa el estado de encías
+              y dientes para valorar si es adecuado en tu caso.</span>
+          </button>
+          <button class="svc" type="button" aria-pressed="false">
+            <span class="svc-n">04</span>
+            <span class="svc-t">Implantes dentales</span>
+            <span class="svc-d">Raíz artificial de titanio sobre la que se coloca la corona. Requiere un estudio
+              previo del hueso y de la salud bucal.</span>
+          </button>
+        </div>
+      </div>
 
-<!-- ============ NOSOTROS ============ -->
-<section class="about" id="nosotros">
-  <div class="about-grid">
-    <div class="about-text">
-      <div class="eyebrow">Quiénes somos</div>
-      <h2>Más de 15 años cuidando sonrisas</h2>
-      <p>En WhiteMoon Dental combinamos lo mejor de la odontología moderna con un trato 100% personalizado. Cada paciente es único y cada plan de tratamiento también. Por eso miles de familias confían en nosotros año tras año.</p>
-      <div class="about-badges">
-        <span class="about-badge">✅ Colegiados</span>
-        <span class="about-badge">✅ Tecnología 3D</span>
-        <span class="about-badge">✅ Financiación</span>
-        <span class="about-badge">✅ Garantía de por vida</span>
+      <div class="mask tx-mask" data-mask data-natw="1600" data-nath="901" data-focalx="0.65" data-focaly="0.5" data-reveal>
+        <div class="mask-card">
+          <img class="mask-img" src="https://images.pexels.com/photos/7298633/pexels-photo-7298633.jpeg?auto=compress&amp;cs=tinysrgb&amp;w=1600"
+               data-fb="https://images.pexels.com/photos/28110692/pexels-photo-28110692.jpeg?auto=compress&amp;cs=tinysrgb&amp;w=1600|https://images.pexels.com/photos/12474261/pexels-photo-12474261.jpeg?auto=compress&amp;cs=tinysrgb&amp;w=1600"
+               onerror="wmImgFallback(this)" width="1600" height="901" loading="lazy"
+               alt="Primer plano de una persona sonriendo tras un tratamiento dental">
+          <span class="mask-tag">Tu sonrisa</span>
+        </div>
+        <div class="mask-card">
+          <img class="mask-img" src="https://images.pexels.com/photos/7298633/pexels-photo-7298633.jpeg?auto=compress&amp;cs=tinysrgb&amp;w=1600"
+               data-fb="https://images.pexels.com/photos/28110692/pexels-photo-28110692.jpeg?auto=compress&amp;cs=tinysrgb&amp;w=1600|https://images.pexels.com/photos/12474261/pexels-photo-12474261.jpeg?auto=compress&amp;cs=tinysrgb&amp;w=1600"
+               onerror="wmImgFallback(this)" width="1600" height="901" loading="lazy"
+               alt="Detalle de una sonrisa con los dientes alineados">
+        </div>
       </div>
     </div>
-    <div class="about-stats">
-      <div class="about-stat"><div class="big">15+</div><div class="lbl">Años de experiencia</div></div>
-      <div class="about-stat"><div class="big">+2.000</div><div class="lbl">Pacientes atendidos</div></div>
-    </div>
   </div>
 </section>
 
-<!-- ============ EQUIPO ============ -->
-<section class="team" id="equipo">
-  <div class="sec-head">
-    <div class="eyebrow">Nuestro equipo</div>
-    <h2>Especialistas con vocación</h2>
-    <p>Un equipo multidisciplinar con formación continua e internacional para ofrecerte lo mejor.</p>
-  </div>
-  <div class="team-grid">
-    <div class="doctor-card">
-      <div class="doctor-avatar">R</div>
-      <div class="doctor-name">Dr. Ramos</div>
-      <div class="doctor-spec">Implantología avanzada</div>
-      <div class="doctor-bio">15 años de experiencia. Más de 2.500 implantes colocados con tecnología 3D guiada.</div>
-    </div>
-    <div class="doctor-card">
-      <div class="doctor-avatar">M</div>
-      <div class="doctor-name">Dr. Martín</div>
-      <div class="doctor-spec">Ortodoncia e Invisalign</div>
-      <div class="doctor-bio">Invisalign Diamond Provider. Especialista en ortodoncia adulta y adolescente.</div>
-    </div>
-    <div class="doctor-card">
-      <div class="doctor-avatar">L</div>
-      <div class="doctor-name">Dra. López</div>
-      <div class="doctor-spec">Estética dental</div>
-      <div class="doctor-bio">Diseño digital de sonrisa. Carillas y blanqueamiento profesional con resultados naturales.</div>
-    </div>
-  </div>
-</section>
-
-<!-- ============ TESTIMONIOS ============ -->
-<section class="testimonials" id="opiniones">
-  <div class="sec-head">
-    <div class="eyebrow">Lo que dicen de nosotros</div>
-    <h2>Pacientes que ya sonríen</h2>
-    <p>Más de 800 reseñas verificadas con un promedio de 4.9/5 ⭐</p>
-  </div>
-  <div class="tst-grid">
-    <div class="tst-card">
-      <div class="tst-stars">★★★★★</div>
-      <p class="tst-text">"Llevaba años con miedo al dentista. El equipo me hizo sentir tranquilo desde el primer momento. ¡Recomendado 100%!"</p>
-      <div class="tst-author"><div class="tst-avatar">MG</div><div><strong>María G.</strong><span>Implantes dentales</span></div></div>
-    </div>
-    <div class="tst-card">
-      <div class="tst-stars">★★★★★</div>
-      <p class="tst-text">"Me hicieron los implantes y quedé encantada. Calidad y precio insuperables. El trato del personal es exquisito."</p>
-      <div class="tst-author"><div class="tst-avatar">JM</div><div><strong>Juan M.</strong><span>Implantología</span></div></div>
-    </div>
-    <div class="tst-card">
-      <div class="tst-stars">★★★★★</div>
-      <p class="tst-text">"La ortodoncia invisible cambió mi vida. Resultados en tiempo récord y un seguimiento espectacular. Mil gracias al equipo."</p>
-      <div class="tst-author"><div class="tst-avatar">AP</div><div><strong>Ana P.</strong><span>Ortodoncia Invisalign</span></div></div>
+<!-- ============ AGENTE IA ============ -->
+<section class="sec" id="agente">
+  <div class="wrap">
+    <div class="ag-grid">
+      <div>
+        <p class="eyebrow" data-reveal>Agente IA</p>
+        <h2 data-reveal style="font-size:clamp(1.75rem,4.4vw,2.9rem);margin:16px 0 14px">Marcos responde
+          cuando la clínica está cerrada</h2>
+        <p class="lead" data-reveal>El asistente recoge tu solicitud en el chat a cualquier hora y la envía
+          a la clínica. No sustituye a una valoración profesional: sirve para que no tengas que esperar
+          al horario de teléfono.</p>
+        <ol class="ag-steps" data-reveal>
+          <li><b>01</b><span>Eliges el motivo de la consulta</span></li>
+          <li><b>02</b><span>Escoges día y franja horaria dentro del horario de la clínica</span></li>
+          <li><b>03</b><span>Dejas nombre y teléfono</span></li>
+          <li><b>04</b><span>La clínica te llama para confirmar la cita</span></li>
+        </ol>
+        <button class="btn-primary" onclick="openChat()" data-reveal>Abrir el chat de Marcos</button>
+      </div>
+      <div class="ag-figs" data-reveal>
+        <figure class="ag-fig">
+          <img src="https://images.pexels.com/photos/6502305/pexels-photo-6502305.jpeg?auto=compress&amp;cs=tinysrgb&amp;w=800"
+               data-fb="https://images.pexels.com/photos/6812500/pexels-photo-6812500.jpeg?auto=compress&amp;cs=tinysrgb&amp;w=800"
+               onerror="wmImgFallback(this)" width="800" height="533" loading="lazy"
+               alt="Modelo dental que muestra un implante de titanio entre dos dientes naturales">
+          <figcaption>Implantes</figcaption>
+        </figure>
+        <figure class="ag-fig">
+          <img src="https://images.pexels.com/photos/6627606/pexels-photo-6627606.jpeg?auto=compress&amp;cs=tinysrgb&amp;w=800"
+               data-fb="https://images.pexels.com/photos/7800675/pexels-photo-7800675.jpeg?auto=compress&amp;cs=tinysrgb&amp;w=800"
+               onerror="wmImgFallback(this)" width="800" height="533" loading="lazy"
+               alt="Manos con guantes puliendo una prótesis dental con una pieza de mano">
+          <figcaption>Laboratorio</figcaption>
+        </figure>
+      </div>
     </div>
   </div>
 </section>
 
 <!-- ============ FAQ ============ -->
-<section class="faq" id="faq">
-  <div class="sec-head">
-    <div class="eyebrow">Preguntas frecuentes</div>
-    <h2>Resolvemos tus dudas</h2>
-  </div>
-  <div class="faq-list">
-    <div class="faq-item">
-      <div class="faq-q" onclick="toggleFaq(this)">¿La primera visita es realmente gratis? <span class="faq-toggle">+</span></div>
-      <div class="faq-a">Sí. Sin coste y sin compromiso. Incluye exploración, radiografía panorámica y plan de tratamiento personalizado por escrito.</div>
+<section class="sec" id="faq">
+  <div class="wrap">
+    <div class="sec-head">
+      <p class="eyebrow" data-reveal>Preguntas frecuentes</p>
+      <h2 data-reveal>Antes de pedir cita</h2>
     </div>
-    <div class="faq-item">
-      <div class="faq-q" onclick="toggleFaq(this)">¿Ofrecéis financiación? <span class="faq-toggle">+</span></div>
-      <div class="faq-a">Sí, hasta 24 meses sin intereses para cualquier tratamiento. Estudiamos cada caso para darte la mejor solución.</div>
-    </div>
-    <div class="faq-item">
-      <div class="faq-q" onclick="toggleFaq(this)">¿Atendéis urgencias dentales? <span class="faq-toggle">+</span></div>
-      <div class="faq-a">Sí. Atendemos urgencias el mismo día. Avísanos por el chat y te recibimos cuanto antes.</div>
-    </div>
-    <div class="faq-item">
-      <div class="faq-q" onclick="toggleFaq(this)">¿Qué garantía tienen los tratamientos? <span class="faq-toggle">+</span></div>
-      <div class="faq-a">Implantes con garantía de por vida y resto de tratamientos con garantía extendida según protocolo. Todo por escrito.</div>
+    <div class="faq-list" data-reveal>
+      <div class="faq-item">
+        <button class="faq-q" type="button" aria-expanded="false" onclick="toggleFaq(this)">
+          ¿Puedo pedir cita sin llamar por teléfono?
+          <span class="faq-toggle" aria-hidden="true">+</span>
+        </button>
+        <div class="faq-a">Sí. Marcos, el asistente con IA, recoge tu solicitud en el chat a cualquier hora del día y la envía a la clínica, que después te llama para confirmarla.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" type="button" aria-expanded="false" onclick="toggleFaq(this)">
+          ¿La solicitud del chat es una cita confirmada?
+          <span class="faq-toggle" aria-hidden="true">+</span>
+        </button>
+        <div class="faq-a">No. El chat envía una solicitud con el día y la franja que prefieres. La cita queda cerrada cuando la clínica te llama y la confirma.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" type="button" aria-expanded="false" onclick="toggleFaq(this)">
+          ¿Qué tratamientos podéis valorar?
+          <span class="faq-toggle" aria-hidden="true">+</span>
+        </button>
+        <div class="faq-a">Carillas dentales, coronas y fundas, blanqueamiento e implantes dentales, entre otros. En la primera visita se revisa tu caso y se te explican las opciones y el presupuesto por escrito.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" type="button" aria-expanded="false" onclick="toggleFaq(this)">
+          ¿Cuál es el horario de la clínica?
+          <span class="faq-toggle" aria-hidden="true">+</span>
+        </button>
+        <div class="faq-a">De lunes a viernes de 9:00 a 21:00 y los sábados de 10:00 a 14:00. Los domingos permanece cerrada. El chat sigue disponible fuera de ese horario.</div>
+      </div>
     </div>
   </div>
 </section>
 
+</main>
+
+<!-- ============ FRANJA DEMO WHITEMOON ============ -->
+<a class="demo-strip" href="https://whitemoon.es" target="_blank" rel="noopener">
+  <span class="demo-dot" aria-hidden="true"></span>
+  <span>Demo creada por <b>WhiteMoon · Agencia IA</b> — clínica ficticia con fines de demostración</span>
+  <span class="demo-go">whitemoon.es</span>
+</a>
+
 <!-- ============ FOOTER ============ -->
 <footer id="contacto">
-  <div class="foot-grid">
-    <div class="foot-col">
-      <img src="https://whitemoon.es/logo.webp" alt="WhiteMoon" class="foot-logo-img"
-           onerror="this.style.display='none';this.nextElementSibling.style.display='block'">
-      <span class="foot-logo-fallback">✦ WhiteMoon Dental</span>
-      <p>15 años cuidando sonrisas en Madrid. Tecnología 3D, equipo humano excepcional y financiación a medida.</p>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div class="foot-col">
+        <img src="https://whitemoon.es/logo.webp" alt="WhiteMoon" class="foot-logo-img" width="104" height="26"
+             loading="lazy" onerror="this.style.display='none'">
+        <p class="foot-note">Demo de clínica dental creada por WhiteMoon para mostrar cómo un agente IA
+          recoge solicitudes de cita 24/7.</p>
+      </div>
+      <div class="foot-col">
+        <h4>Contacto</h4>
+        <p><a href="tel:+34643199580">643 199 580</a></p>
+        <p><a href="mailto:comercial@whitemoon.es">comercial@whitemoon.es</a></p>
+        <p>Madrid, España</p>
+      </div>
+      <div class="foot-col">
+        <h4>Horario</h4>
+        <p>Lun–Vie · 9:00 — 21:00</p>
+        <p>Sábado · 10:00 — 14:00</p>
+        <p>Domingo · cerrado</p>
+      </div>
+      <div class="foot-col">
+        <h4>Secciones</h4>
+        <p><a href="#tratamientos">Tratamientos</a></p>
+        <p><a href="#agente">Agente IA</a></p>
+        <p><a href="#faq">Preguntas frecuentes</a></p>
+      </div>
     </div>
-    <div class="foot-col">
-      <h4>Clínica</h4>
-      <p>📍 Calle Mayor 123</p>
-      <p>28001 Madrid</p>
-      <p>💬 Reserva por chat</p>
+    <div class="copyright">
+      <span>Web creada por <b>WhiteMoon</b> · <a href="https://whitemoon.es" target="_blank" rel="noopener">whitemoon.es</a></span>
+      <span>Imágenes: Pexels</span>
     </div>
-    <div class="foot-col">
-      <h4>Horario</h4>
-      <p>Lun-Vie · 9:00 — 21:00</p>
-      <p>Sábado · 10:00 — 14:00</p>
-      <p>Urgencias · 24/7</p>
-    </div>
-    <div class="foot-col">
-      <h4>Enlaces</h4>
-      <p><a href="#servicios">Tratamientos</a></p>
-      <p><a href="#equipo">Equipo</a></p>
-      <p><a href="#opiniones">Opiniones</a></p>
-    </div>
-  </div>
-  <div class="copyright">
-    Web creada por <b>WhiteMoon</b> · <a href="https://whitemoon.es" target="_blank" rel="noopener">whitemoon.es</a>
   </div>
 </footer>
 
 <!-- ============ CHATBOT (Marcos) ============ -->
-<button class="chat-fab" id="chatFab" onclick="toggleChat()" aria-label="Abrir chat">🦷</button>
+<button class="chat-fab" id="chatFab" onclick="toggleChat()" aria-label="Abrir el chat de Marcos">
+  <svg class="ic-chat" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true">
+    <path d="M21 11.5a8.4 8.4 0 0 1-9 8.4 9 9 0 0 1-3.8-.8L3 21l1.9-4.6A8.4 8.4 0 0 1 12 3.1a8.4 8.4 0 0 1 9 8.4Z"/></svg>
+  <svg class="ic-close" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
+    <path d="M18 6 6 18M6 6l12 12"/></svg>
+</button>
 
-<div class="chat-panel" id="chatPanel">
+<div class="chat-panel" id="chatPanel" role="dialog" aria-label="Chat con Marcos, asistente dental">
   <div class="chat-header">
-    <div class="chat-avatar">🦷</div>
+    <div class="chat-avatar" aria-hidden="true">M</div>
     <div>
       <div class="chat-agent-name">Marcos · Asistente Dental</div>
       <div class="chat-agent-role">WhiteMoon Dental</div>
       <div class="chat-online">En línea ahora</div>
     </div>
-    <button class="chat-close" onclick="toggleChat()" aria-label="Cerrar">✕</button>
+    <button class="chat-close" onclick="toggleChat()" aria-label="Cerrar chat">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
+        <path d="M18 6 6 18M6 6l12 12"/></svg>
+    </button>
   </div>
   <div class="chat-messages" id="chatMessages"></div>
   <div class="chat-input-area">
     <input type="text" class="chat-input" id="chatInput" placeholder="Escribe tu mensaje..."
-           onkeydown="if(event.key==='Enter')chatSend()">
-    <button class="chat-send" onclick="chatSend()" aria-label="Enviar">➤</button>
+           aria-label="Escribe tu mensaje" onkeydown="if(event.key==='Enter')chatSend()">
+    <button class="chat-send" onclick="chatSend()" aria-label="Enviar mensaje">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
+        <path d="M5 12h14M13 6l6 6-6 6"/></svg>
+    </button>
   </div>
-  <div class="chat-footer">✦ POWERED BY WHITEMOON · <a href="https://whitemoon.es" target="_blank" rel="noopener">WHITEMOON.ES</a></div>
+  <div class="chat-footer">Powered by WhiteMoon · <a href="https://whitemoon.es" target="_blank" rel="noopener">whitemoon.es</a></div>
 </div>
 
+<script type="application/ld+json">
+{
+  "@context":"https://schema.org",
+  "@graph":[
+    {
+      "@type":"Dentist",
+      "@id":"https://nexusforgeia.github.io/WHITEMOON-CLINICAS-DENTALES/#clinica",
+      "name":"WhiteMoon Dental",
+      "description":"Demo de clínica dental en Madrid con agente IA que recoge solicitudes de cita 24/7.",
+      "url":"https://nexusforgeia.github.io/WHITEMOON-CLINICAS-DENTALES/",
+      "image":"https://images.pexels.com/photos/3881296/pexels-photo-3881296.jpeg?auto=compress&cs=tinysrgb&w=1200&h=630&fit=crop",
+      "telephone":"+34643199580",
+      "email":"comercial@whitemoon.es",
+      "address":{
+        "@type":"PostalAddress",
+        "addressLocality":"Madrid",
+        "addressRegion":"Madrid",
+        "addressCountry":"ES"
+      },
+      "areaServed":{"@type":"City","name":"Madrid"},
+      "medicalSpecialty":"Dentistry",
+      "availableService":[
+        {"@type":"MedicalProcedure","name":"Carillas dentales"},
+        {"@type":"MedicalProcedure","name":"Coronas y fundas"},
+        {"@type":"MedicalProcedure","name":"Blanqueamiento dental"},
+        {"@type":"MedicalProcedure","name":"Implantes dentales"}
+      ],
+      "openingHoursSpecification":[
+        {"@type":"OpeningHoursSpecification","dayOfWeek":["Monday","Tuesday","Wednesday","Thursday","Friday"],"opens":"09:00","closes":"21:00"},
+        {"@type":"OpeningHoursSpecification","dayOfWeek":"Saturday","opens":"10:00","closes":"14:00"}
+      ]
+    },
+    {
+      "@type":"FAQPage",
+      "@id":"https://nexusforgeia.github.io/WHITEMOON-CLINICAS-DENTALES/#faq",
+      "mainEntity":[
+        {
+          "@type":"Question",
+          "name":"¿Puedo pedir cita sin llamar por teléfono?",
+          "acceptedAnswer":{"@type":"Answer","text":"Sí. Marcos, el asistente con IA, recoge tu solicitud en el chat a cualquier hora del día y la envía a la clínica, que después te llama para confirmarla."}
+        },
+        {
+          "@type":"Question",
+          "name":"¿La solicitud del chat es una cita confirmada?",
+          "acceptedAnswer":{"@type":"Answer","text":"No. El chat envía una solicitud con el día y la franja que prefieres. La cita queda cerrada cuando la clínica te llama y la confirma."}
+        },
+        {
+          "@type":"Question",
+          "name":"¿Qué tratamientos podéis valorar?",
+          "acceptedAnswer":{"@type":"Answer","text":"Carillas dentales, coronas y fundas, blanqueamiento e implantes dentales, entre otros. En la primera visita se revisa tu caso y se te explican las opciones y el presupuesto por escrito."}
+        },
+        {
+          "@type":"Question",
+          "name":"¿Cuál es el horario de la clínica?",
+          "acceptedAnswer":{"@type":"Answer","text":"De lunes a viernes de 9:00 a 21:00 y los sábados de 10:00 a 14:00. Los domingos permanece cerrada. El chat sigue disponible fuera de ese horario."}
+        }
+      ]
+    },
+    {
+      "@type":"BreadcrumbList",
+      "@id":"https://nexusforgeia.github.io/WHITEMOON-CLINICAS-DENTALES/#breadcrumb",
+      "itemListElement":[
+        {"@type":"ListItem","position":1,"name":"Inicio","item":"https://nexusforgeia.github.io/WHITEMOON-CLINICAS-DENTALES/"},
+        {"@type":"ListItem","position":2,"name":"Agente IA","item":"https://nexusforgeia.github.io/WHITEMOON-CLINICAS-DENTALES/#agente"}
+      ]
+    }
+  ]
+}
+</script>
+
 <script>
-/* ============ NAV / FAQ / HERO ROTATE ============ */
-var navEl=document.getElementById('nav');
-window.addEventListener('scroll',function(){navEl.classList.toggle('scrolled',window.scrollY>40);},{passive:true});
-document.querySelectorAll('#navlinks a').forEach(function(a){
-  a.addEventListener('click',function(){document.getElementById('navlinks').classList.remove('open');});
-});
+/* ============ SPLASH ============ */
+(function(){
+  var splash=document.getElementById('splash');
+  if(!splash)return;
+  var num=document.getElementById('splashNum');
+  var bar=document.getElementById('splashBar');
+  var reduce=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  function end(){
+    document.body.classList.remove('splash-on');
+    splash.classList.add('out');
+    setTimeout(function(){if(splash.parentNode)splash.parentNode.removeChild(splash);},650);
+  }
+  if(reduce){document.body.classList.remove('splash-on');splash.parentNode.removeChild(splash);return;}
+
+  var DUR=2000,t0=null;
+  function step(ts){
+    if(t0===null)t0=ts;
+    var p=Math.min(1,(ts-t0)/DUR);
+    var eased=1-Math.pow(1-p,3);
+    var v=Math.round(eased*100);
+    num.textContent=v;
+    bar.style.width=v+'%';
+    if(p<1){requestAnimationFrame(step);}else{setTimeout(end,180);}
+  }
+  requestAnimationFrame(step);
+  /* Salvavidas: si algo va mal, el splash nunca bloquea la página */
+  setTimeout(function(){if(document.body.classList.contains('splash-on'))end();},4500);
+})();
+
+/* ============ NAV ============ */
+(function(){
+  var navEl=document.getElementById('nav');
+  var links=document.getElementById('navlinks');
+  var tog=document.getElementById('menuTog');
+  window.addEventListener('scroll',function(){
+    navEl.classList.toggle('scrolled',window.scrollY>30);
+  },{passive:true});
+  tog.addEventListener('click',function(){
+    var open=links.classList.toggle('open');
+    tog.setAttribute('aria-expanded',open?'true':'false');
+  });
+  links.querySelectorAll('a').forEach(function(a){
+    a.addEventListener('click',function(){
+      links.classList.remove('open');
+      tog.setAttribute('aria-expanded','false');
+    });
+  });
+})();
+
+/* ============ MASKED CARDS ============ */
+/* Una sola imagen por sección: cada card enseña una "ventana" distinta.
+   scale = max(alto/natural, ancho/natural) → la imagen cubre el grupo;
+   cuando manda el alto se reduce a renderWidth = natW * (altoSección/natH). */
+var MQ_MOBILE=window.matchMedia('(max-width:767px)');
+function layoutMasks(){
+  var groups=document.querySelectorAll('[data-mask]');
+  for(var g=0;g<groups.length;g++){
+    var group=groups[g];
+    var rect=group.getBoundingClientRect();
+    var W=rect.width,H=rect.height;
+    var natW=parseFloat(group.getAttribute('data-natw'));
+    var natH=parseFloat(group.getAttribute('data-nath'));
+    var fx=parseFloat(group.getAttribute('data-focalx')||'0.5');
+    var fy=parseFloat(group.getAttribute('data-focaly')||'0.5');
+    var mobile=MQ_MOBILE.matches||!W||!H||!natW||!natH;
+    var scale=mobile?0:Math.max(H/natH,W/natW);
+    var rW=natW*scale,rH=natH*scale;
+    var offX=(rW-W)*fx,offY=(rH-H)*fy;
+    var cards=group.querySelectorAll('.mask-card');
+    for(var i=0;i<cards.length;i++){
+      var card=cards[i],img=card.querySelector('.mask-img');
+      if(!img)continue;
+      if(mobile){
+        card.classList.add('is-cover');
+        img.style.width='';img.style.height='';img.style.left='';img.style.top='';
+        continue;
+      }
+      card.classList.remove('is-cover');
+      var cr=card.getBoundingClientRect();
+      img.style.width=rW+'px';
+      img.style.height=rH+'px';
+      img.style.left=(-((cr.left-rect.left)+offX))+'px';
+      img.style.top=(-((cr.top-rect.top)+offY))+'px';
+    }
+  }
+}
+(function(){
+  var queued=false;
+  function schedule(){
+    if(queued)return;
+    queued=true;
+    requestAnimationFrame(function(){queued=false;layoutMasks();});
+  }
+  schedule();
+  if('ResizeObserver' in window){
+    var ro=new ResizeObserver(schedule);
+    document.querySelectorAll('[data-mask]').forEach(function(el){ro.observe(el);});
+  }
+  window.addEventListener('resize',schedule,{passive:true});
+  window.addEventListener('orientationchange',schedule);
+  window.addEventListener('load',schedule);
+  if(MQ_MOBILE.addEventListener)MQ_MOBILE.addEventListener('change',schedule);
+  if(document.fonts&&document.fonts.ready)document.fonts.ready.then(schedule);
+})();
+
+/* ============ REVEAL ESCALONADO ============ */
+(function(){
+  var els=document.querySelectorAll('[data-reveal]');
+  if(window.matchMedia('(prefers-reduced-motion: reduce)').matches||!('IntersectionObserver' in window)){
+    els.forEach(function(el){el.classList.add('in');});
+    return;
+  }
+  /* delay = índice dentro de su sección * 120ms */
+  var groups=new Map();
+  els.forEach(function(el){
+    var sec=el.closest('section,footer,nav')||document.body;
+    var n=groups.get(sec)||0;
+    el.style.transitionDelay=(n*120)+'ms';
+    groups.set(sec,n+1);
+  });
+  var io=new IntersectionObserver(function(entries){
+    entries.forEach(function(e){
+      if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}
+    });
+  },{threshold:0.15});
+  els.forEach(function(el){io.observe(el);});
+})();
+
+/* ============ TRATAMIENTOS: servicio activo ============ */
+(function(){
+  var svcs=document.querySelectorAll('.svc');
+  svcs.forEach(function(btn){
+    btn.addEventListener('click',function(){
+      svcs.forEach(function(b){b.setAttribute('aria-pressed','false');});
+      btn.setAttribute('aria-pressed','true');
+    });
+  });
+})();
+
+/* ============ FAQ ============ */
 function toggleFaq(el){
   var item=el.parentElement;
   var wasOpen=item.classList.contains('open');
-  document.querySelectorAll('.faq-item').forEach(function(i){i.classList.remove('open');});
-  if(!wasOpen)item.classList.add('open');
-}
-(function(){
-  var words=['implantes','ortodoncia','blanqueamiento','estética','endodoncia','higiene'];
-  var i=0;
-  var el=document.querySelector('.hero-word-rotate');
-  if(!el)return;
-  el.style.transition='opacity 0.3s, transform 0.3s';
-  el.textContent=words[0];
-  function rotate(){
-    el.style.opacity='0';el.style.transform='translateY(8px)';
-    setTimeout(function(){
-      i=(i+1)%words.length;
-      el.textContent=words[i];
-      el.style.opacity='1';el.style.transform='translateY(0)';
-    },300);
+  document.querySelectorAll('.faq-item').forEach(function(i){
+    i.classList.remove('open');
+    var q=i.querySelector('.faq-q');
+    if(q)q.setAttribute('aria-expanded','false');
+  });
+  if(!wasOpen){
+    item.classList.add('open');
+    el.setAttribute('aria-expanded','true');
   }
-  setInterval(rotate,2200);
-})();
+}
+</script>
 
+<script>
 /* ============ CHATBOT — lead a Supabase + aviso Telegram ============ */
 /* La anon key es pública por diseño (RLS: leads_web solo permite INSERT a anon).
    El token de Telegram vive server-side en la Edge Function dental-notify. */
@@ -663,7 +884,8 @@ var inputEl=document.getElementById('chatInput');
 function toggleChat(){
   chat.open=!chat.open;
   panelEl.classList.toggle('open',chat.open);
-  fabEl.textContent=chat.open?'✕':'🦷';
+  fabEl.classList.toggle('is-open',chat.open);
+  fabEl.setAttribute('aria-label',chat.open?'Cerrar el chat de Marcos':'Abrir el chat de Marcos');
   if(chat.open){
     if(!chat.started){chat.started=true;botWelcome();}
     setTimeout(function(){inputEl.focus();},300);
@@ -706,17 +928,17 @@ function quickBtns(items,extraClass){
 
 function botWelcome(){
   chat.await=null;
-  botSay('¡Hola! 👋 Soy Marcos, tu asistente dental. ¿En qué puedo ayudarte hoy?',function(){
+  botSay('Hola, soy Marcos, el asistente de la clínica. ¿En qué puedo ayudarte?',function(){
     quickBtns([
-      {label:'🦷 Pedir primera visita',fn:flowVisita},
-      {label:'💰 Ver precios',fn:flowPrecios},
-      {label:'🚨 Urgencia dental',fn:flowUrgencia},
-      {label:'❓ Tengo una duda',fn:flowDuda}
+      {label:'Pedir cita',fn:flowVisita},
+      {label:'Ver tratamientos',fn:flowTratamientos},
+      {label:'Urgencia dental',fn:flowUrgencia},
+      {label:'Tengo una duda',fn:flowDuda}
     ]);
   });
 }
 
-/* ---- AGENDA: días y franjas según el horario real de la clínica ----
+/* ---- AGENDA: días y franjas según el horario de la clínica ----
    Lun-Vie 9:00-21:00 · Sábado 10:00-14:00 · Domingos CERRADO.
    Las horas son ILUSTRATIVAS de demo: no hay calendario real sincronizado. */
 var DIAS_ABR=['Dom','Lun','Mar','Mié','Jue','Vie','Sáb'];
@@ -749,21 +971,20 @@ function franjasDe(esSabado){
 }
 
 function flowVisita(){
-  botSay('¡Perfecto! La primera visita es completamente GRATIS 🎉\nIncluye exploración, radiografía panorámica y plan de tratamiento.',function(){
+  botSay('Perfecto. La primera cita es una visita de valoración: se revisa tu caso y se te explican las opciones sin compromiso.',function(){
     askMotivo();
   });
 }
 
 function askMotivo(){
-  botSay('¿Para qué necesitas la cita? 🦷',function(){
+  botSay('¿Para qué necesitas la cita?',function(){
     quickBtns([
-      {label:'Primera visita GRATIS',fn:function(){pedirDia('Primera visita gratis');}},
-      {label:'Implantes',fn:function(){pedirDia('Implantes');}},
-      {label:'Ortodoncia / Invisalign',fn:function(){pedirDia('Ortodoncia / Invisalign');}},
-      {label:'Estética dental',fn:function(){pedirDia('Estética dental');}},
-      {label:'Endodoncia',fn:function(){pedirDia('Endodoncia');}},
-      {label:'Odontopediatría',fn:function(){pedirDia('Odontopediatría');}},
-      {label:'🚨 Urgencia',fn:flowUrgencia}
+      {label:'Revisión general',fn:function(){pedirDia('Revisión general');}},
+      {label:'Carillas dentales',fn:function(){pedirDia('Carillas dentales');}},
+      {label:'Coronas y fundas',fn:function(){pedirDia('Coronas y fundas');}},
+      {label:'Blanqueamiento',fn:function(){pedirDia('Blanqueamiento');}},
+      {label:'Implantes dentales',fn:function(){pedirDia('Implantes dentales');}},
+      {label:'Urgencia',fn:flowUrgencia}
     ]);
   });
 }
@@ -776,7 +997,7 @@ function pedirDia(motivo){
 
 function askDia(){
   var dias=proximosDias(7);
-  botSay('Anotado: '+chat.lead.motivo+' 📋\n¿Qué día te viene mejor?\n(Lun-Vie 9:00-21:00 · Sáb 10:00-14:00 · domingos cerrado)',function(){
+  botSay('Anotado: '+chat.lead.motivo+'.\n¿Qué día te viene mejor?\n(Lun-Vie 9:00-21:00 · Sáb 10:00-14:00 · domingos cerrado)',function(){
     quickBtns(dias.map(function(d){
       return {label:d.label,fn:function(){
         chat.lead.dia=d.label;
@@ -787,7 +1008,7 @@ function askDia(){
 }
 
 function askHora(esSabado){
-  botSay('¿A qué hora del '+chat.lead.dia+'? 🕐',function(){
+  botSay('¿A qué hora del '+chat.lead.dia+'?',function(){
     quickBtns(franjasDe(esSabado).map(function(h){
       return {label:h,fn:function(){
         chat.lead.hora=h;
@@ -797,8 +1018,9 @@ function askHora(esSabado){
   });
 }
 
-function flowPrecios(){
-  botSay('Estos son nuestros tratamientos principales:\n🦷 Implantes desde 890€\n😬 Ortodoncia desde 1.200€\n✨ Blanqueamiento desde 180€\n🧼 Limpieza profesional desde 60€\nLa primera visita diagnóstica es GRATIS. ¿Te interesa alguno?',function(){
+/* Tratamientos: sin precios. El presupuesto depende del caso y se da en consulta. */
+function flowTratamientos(){
+  botSay('Podemos valorar carillas dentales, coronas y fundas, blanqueamiento e implantes, entre otros tratamientos.\nEl presupuesto depende de cada caso y se entrega por escrito tras la valoración.\n¿Quieres que te demos cita?',function(){
     quickBtns([
       {label:'Sí, quiero pedir cita',fn:askMotivo},
       {label:'Tengo más dudas',fn:flowDuda}
@@ -806,7 +1028,7 @@ function flowPrecios(){
   });
 }
 
-/* Urgencia: se deriva rápido, SIN agenda (urgencias 24/7). */
+/* Urgencia: se deriva rápido, SIN agenda. */
 function flowUrgencia(){
   chat.lead.urgencia='Sí';
   chat.lead.dia='';chat.lead.hora='';
@@ -815,7 +1037,7 @@ function flowUrgencia(){
     chat.lead.interes=chat.lead.motivo;
     askName();
   }
-  botSay('Entiendo, las urgencias no esperan 🚨\nAtendemos urgencias 24/7 y no hace falta que elijas hora: te llamamos enseguida.\n¿Cuál es el problema?',function(){
+  botSay('Entiendo. Las urgencias se atienden con prioridad: no hace falta que elijas hora, te llamamos lo antes posible.\n¿Cuál es el problema?',function(){
     quickBtns([
       {label:'Dolor fuerte',fn:function(){urg('dolor fuerte');}},
       {label:'Diente roto',fn:function(){urg('diente roto');}},
@@ -826,19 +1048,19 @@ function flowUrgencia(){
 }
 
 function flowDuda(){
-  botSay('Claro, pregúntame lo que necesites 😊\n¿Sobre qué es tu consulta?',function(){
+  botSay('Claro, pregúntame lo que necesites.\n¿Sobre qué es tu consulta?',function(){
     quickBtns([
-      {label:'Financiación',fn:function(){dudaResp('Ofrecemos financiación hasta 24 meses sin intereses para cualquier tratamiento. Estudiamos tu caso sin compromiso.');}},
-      {label:'Garantías',fn:function(){dudaResp('Los implantes tienen garantía de por vida y el resto de tratamientos garantía extendida según protocolo. Todo por escrito.');}},
-      {label:'Duración tratamiento',fn:function(){dudaResp('Depende del caso: una limpieza es 1 sesión, los implantes 1-3 visitas y la ortodoncia varía. En la primera visita gratuita te damos un plan con plazos.');}},
-      {label:'Otra pregunta',fn:function(){chat.await='freeq';botSay('Escríbeme tu pregunta y te ayudo 😊');}}
+      {label:'Cómo funciona la cita',fn:function(){dudaResp('Eliges día y franja aquí en el chat y la clínica te llama para confirmar la cita. La solicitud no reserva hueco por sí sola.');}},
+      {label:'Primera visita',fn:function(){dudaResp('Es una visita de valoración: se revisa tu caso, se te explican las opciones y se te entrega el presupuesto por escrito, sin compromiso.');}},
+      {label:'Horario',fn:function(){dudaResp('La clínica abre de lunes a viernes de 9:00 a 21:00 y los sábados de 10:00 a 14:00. Los domingos está cerrada; el chat sigue disponible.');}},
+      {label:'Otra pregunta',fn:function(){chat.await='freeq';botSay('Escríbeme tu pregunta y te ayudo.');}}
     ]);
   });
 }
 function dudaResp(txt){
   botSay(txt,function(){
     quickBtns([
-      {label:'🦷 Pedir primera visita gratis',fn:flowVisita},
+      {label:'Pedir cita',fn:flowVisita},
       {label:'Tengo otra duda',fn:flowDuda}
     ]);
   });
@@ -855,7 +1077,7 @@ function askName(){
 }
 function askPhone(){
   chat.await='phone';
-  botSay('Encantado/a, '+chat.lead.name+' 😊\n¿Cuál es tu teléfono de contacto?',function(){
+  botSay('Encantado, '+chat.lead.name+'.\n¿Cuál es tu teléfono de contacto?',function(){
     inputEl.focus();
   });
 }
@@ -863,12 +1085,12 @@ function finish(){
   chat.await=null;
   sendLead();
   if(chat.lead.urgencia==='Sí'){
-    botSay('Recibido, '+chat.lead.name+' 🚨\nUrgencias 24/7: te llamamos enseguida al '+chat.lead.tel+'.\nSi el dolor es intenso, llámanos ya al 643 199 580.');
+    botSay('Recibido, '+chat.lead.name+'.\nTe llamamos lo antes posible al '+chat.lead.tel+'.\nSi el dolor es intenso, llámanos ya al 643 199 580.');
   }else if(chat.lead.dia&&chat.lead.hora){
     /* SOLICITUD de cita, no reserva confirmada: la clínica confirma. */
-    botSay('Solicitud enviada ✅\nLa clínica te confirmará tu cita del '+chat.lead.dia+' a las '+chat.lead.hora+' para '+chat.lead.motivo+'.\nTe llamamos al '+chat.lead.tel+' para cerrarla 🦷');
+    botSay('Solicitud enviada.\nLa clínica te confirmará tu cita del '+chat.lead.dia+' a las '+chat.lead.hora+' para '+chat.lead.motivo+'.\nTe llamamos al '+chat.lead.tel+' para cerrarla.');
   }else{
-    botSay('¡Gracias, '+chat.lead.name+'! ✅\nHemos enviado tu solicitud a la clínica. Te llamamos al '+chat.lead.tel+' para darte cita 🦷');
+    botSay('Gracias, '+chat.lead.name+'.\nHemos enviado tu solicitud a la clínica. Te llamamos al '+chat.lead.tel+' para darte cita.');
   }
 }
 /* Lead → tabla leads_web (RLS: anon solo INSERT) + aviso Telegram vía Edge Function. */
@@ -904,67 +1126,27 @@ function chatSend(){
   inputEl.value='';
   userSay(v);
   if(chat.await==='name'){
-    if(v.length<2){botSay('¿Me dices tu nombre, por favor? 😊');return;}
+    if(v.length<2){botSay('¿Me dices tu nombre, por favor?');return;}
     chat.lead.name=v;askPhone();
   }else if(chat.await==='phone'){
     var num=v.replace(/\D/g,'');
-    if(num.length<9){botSay('Necesito un teléfono válido de al menos 9 dígitos. Inténtalo de nuevo 😊');return;}
+    if(num.length<9){botSay('Necesito un teléfono válido de al menos 9 dígitos. Inténtalo de nuevo.');return;}
     chat.lead.tel=num;finish();
   }else if(chat.await==='freeq'){
     chat.lead.interes='Consulta: '+v;
     chat.await=null;
-    botSay('¡Gracias! Un especialista te resolverá esa duda. Para llamarte, ¿cómo te llamas?',function(){chat.await='name';inputEl.focus();});
+    botSay('Gracias. Un especialista te resolverá esa duda. Para llamarte, ¿cómo te llamas?',function(){chat.await='name';inputEl.focus();});
   }else{
-    botSay('Puedo ayudarte mejor con estas opciones 👇',function(){
+    botSay('Puedo ayudarte mejor con estas opciones:',function(){
       quickBtns([
-        {label:'🦷 Pedir primera visita',fn:flowVisita},
-        {label:'💰 Ver precios',fn:flowPrecios},
-        {label:'🚨 Urgencia dental',fn:flowUrgencia},
-        {label:'❓ Tengo una duda',fn:flowDuda}
+        {label:'Pedir cita',fn:flowVisita},
+        {label:'Ver tratamientos',fn:flowTratamientos},
+        {label:'Urgencia dental',fn:flowUrgencia},
+        {label:'Tengo una duda',fn:flowDuda}
       ]);
     });
   }
 }
-</script>
-
-<script>
-// Lazy load + autoplay vídeos en cards al entrar en viewport
-(function() {
-  // Solo desktop
-  if (window.innerWidth <= 768) return;
-  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-
-  const cards = document.querySelectorAll('.service-card');
-
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      const card = entry.target;
-      const video = card.querySelector('.card-video');
-      if (!video) return;
-
-      if (entry.isIntersecting) {
-        // Lazy load: asignar src solo cuando entra en viewport
-        if (!video.src && video.dataset.src) {
-          video.src = video.dataset.src;
-          const source = video.querySelector('source');
-          if (source && source.dataset.src) {
-            source.src = source.dataset.src;
-          }
-          video.load();
-        }
-        video.play().catch(() => {});
-        card.classList.add('video-active');
-      } else {
-        video.pause();
-        card.classList.remove('video-active');
-      }
-    });
-  }, {
-    threshold: 0.3
-  });
-
-  cards.forEach(card => observer.observe(card));
-})();
 </script>
 </body>
 </html>

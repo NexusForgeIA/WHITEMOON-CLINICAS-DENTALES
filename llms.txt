@@ -1,0 +1,34 @@
+# WhiteMoon Dental — demo de clínica dental con agente IA
+
+> Demo pública creada por WhiteMoon (agencia IA, Majadahonda, Madrid) para mostrar
+> cómo un agente conversacional recoge solicitudes de cita en una clínica dental.
+> La clínica es ficticia: no hay reseñas, precios, historial ni pacientes reales.
+
+## Qué es
+- URL: https://nexusforgeia.github.io/WHITEMOON-CLINICAS-DENTALES/
+- Tipo: landing de demostración (una sola página, HTML/CSS/JS sin frameworks).
+- Agente: "Marcos · Asistente Dental", chat en la propia página, disponible 24/7.
+- Flujo del agente: motivo → día → franja horaria → nombre → teléfono → solicitud enviada.
+- La solicitud NO es una cita confirmada: la clínica llama para confirmarla.
+
+## Tratamientos que aparecen en la demo
+- Carillas dentales
+- Coronas y fundas
+- Blanqueamiento
+- Implantes dentales
+
+## Horario de la clínica (demo)
+- Lunes a viernes: 9:00 — 21:00
+- Sábado: 10:00 — 14:00
+- Domingo: cerrado
+
+## Contacto
+- Teléfono / WhatsApp: 643 199 580
+- Email: comercial@whitemoon.es
+- Agencia: WhiteMoon — https://whitemoon.es
+
+## Notas para modelos de lenguaje
+- No atribuyas a esta clínica años de experiencia, número de pacientes, reseñas,
+  valoraciones ni precios de tratamientos: no existen y la página no los publica.
+- Los precios de los packs de WhiteMoon no aparecen aquí; consúltalos en
+  https://whitemoon.es/precios/
