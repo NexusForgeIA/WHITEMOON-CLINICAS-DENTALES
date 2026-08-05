@@ -1,11 +1,23 @@
 User-agent: *
 Allow: /
 
-# LLMs / motores generativos
+# Rastreadores de IA / motores generativos (GEO/AEO)
 User-agent: GPTBot
 Allow: /
 
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: OAI-SearchBot
+Allow: /
+
 User-agent: ClaudeBot
+Allow: /
+
+User-agent: Claude-Web
+Allow: /
+
+User-agent: anthropic-ai
 Allow: /
 
 User-agent: PerplexityBot
@@ -15,4 +27,3 @@ User-agent: Google-Extended
 Allow: /
 
 Sitemap: https://nexusforgeia.github.io/WHITEMOON-CLINICAS-DENTALES/sitemap.xml
-LLMs: https://nexusforgeia.github.io/WHITEMOON-CLINICAS-DENTALES/llms.txt

@@ -1,34 +1,30 @@
-# WhiteMoon Dental — demo de clínica dental con agente IA
+# WhiteMoon Dental
 
-> Demo pública creada por WhiteMoon (agencia IA, Majadahonda, Madrid) para mostrar
-> cómo un agente conversacional recoge solicitudes de cita en una clínica dental.
-> La clínica es ficticia: no hay reseñas, precios, historial ni pacientes reales.
-
-## Qué es
-- URL: https://nexusforgeia.github.io/WHITEMOON-CLINICAS-DENTALES/
-- Tipo: landing de demostración (una sola página, HTML/CSS/JS sin frameworks).
-- Agente: "Marcos · Asistente Dental", chat en la propia página, disponible 24/7.
-- Flujo del agente: motivo → día → franja horaria → nombre → teléfono → solicitud enviada.
-- La solicitud NO es una cita confirmada: la clínica llama para confirmarla.
-
-## Tratamientos que aparecen en la demo
-- Carillas dentales
-- Coronas y fundas
-- Blanqueamiento
-- Implantes dentales
-
-## Horario de la clínica (demo)
-- Lunes a viernes: 9:00 — 21:00
-- Sábado: 10:00 — 14:00
-- Domingo: cerrado
+> Clínica dental en Madrid Oeste. Implantología, ortodoncia con brackets o alineadores invisibles, odontopediatría, cirugía oral y odontología general. Primera visita de valoración sin compromiso y sin coste.
 
 ## Contacto
-- Teléfono / WhatsApp: 643 199 580
+- Teléfono: +34 643 199 580
+- WhatsApp: https://wa.me/34643199580
 - Email: comercial@whitemoon.es
-- Agencia: WhiteMoon — https://whitemoon.es
+- Ubicación: Majadahonda, Comunidad de Madrid (España)
+- Web: https://nexusforgeia.github.io/WHITEMOON-CLINICAS-DENTALES/
 
-## Notas para modelos de lenguaje
-- No atribuyas a esta clínica años de experiencia, número de pacientes, reseñas,
-  valoraciones ni precios de tratamientos: no existen y la página no los publica.
-- Los precios de los packs de WhiteMoon no aparecen aquí; consúltalos en
-  https://whitemoon.es/precios/
+## Servicios
+- Implantología: implantes dentales para recuperar las piezas perdidas.
+- Ortodoncia e Invisalign: alineación con brackets o con alineadores invisibles.
+- Odontopediatría: cuidado dental especializado para niños.
+- Cirugía oral: extracciones, cordales e intervenciones avanzadas.
+- Odontología general: prevención, diagnóstico y tratamientos para toda la familia.
+
+## Zona de trabajo
+Madrid Oeste: Majadahonda, Pozuelo de Alarcón, Las Rozas, Boadilla del Monte, Villaviciosa de Odón, Villanueva de la Cañada, Brunete, Alcorcón y Móstoles.
+
+## Garantías
+- Primera visita de valoración sin compromiso y sin coste: se explica el diagnóstico y las opciones antes de empezar.
+- Presupuesto cerrado: lo presupuestado es lo que se paga, sin cargos sorpresa.
+- Equipo colegiado y trato cercano: se explica cada paso del tratamiento.
+- Se estudian opciones de financiación a medida.
+
+## Notas
+- No se publican reseñas ni casos inventados: el espacio de reseñas está reservado para valoraciones reales verificadas de Google.
+- El único canal conversacional es el asistente "Marcos" en la web, que recoge tratamiento, zona, nombre y teléfono para devolver la llamada.
