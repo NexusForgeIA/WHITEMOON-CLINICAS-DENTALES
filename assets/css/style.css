@@ -161,6 +161,12 @@ main{display:block}
 section{position:relative}
 section[id]{scroll-margin-top:calc(var(--nav-h) + 12px)}
 .sec{padding:112px 0;position:relative;overflow:hidden}
+/* El navegador se salta el layout de las secciones que aun no se ven.
+   "Style & Layout" era ~1000 ms del hilo principal en el audit movil.
+   contain-intrinsic-size:auto hace que recuerde la altura ya medida, asi
+   que la barra de scroll no baila y el CLS se mantiene en 0. Se excluyen
+   el hero y "La clinica" por estar en el primer pantallazo o pegados a el. */
+.sec:not(#clinica){content-visibility:auto;contain-intrinsic-size:auto 900px}
 .sec--bone{background:var(--bone);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
 .sec-head{margin-bottom:54px;max-width:740px}
 .sec-head h2{font-size:clamp(2rem,4.6vw,3.35rem);margin-top:16px}

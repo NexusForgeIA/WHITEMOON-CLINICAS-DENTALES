@@ -78,7 +78,14 @@
     onScrollFns.push(sync);
     window.addEventListener("load", () => requestAnimationFrame(remeasure));
     let rt;
-    window.addEventListener("resize", () => { clearTimeout(rt); rt = setTimeout(remeasure, 150); }, { passive: true });
+    const remeasureDebounced = () => { clearTimeout(rt); rt = setTimeout(remeasure, 150); };
+    window.addEventListener("resize", remeasureDebounced, { passive: true });
+    /* Con content-visibility las secciones aun sin pintar ocupan la altura
+       estimada; al materializarse cambian de alto y los offsetTop cacheados
+       se quedan viejos. El ResizeObserver vuelve a medir cuando eso pasa. */
+    if ("ResizeObserver" in window) {
+      new ResizeObserver(remeasureDebounced).observe(document.body);
+    }
   }
 
   /* ---------- Marquee: duplicar para bucle continuo ---------- */
@@ -162,11 +169,18 @@
     }
   }
 
-  /* ---------- Guardia anti-overflow horizontal (desarrollo) ---------- */
-  window.addEventListener("load", () => {
-    const de = document.documentElement;
-    if (de.scrollWidth > de.clientWidth) {
-      console.warn("[layout] overflow horizontal:", de.scrollWidth, ">", de.clientWidth);
-    }
-  });
+  /* ---------- Guardia anti-overflow horizontal ----------
+     Solo en local: leer scrollWidth/clientWidth fuerza un layout sincrono
+     (64.8 ms en el audit de produccion) y esto es una ayuda de desarrollo,
+     no algo que deba pagar el visitante. */
+  if (/^(localhost|127\.0\.0\.1|\[::1\])$/.test(location.hostname)) {
+    window.addEventListener("load", () => {
+      requestIdleCallback(() => {
+        const de = document.documentElement;
+        if (de.scrollWidth > de.clientWidth) {
+          console.warn("[layout] overflow horizontal:", de.scrollWidth, ">", de.clientWidth);
+        }
+      });
+    });
+  }
 })();
