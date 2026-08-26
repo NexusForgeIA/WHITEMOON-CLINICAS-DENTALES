@@ -49,28 +49,36 @@
     });
   }
 
-  /* ---------- Scroll-spy del nav ---------- */
+  /* ---------- Scroll-spy del nav ----------
+     Se queda la logica por offsetTop ("manda la ultima seccion rebasada")
+     porque es la que da el resultado correcto tambien al final de la pagina,
+     donde lo visible es el footer y no hay ninguna seccion en pantalla.
+     Lo que se corrige es CUANDO se mide: hacerlo durante la ejecucion del
+     script forzaba un layout sincrono del documento entero (~107 ms). Ahora
+     la medida se toma en rAF, ya despues del primer pintado, y queda en
+     cache: durante el scroll no se lee nada del layout. */
   const spy = $$("#navLinks a");
   const sections = $$("main section[id]");
   if (spy.length && sections.length) {
-    /* offsetTop se mide una vez (y al redimensionar), no en cada scroll */
     let marks = [];
+    let last = null;
     const measure = () => {
       marks = sections.map((s) => ({ id: s.id, top: s.offsetTop - 160 }));
     };
-    let last = null;
     const sync = (y) => {
-      let current = "top";
+      if (!marks.length) return;
+      let current = marks[0].id;
       for (let i = 0; i < marks.length; i++) if (y >= marks[i].top) current = marks[i].id;
       if (current === last) return;
       last = current;
       spy.forEach((a) => a.classList.toggle("active", a.getAttribute("href") === "#" + current));
     };
-    measure();
-    sync(window.scrollY);
+    const remeasure = () => { measure(); last = null; sync(window.scrollY); };
+    requestAnimationFrame(remeasure);
     onScrollFns.push(sync);
-    window.addEventListener("resize", () => { measure(); last = null; sync(window.scrollY); }, { passive: true });
-    window.addEventListener("load", () => { measure(); last = null; sync(window.scrollY); });
+    window.addEventListener("load", () => requestAnimationFrame(remeasure));
+    let rt;
+    window.addEventListener("resize", () => { clearTimeout(rt); rt = setTimeout(remeasure, 150); }, { passive: true });
   }
 
   /* ---------- Marquee: duplicar para bucle continuo ---------- */
@@ -127,8 +135,10 @@
         }
       });
     };
-    revealPasados();
-    window.addEventListener("load", revealPasados);
+    /* En rAF: medir aqui durante la ejecucion del script forzaba un layout
+       sincrono del documento entero antes del primer pintado. */
+    requestAnimationFrame(revealPasados);
+    window.addEventListener("load", () => requestAnimationFrame(revealPasados));
     window.addEventListener("hashchange", () => setTimeout(revealPasados, 420));
   } else {
     reveals.forEach((el) => el.classList.add("in"));
