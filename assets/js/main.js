@@ -1,6 +1,6 @@
 /* =========================================================================
-   WhiteMoon · Dental — interacciones
-   Sin librerías. Respeta prefers-reduced-motion. Sin overflow horizontal.
+   WhiteMoon Dental — interacciones
+   Sin librerías externas. Respeta prefers-reduced-motion.
    ========================================================================= */
 (() => {
   "use strict";
@@ -8,94 +8,124 @@
   const $ = (s, c = document) => c.querySelector(s);
   const $$ = (s, c = document) => Array.from(c.querySelectorAll(s));
 
-  /* ---------- Header scroll ---------- */
-  const header = $(".header");
-  const onScroll = () => header && header.classList.toggle("scrolled", window.scrollY > 8);
+  /* ---------- Nav: fondo al hacer scroll ---------- */
+  const nav = $("#nav");
+  const onScroll = () => nav && nav.classList.toggle("scrolled", window.scrollY > 20);
   onScroll();
   window.addEventListener("scroll", onScroll, { passive: true });
 
   /* ---------- Menú móvil ---------- */
-  const burger = $(".burger");
-  const mnav = $(".mobile-nav");
-  const openM = () => mnav && mnav.classList.add("open");
-  const closeM = () => mnav && mnav.classList.remove("open");
-  burger && burger.addEventListener("click", openM);
-  $(".mobile-nav__close") && $(".mobile-nav__close").addEventListener("click", closeM);
-  $$(".mobile-nav a, .mobile-nav .btn").forEach((a) => a.addEventListener("click", closeM));
-
-  /* ---------- Palabra rotativa del hero ---------- */
-  const rotEl = $(".rotator__word");
-  if (rotEl) {
-    const words = [
-      "Madrid",
-      "Majadahonda",
-      "Las Rozas",
-      "Pozuelo",
-    ];
-    let i = 0, ch = 0, deleting = false;
-    rotEl.textContent = "";
-    const tick = () => {
-      const w = words[i];
-      if (!deleting) {
-        rotEl.textContent = w.slice(0, ++ch);
-        if (ch === w.length) { deleting = true; return setTimeout(tick, 1600); }
-      } else {
-        rotEl.textContent = w.slice(0, --ch);
-        if (ch === 0) { deleting = false; i = (i + 1) % words.length; }
-      }
-      setTimeout(tick, deleting ? 40 : 78);
+  const burger = $("#burger");
+  const menu = $("#mobileMenu");
+  if (burger && menu) {
+    const setMenu = (open) => {
+      menu.classList.toggle("open", open);
+      burger.setAttribute("aria-expanded", String(open));
+      burger.setAttribute("aria-label", open ? "Cerrar menú" : "Abrir menú");
+      document.body.style.overflow = open ? "hidden" : "";
     };
-    if (reduced) { rotEl.textContent = words[0]; } else { setTimeout(tick, 600); }
+    burger.addEventListener("click", () => setMenu(!menu.classList.contains("open")));
+    $$("a, .btn", menu).forEach((el) => el.addEventListener("click", () => setMenu(false)));
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "Escape" && menu.classList.contains("open")) setMenu(false);
+    });
   }
 
-  /* ---------- Scroll reveal con stagger ---------- */
+  /* ---------- Scroll-spy del nav ---------- */
+  const spy = $$("#navLinks a");
+  const sections = $$("main section[id]");
+  if (spy.length && sections.length) {
+    const sync = () => {
+      let current = "top";
+      sections.forEach((s) => {
+        if (window.scrollY >= s.offsetTop - 160) current = s.id;
+      });
+      spy.forEach((a) => a.classList.toggle("active", a.getAttribute("href") === "#" + current));
+    };
+    sync();
+    window.addEventListener("scroll", sync, { passive: true });
+  }
+
+  /* ---------- Marquee: duplicar para bucle continuo ---------- */
+  const marquee = $("#marquee");
+  if (marquee && !reduced) marquee.innerHTML += marquee.innerHTML;
+
+  /* ---------- Palabra rotativa del hero ---------- */
+  const rot = $("#rotWord");
+  if (rot && !reduced) {
+    const words = ["implantes", "ortodoncia", "estética dental", "endodoncia", "odontopediatría"];
+    let i = 0;
+    setInterval(() => {
+      rot.classList.add("out");
+      setTimeout(() => {
+        i = (i + 1) % words.length;
+        rot.textContent = words[i];
+        rot.classList.remove("out");
+      }, 420);
+    }, 2600);
+  }
+
+  /* ---------- Reveal al hacer scroll ---------- */
   const reveals = $$(".reveal");
   if (reveals.length && "IntersectionObserver" in window && !reduced) {
-    const io = new IntersectionObserver((entries) => {
-      entries.forEach((e) => {
-        if (e.isIntersecting) {
-          const d = e.target.dataset.delay || 0;
-          e.target.style.transitionDelay = d + "ms";
+    const io = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((e, n) => {
+          if (!e.isIntersecting) return;
+          e.target.style.transitionDelay = Math.min(n * 70, 280) + "ms";
           e.target.classList.add("in");
           io.unobserve(e.target);
+        });
+      },
+      { threshold: 0.1, rootMargin: "0px 0px -6% 0px" }
+    );
+    reveals.forEach((el) => io.observe(el));
+
+    /* Si se entra por un enlace profundo (#precios, #faq…), se restaura la
+       posición de scroll o se salta de golpe, todo lo que queda por encima
+       nunca llega a intersecar y se quedaría invisible para siempre.
+       Revelamos de golpe lo que ya está en pantalla o por encima. */
+    const revealPasados = () => {
+      const limite = window.innerHeight * 0.94;
+      reveals.forEach((el) => {
+        if (el.classList.contains("in")) return;
+        if (el.getBoundingClientRect().top < limite) {
+          el.style.transitionDelay = "0ms";
+          el.classList.add("in");
+          io.unobserve(el);
         }
       });
-    }, { threshold: 0.12, rootMargin: "0px 0px -8% 0px" });
-    reveals.forEach((el) => io.observe(el));
+    };
+    revealPasados();
+    window.addEventListener("load", revealPasados);
+    window.addEventListener("hashchange", () => setTimeout(revealPasados, 420));
   } else {
     reveals.forEach((el) => el.classList.add("in"));
   }
 
-  /* ---------- Cursor personalizado (desktop puntero fino) ---------- */
-  const finePointer = window.matchMedia("(pointer: fine)").matches;
-  if (finePointer && !reduced && window.innerWidth > 900) {
-    const dot = document.createElement("div"); dot.className = "cursor-dot";
-    const ring = document.createElement("div"); ring.className = "cursor-ring";
-    document.body.append(dot, ring);
-    let rx = 0, ry = 0, dx = 0, dy = 0;
-    window.addEventListener("mousemove", (e) => {
-      dx = e.clientX; dy = e.clientY;
-      dot.style.left = dx + "px"; dot.style.top = dy + "px";
-    });
-    const loop = () => {
-      rx += (dx - rx) * 0.18; ry += (dy - ry) * 0.18;
-      ring.style.left = rx + "px"; ring.style.top = ry + "px";
-      requestAnimationFrame(loop);
-    };
-    loop();
-    document.addEventListener("mouseover", (e) => {
-      if (e.target.closest("a,button,summary,.svc,.zone__chip")) ring.classList.add("hover");
-    });
-    document.addEventListener("mouseout", (e) => {
-      if (e.target.closest("a,button,summary,.svc,.zone__chip")) ring.classList.remove("hover");
-    });
+  /* ---------- Año del footer ---------- */
+  const year = $("#year");
+  if (year) year.textContent = new Date().getFullYear();
+
+  /* ---------- Vídeo del hero: no cargarlo si no se va a ver ----------
+     El CSS ya lo oculta en móvil y con movimiento reducido; aquí evitamos
+     además la descarga del archivo en esos casos. */
+  const video = $(".hero-video");
+  if (video) {
+    const skip = reduced || window.matchMedia("(max-width: 768px)").matches
+      || (navigator.connection && navigator.connection.saveData);
+    if (skip) {
+      video.removeAttribute("autoplay");
+      $$("source", video).forEach((s) => s.remove());
+      video.load();
+    }
   }
 
-  /* ---------- Guardia anti-overflow (dev) ---------- */
-  const overflowCheck = () => {
-    if (document.documentElement.scrollWidth > document.documentElement.clientWidth) {
-      console.warn("[layout] overflow horizontal:", document.documentElement.scrollWidth, ">", document.documentElement.clientWidth);
+  /* ---------- Guardia anti-overflow horizontal (desarrollo) ---------- */
+  window.addEventListener("load", () => {
+    const de = document.documentElement;
+    if (de.scrollWidth > de.clientWidth) {
+      console.warn("[layout] overflow horizontal:", de.scrollWidth, ">", de.clientWidth);
     }
-  };
-  window.addEventListener("load", overflowCheck);
+  });
 })();

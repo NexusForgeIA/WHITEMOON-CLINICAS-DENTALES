@@ -1,30 +1,52 @@
 # WhiteMoon Dental
 
-> Clínica dental en Madrid Oeste. Implantología, ortodoncia con brackets o alineadores invisibles, odontopediatría, cirugía oral y odontología general. Primera visita de valoración sin compromiso y sin coste.
+> Clínica dental en Madrid Oeste. Implantes, ortodoncia e Invisalign, estética dental, higiene y limpieza, endodoncia y odontopediatría. Primera visita de valoración sin compromiso y sin coste, urgencias dentales con hueco diario y financiación a medida.
 
 ## Contacto
 - Teléfono: +34 643 199 580
 - WhatsApp: https://wa.me/34643199580
 - Email: comercial@whitemoon.es
-- Ubicación: Majadahonda, Comunidad de Madrid (España)
+- Dirección: Avenida de España 24, 28220 Majadahonda, Comunidad de Madrid (España)
+- Horario: lunes a viernes de 9:00 a 20:00; sábado de 9:00 a 14:00; domingo cerrado.
 - Web: https://nexusforgeia.github.io/WHITEMOON-CLINICAS-DENTALES/
 
 ## Servicios
-- Implantología: implantes dentales para recuperar las piezas perdidas.
-- Ortodoncia e Invisalign: alineación con brackets o con alineadores invisibles.
-- Odontopediatría: cuidado dental especializado para niños.
-- Cirugía oral: extracciones, cordales e intervenciones avanzadas.
-- Odontología general: prevención, diagnóstico y tratamientos para toda la familia.
+- Implantes dentales: reposición de la pieza perdida con planificación digital previa; implante y corona cuando ha integrado.
+- Ortodoncia e Invisalign: alineadores invisibles o brackets, con simulación del resultado antes de empezar.
+- Estética dental: blanqueamiento, carillas de composite y de porcelana, y reconstrucciones.
+- Higiene y limpieza: limpieza profesional, control de encías y pautas de cepillado personalizadas.
+- Endodoncia: tratamiento de conductos con microscopía cuando el caso lo requiere, para conservar el diente.
+- Odontopediatría y urgencias: revisiones y selladores infantiles, y huecos diarios reservados para dolor, flemón o rotura.
+
+## Cómo se trabaja
+1. Primera visita sin compromiso: exploración y dudas resueltas.
+2. Diagnóstico y plan: radiografía digital de baja dosis y, si el caso lo pide, escáner 3D, explicado sin tecnicismos.
+3. Presupuesto: cerrado, por escrito y desglosado, con la financiación si se necesita.
+4. Tratamiento: en las sesiones acordadas y con revisiones de seguimiento.
+
+## Precios orientativos (IVA incluido)
+Son cifras de referencia, no un presupuesto. El importe final se entrega por escrito tras el diagnóstico.
+- Primera visita y diagnóstico: gratis. Revisión infantil: gratis.
+- Higiene y limpieza completa: desde 55 €.
+- Empaste: desde 60 €. Empaste infantil: desde 50 €. Sellador de fisuras: desde 35 €.
+- Endodoncia unirradicular: desde 120 €. Endodoncia de molar: desde 190 €.
+- Extracción simple: desde 60 €. Cordal incluido: desde 180 €.
+- Implante + corona: desde 1.250 €. Corona de circonio: desde 420 €. Injerto óseo por zona: desde 260 €.
+- Ortodoncia con brackets: desde 2.400 €. Alineadores invisibles: desde 2.750 €.
+- Carilla de composite: desde 180 €. Carilla de porcelana: desde 480 €. Blanqueamiento en clínica: desde 250 €.
+- Férula de descarga: desde 190 €. Urgencia dental: desde 45 €.
 
 ## Zona de trabajo
 Madrid Oeste: Majadahonda, Pozuelo de Alarcón, Las Rozas, Boadilla del Monte, Villaviciosa de Odón, Villanueva de la Cañada, Brunete, Alcorcón y Móstoles.
 
 ## Garantías
 - Primera visita de valoración sin compromiso y sin coste: se explica el diagnóstico y las opciones antes de empezar.
-- Presupuesto cerrado: lo presupuestado es lo que se paga, sin cargos sorpresa.
-- Equipo colegiado y trato cercano: se explica cada paso del tratamiento.
-- Se estudian opciones de financiación a medida.
+- Presupuesto cerrado por escrito: lo presupuestado es lo que se paga, sin cargos sorpresa.
+- Equipo colegiado, con una persona de referencia por especialidad.
+- Protocolo de esterilización con control por ciclo y materiales con garantía del fabricante.
+- Financiación a medida, estudiada antes de iniciar el tratamiento.
 
 ## Notas
-- No se publican reseñas ni casos inventados: el espacio de reseñas está reservado para valoraciones reales verificadas de Google.
+- No se publican reseñas, testimonios, valoraciones ni cifras de actividad inventadas: esta web no incluye ninguna métrica ni opinión no verificada.
 - El único canal conversacional es el asistente "Marcos" en la web, que recoge tratamiento, zona, nombre y teléfono para devolver la llamada.
+- Es una demo comercial de WhiteMoon (https://whitemoon.es); los datos de la clínica son ilustrativos.
