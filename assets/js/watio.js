@@ -256,6 +256,9 @@
   /* ---------- abrir / cerrar ---------- */
   const open = (servicio) => {
     panel.classList.add("open");
+    /* Cerrado el panel es invisible pero sus botones seguirian siendo
+       enfocables con el teclado: inert los saca del recorrido de tabulacion. */
+    panel.removeAttribute("inert");
     if (btn) btn.style.display = "none";
     start();
     /* Si vienen de una tarjeta de servicio, saltamos la elección de categoría. */
@@ -269,7 +272,9 @@
   };
   const close = () => {
     panel.classList.remove("open");
+    panel.setAttribute("inert", "");
     if (btn) btn.style.display = "";
+    if (btn) btn.focus();
   };
   btn && btn.addEventListener("click", () => open());
   $(".watio-head__close", panel).addEventListener("click", close);

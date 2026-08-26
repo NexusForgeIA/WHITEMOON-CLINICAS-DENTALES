@@ -4,6 +4,11 @@
    usan como fondo, badge o detalle; texto y botones usan las versiones
    profundas (--blue #1a6f9c 5.53:1 · --green #0f7a61 5.28:1 sobre blanco).
    ========================================================================= */
+/* Fuentes auto-hospedadas: subset latin y eje de peso recortado a lo que se
+   usa (400-600 en cuerpo, 600-800 en titulares). Sin peticiones a terceros.
+   Se repiten aquí para la ruta <noscript>, donde no hay CSS crítico. */
+@font-face{font-family:"Inter var";src:url(../fonts/inter-var.woff2) format("woff2");font-weight:400 600;font-style:normal;font-display:swap}
+@font-face{font-family:"Jakarta var";src:url(../fonts/jakarta-var.woff2) format("woff2");font-weight:600 800;font-style:normal;font-display:swap}
 :root{
   --white:#ffffff;
   --bone:#f4f9fb;            /* blanco hueso con tinte azul muy suave */
@@ -29,8 +34,8 @@
   --sh-md:0 2px 6px rgba(22,50,61,.05),0 12px 28px -12px rgba(22,50,61,.14);
   --sh-lg:0 4px 12px rgba(22,50,61,.06),0 26px 60px -26px rgba(26,111,156,.34);
 
-  --display:"Plus Jakarta Sans",system-ui,-apple-system,sans-serif;
-  --body:"Inter",system-ui,-apple-system,sans-serif;
+  --display:"Jakarta var",system-ui,-apple-system,sans-serif;
+  --body:"Inter var",system-ui,-apple-system,sans-serif;
   --maxw:1240px;
   --nav-h:80px;
 }
@@ -162,7 +167,11 @@ section[id]{scroll-margin-top:calc(var(--nav-h) + 12px)}
 .sec-head p{color:var(--muted);margin-top:18px;font-size:1.04rem;max-width:62ch}
 .sec-head--center{margin-inline:auto;text-align:center}
 .sec-head--center .eyebrow{justify-content:center}
+/* Numero fantasma de seccion: puramente decorativo. Va como pseudo-elemento
+   (content:attr(data-n)) y no como nodo de texto, porque a 1.05:1 axe lo
+   contaba como texto real y tumbaba el contraste. El aspecto es identico. */
 .bignum{position:absolute;font-family:var(--display);font-weight:800;font-size:clamp(7rem,15vw,15rem);color:var(--blue);opacity:.045;line-height:.8;pointer-events:none;z-index:0;letter-spacing:-.05em;user-select:none}
+.bignum::before{content:attr(data-n)}
 
 /* ---------- LA CLÍNICA ---------- */
 .about-grid{display:grid;grid-template-columns:1.02fr .98fr;gap:64px;align-items:center;position:relative;z-index:2}
