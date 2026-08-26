@@ -39,14 +39,67 @@
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%23e8f3fa'/%3E%3Cpath d='M16 6c-2.5 0-3.4 1.2-5 1.2-1.6 0-2.6-.9-3.3.4-1 1.9-.2 5 .6 7.7.6 2 .9 5.7 2.4 5.7 1.2 0 1.4-2.1 1.8-3.9.3-1.2.6-2 1.5-2s1.2.8 1.5 2c.4 1.8.6 3.9 1.8 3.9 1.5 0 1.8-3.7 2.4-5.7.8-2.7 1.6-5.8.6-7.7-.7-1.3-1.7-.4-3.3-.4-1.6 0-2.5-1.2-5-1.2z' fill='%231a6f9c'/%3E%3C/svg%3E">
 <link rel="apple-touch-icon" href="assets/logo-whitemoon.png">
 
-<!-- Fuentes: Inter (cuerpo) + Plus Jakarta Sans (titulares) -->
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" media="print" onload="this.media='all'">
-<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap"></noscript>
+<!-- Fuentes auto-hospedadas (subset latin, ejes de peso recortados a lo que se
+     usa). Cero peticiones a Google Fonts: 39 KB desde el propio origen. -->
+<link rel="preload" as="font" type="font/woff2" href="assets/fonts/jakarta-var.woff2" crossorigin>
+<link rel="preload" as="font" type="font/woff2" href="assets/fonts/inter-var.woff2" crossorigin>
 
-<link rel="stylesheet" href="assets/css/style.css">
+<!-- CSS crítico en línea: el resto de la hoja deja de bloquear el render -->
+<style>
+@font-face{font-family:"Inter var";src:url(assets/fonts/inter-var.woff2) format("woff2");font-weight:400 600;font-style:normal;font-display:swap}
+@font-face{font-family:"Jakarta var";src:url(assets/fonts/jakarta-var.woff2) format("woff2");font-weight:600 800;font-style:normal;font-display:swap}
+:root{--white:#fff;--bone:#f4f9fb;--surface:#fff;--ink:#16323d;--ink-2:#28505f;--muted:#4f6b78;--blue:#1a6f9c;--blue-deep:#145a80;--blue-lt:#7cc4e8;--blue-chip:#e8f3fa;--green:#0f7a61;--green-deep:#0c6250;--green-lt:#7fd8bf;--green-chip:#e3f6f0;--line:#e3edf2;--line-2:#cfe0e9;--sh-sm:0 1px 2px rgba(22,50,61,.05),0 2px 8px rgba(22,50,61,.04);--sh-md:0 2px 6px rgba(22,50,61,.05),0 12px 28px -12px rgba(22,50,61,.14);--sh-lg:0 4px 12px rgba(22,50,61,.06),0 26px 60px -26px rgba(26,111,156,.34);--display:"Jakarta var",system-ui,-apple-system,sans-serif;--body:"Inter var",system-ui,-apple-system,sans-serif;--maxw:1240px;--nav-h:80px}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:calc(var(--nav-h) + 16px);-webkit-text-size-adjust:100%}
+body{background:var(--white);color:var(--ink-2);font-family:var(--body);font-size:16px;line-height:1.65;overflow-x:hidden;-webkit-font-smoothing:antialiased}
+a{color:inherit;text-decoration:none}img,video{max-width:100%;display:block}button,input{font:inherit;color:inherit}
+h1,h2,h3,h4{font-family:var(--display);color:var(--ink);line-height:1.08;letter-spacing:-.022em;font-weight:800}
+.wrap{max-width:var(--maxw);margin:0 auto;padding:0 32px}
+.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:9px;font-family:var(--display);font-weight:700;font-size:.95rem;letter-spacing:-.01em;padding:14px 26px;border-radius:10px;border:1.5px solid transparent;background:var(--blue);color:#fff;cursor:pointer}
+.btn svg{width:19px;height:19px;flex-shrink:0}
+.btn--ghost{background:var(--white);color:var(--blue);border-color:var(--line-2)}
+.btn--sm{padding:11px 20px;font-size:.88rem;border-radius:9px}
+.nav{position:fixed;inset:0 0 auto 0;z-index:900;background:rgba(255,255,255,.72);backdrop-filter:blur(14px);border-bottom:1px solid transparent}
+.nav-inner{display:flex;align-items:center;justify-content:space-between;gap:20px;height:var(--nav-h)}
+.brand{display:flex;align-items:center;gap:12px;flex-shrink:0}
+.brand__mark{width:46px;height:46px;border-radius:13px;background:var(--blue-chip);border:1px solid var(--line);display:grid;place-items:center;flex-shrink:0}
+.brand__mark img{width:32px;height:auto}
+.brand__txt b{font-family:var(--display);font-weight:800;font-size:1.08rem;color:var(--ink);line-height:1.1;display:block;letter-spacing:-.02em}
+.brand__txt small{font-family:var(--display);font-weight:700;font-size:.6rem;letter-spacing:.18em;text-transform:uppercase;color:var(--blue);display:block;margin-top:2px}
+.nav-links{display:flex;align-items:center;gap:26px}
+.nav-links a{font-size:.9rem;font-weight:500;color:var(--muted);position:relative;padding:6px 0}
+.nav-cta{display:flex;align-items:center;gap:14px}
+.burger{display:none;width:44px;height:44px;border-radius:11px;border:1px solid var(--line-2);background:var(--white);cursor:pointer;place-items:center;color:var(--ink)}
+.burger svg{width:22px;height:22px}
+.mobile-menu{position:fixed;inset:0;z-index:899;background:rgba(255,255,255,.98);display:flex;flex-direction:column;justify-content:center;align-items:center;gap:8px;opacity:0;pointer-events:none}
+.hero{position:relative;min-height:100svh;display:flex;align-items:center;overflow:hidden;background:var(--bone)}
+.hero-bg{position:absolute;inset:0;z-index:0}
+.hero-bg .wash{position:absolute;inset:0;background:radial-gradient(900px 620px at 88% 14%,rgba(124,196,232,.42),transparent 62%),radial-gradient(760px 620px at 96% 88%,rgba(127,216,191,.36),transparent 64%),linear-gradient(180deg,#fff 0%,#f4f9fb 100%)}
+.hero-bg .hero-video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:1}
+.hero-bg .scrim{position:absolute;inset:0;z-index:2;pointer-events:none;background:linear-gradient(100deg,rgba(255,255,255,.98) 0%,rgba(255,255,255,.955) 34%,rgba(248,252,253,.86) 52%,rgba(232,243,250,.55) 74%,rgba(226,241,248,.42) 100%),linear-gradient(180deg,rgba(255,255,255,.85) 0%,rgba(255,255,255,0) 26%,rgba(255,255,255,0) 62%,rgba(244,249,251,.92) 100%)}
+.hero-bg .dots{position:absolute;inset:0;z-index:3;opacity:.5;background-image:radial-gradient(rgba(26,111,156,.16) 1px,transparent 1px);background-size:26px 26px}
+.hero-content{position:relative;z-index:4;width:100%;padding:calc(var(--nav-h) + 44px) 0 44px}
+.hero h1{font-size:clamp(2.35rem,5.4vw,4.15rem);max-width:16ch}
+.hero h1 .accent{color:var(--blue);display:block}
+.hero-rot{display:flex;align-items:baseline;gap:.5em;flex-wrap:wrap;margin-top:20px;font-family:var(--display);font-weight:600;font-size:clamp(1rem,2.4vw,1.35rem);color:var(--muted)}
+.hero-rot .rot{color:var(--green);font-weight:800;display:inline-block}
+.hero-desc{max-width:56ch;color:var(--ink-2);font-size:1.05rem;margin-top:22px}
+.hero-desc strong{color:var(--ink);font-weight:600}
+.hero-actions{display:flex;gap:14px;margin-top:32px;flex-wrap:wrap}
+.hero-contact{display:flex;gap:10px 26px;flex-wrap:wrap;margin-top:26px;font-size:.94rem;color:var(--muted)}
+.hero-contact a{display:inline-flex;align-items:center;gap:8px;font-weight:600;color:var(--ink)}
+.hero-contact svg{width:17px;height:17px;color:var(--blue);flex-shrink:0}
+.reveal{opacity:0;transform:translateY(28px)}
+.reveal.in{opacity:1;transform:none}
+@media (max-width:1080px){.nav-links{display:none}.nav-cta .btn{display:none}.burger{display:grid}}
+@media (max-width:900px){.wrap{padding:0 22px}}
+@media (max-width:768px){.hero-bg .hero-video{display:none!important}}
+@media (max-width:620px){:root{--nav-h:70px}.wrap{padding:0 18px}.hero h1{max-width:none}.hero-actions .btn{flex:1 1 100%}}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}.reveal{opacity:1!important;transform:none!important}.hero-bg .hero-video{display:none!important}}
+</style>
+<link rel="preload" as="style" href="assets/css/style.css" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="assets/css/style.css"></noscript>
 
 <!-- ===================== JSON-LD ===================== -->
 <script type="application/ld+json">
@@ -162,8 +215,8 @@
 <!-- ===================== NAV ===================== -->
 <header class="nav" id="nav">
   <div class="wrap nav-inner">
-    <a href="./" class="brand" aria-label="WhiteMoon Dental — ir al inicio">
-      <span class="brand__mark"><img src="assets/logo-whitemoon.png" alt="" width="32" height="34" loading="eager" decoding="async"></span>
+    <a href="./" class="brand">
+      <span class="brand__mark"><img src="assets/logo-whitemoon.webp" alt="" width="32" height="34" fetchpriority="high" decoding="async"></span>
       <span class="brand__txt"><b>WhiteMoon</b><small>Dental · Madrid</small></span>
     </a>
     <nav class="nav-links" id="navLinks" aria-label="Navegación principal">
@@ -199,7 +252,7 @@
 <section class="hero" id="top">
   <div class="hero-bg" aria-hidden="true">
     <div class="wash"></div>
-    <video class="hero-video" autoplay muted loop playsinline preload="metadata" poster="assets/img/hero-poster.jpg">
+    <video class="hero-video" autoplay muted loop playsinline preload="none">
       <source src="assets/img/hero-clinica.mp4" type="video/mp4">
     </video>
     <div class="scrim"></div>
@@ -249,7 +302,7 @@
 
 <!-- ===================== LA CLÍNICA ===================== -->
 <section class="sec" id="clinica">
-  <span class="bignum" style="left:-1.5vw;top:26px">01</span>
+  <span class="bignum" aria-hidden="true" data-n="01" style="left:-1.5vw;top:26px"></span>
   <div class="wrap">
     <div class="sec-head reveal">
       <span class="eyebrow">La clínica</span>
@@ -264,8 +317,8 @@
       <div class="about-media reveal">
         <div class="framed">
           <picture>
-            <source srcset="assets/img/clinica.webp" type="image/webp">
-            <img src="assets/img/clinica.jpg" alt="Gabinete dental de WhiteMoon Dental: sillón, luz cenital y equipo de rayos en una sala luminosa" width="900" height="640" loading="lazy" decoding="async">
+            <source type="image/webp" sizes="(max-width:900px) calc(100vw - 36px), 560px" srcset="assets/img/clinica-480.webp 480w, assets/img/clinica.webp 900w">
+            <img src="assets/img/clinica-480.jpg" srcset="assets/img/clinica-480.jpg 480w, assets/img/clinica.jpg 900w" sizes="(max-width:900px) calc(100vw - 36px), 560px" alt="Gabinete dental de WhiteMoon Dental: sillón, luz cenital y equipo de rayos en una sala luminosa" width="900" height="640" loading="lazy" decoding="async">
           </picture>
         </div>
         <div class="about-badge">
@@ -279,7 +332,7 @@
 
 <!-- ===================== SERVICIOS ===================== -->
 <section class="sec sec--bone" id="servicios">
-  <span class="bignum" style="right:-1.5vw;top:20px">02</span>
+  <span class="bignum" aria-hidden="true" data-n="02" style="right:-1.5vw;top:20px"></span>
   <div class="wrap">
     <div class="sec-head reveal">
       <span class="eyebrow green">Servicios</span>
@@ -291,8 +344,8 @@
       <article class="svc-card reveal">
         <div class="svc-media">
           <picture>
-            <source srcset="assets/img/svc-implantes.webp" type="image/webp">
-            <img src="assets/img/svc-implantes.jpg" alt="Odontólogo con guantes revisa un escáner dental en 3D sobre una tableta" width="720" height="440" loading="lazy" decoding="async">
+            <source type="image/webp" sizes="(max-width:620px) calc(100vw - 36px), (max-width:900px) calc(50vw - 34px), 380px" srcset="assets/img/svc-implantes-400.webp 400w, assets/img/svc-implantes.webp 720w">
+            <img src="assets/img/svc-implantes-400.jpg" srcset="assets/img/svc-implantes-400.jpg 400w, assets/img/svc-implantes.jpg 720w" sizes="(max-width:620px) calc(100vw - 36px), (max-width:900px) calc(50vw - 34px), 380px" alt="Odontólogo con guantes revisa un escáner dental en 3D sobre una tableta" width="720" height="440" loading="lazy" decoding="async">
           </picture>
           <span class="svc-tag"><svg aria-hidden="true"><use href="#ic-implant"/></svg>Implantología</span>
         </div>
@@ -309,8 +362,8 @@
       <article class="svc-card reveal">
         <div class="svc-media">
           <picture>
-            <source srcset="assets/img/svc-ortodoncia.webp" type="image/webp">
-            <img src="assets/img/svc-ortodoncia.jpg" alt="Paciente colocándose un alineador dental transparente" width="720" height="440" loading="lazy" decoding="async">
+            <source type="image/webp" sizes="(max-width:620px) calc(100vw - 36px), (max-width:900px) calc(50vw - 34px), 380px" srcset="assets/img/svc-ortodoncia-400.webp 400w, assets/img/svc-ortodoncia.webp 720w">
+            <img src="assets/img/svc-ortodoncia-400.jpg" srcset="assets/img/svc-ortodoncia-400.jpg 400w, assets/img/svc-ortodoncia.jpg 720w" sizes="(max-width:620px) calc(100vw - 36px), (max-width:900px) calc(50vw - 34px), 380px" alt="Paciente colocándose un alineador dental transparente" width="720" height="440" loading="lazy" decoding="async">
           </picture>
           <span class="svc-tag"><svg aria-hidden="true"><use href="#ic-aligner"/></svg>Ortodoncia</span>
         </div>
@@ -327,8 +380,8 @@
       <article class="svc-card reveal">
         <div class="svc-media">
           <picture>
-            <source srcset="assets/img/svc-estetica.webp" type="image/webp">
-            <img src="assets/img/svc-estetica.jpg" alt="Primer plano de una sonrisa con los dientes alineados y blancos" width="720" height="440" loading="lazy" decoding="async">
+            <source type="image/webp" sizes="(max-width:620px) calc(100vw - 36px), (max-width:900px) calc(50vw - 34px), 380px" srcset="assets/img/svc-estetica-400.webp 400w, assets/img/svc-estetica.webp 720w">
+            <img src="assets/img/svc-estetica-400.jpg" srcset="assets/img/svc-estetica-400.jpg 400w, assets/img/svc-estetica.jpg 720w" sizes="(max-width:620px) calc(100vw - 36px), (max-width:900px) calc(50vw - 34px), 380px" alt="Primer plano de una sonrisa con los dientes alineados y blancos" width="720" height="440" loading="lazy" decoding="async">
           </picture>
           <span class="svc-tag"><svg aria-hidden="true"><use href="#ic-sparkle"/></svg>Estética</span>
         </div>
@@ -345,8 +398,8 @@
       <article class="svc-card reveal">
         <div class="svc-media">
           <picture>
-            <source srcset="assets/img/svc-higiene.webp" type="image/webp">
-            <img src="assets/img/svc-higiene.jpg" alt="Cepillos de dientes de bambú junto a una rama de eucalipto sobre fondo claro" width="720" height="440" loading="lazy" decoding="async">
+            <source type="image/webp" sizes="(max-width:620px) calc(100vw - 36px), (max-width:900px) calc(50vw - 34px), 380px" srcset="assets/img/svc-higiene-400.webp 400w, assets/img/svc-higiene.webp 720w">
+            <img src="assets/img/svc-higiene-400.jpg" srcset="assets/img/svc-higiene-400.jpg 400w, assets/img/svc-higiene.jpg 720w" sizes="(max-width:620px) calc(100vw - 36px), (max-width:900px) calc(50vw - 34px), 380px" alt="Cepillos de dientes de bambú junto a una rama de eucalipto sobre fondo claro" width="720" height="440" loading="lazy" decoding="async">
           </picture>
           <span class="svc-tag"><svg aria-hidden="true"><use href="#ic-brush"/></svg>Prevención</span>
         </div>
@@ -363,8 +416,8 @@
       <article class="svc-card reveal">
         <div class="svc-media">
           <picture>
-            <source srcset="assets/img/svc-endodoncia.webp" type="image/webp">
-            <img src="assets/img/svc-endodoncia.jpg" alt="Odontólogo revisando una radiografía dental junto a la paciente en el gabinete" width="720" height="440" loading="lazy" decoding="async">
+            <source type="image/webp" sizes="(max-width:620px) calc(100vw - 36px), (max-width:900px) calc(50vw - 34px), 380px" srcset="assets/img/svc-endodoncia-400.webp 400w, assets/img/svc-endodoncia.webp 720w">
+            <img src="assets/img/svc-endodoncia-400.jpg" srcset="assets/img/svc-endodoncia-400.jpg 400w, assets/img/svc-endodoncia.jpg 720w" sizes="(max-width:620px) calc(100vw - 36px), (max-width:900px) calc(50vw - 34px), 380px" alt="Odontólogo revisando una radiografía dental junto a la paciente en el gabinete" width="720" height="440" loading="lazy" decoding="async">
           </picture>
           <span class="svc-tag"><svg aria-hidden="true"><use href="#ic-tooth"/></svg>Conservadora</span>
         </div>
@@ -381,8 +434,8 @@
       <article class="svc-card reveal">
         <div class="svc-media">
           <picture>
-            <source srcset="assets/img/svc-odontopediatria.webp" type="image/webp">
-            <img src="assets/img/svc-odontopediatria.jpg" alt="Odontopediatra atendiendo a un niño sentado en el sillón dental" width="720" height="440" loading="lazy" decoding="async">
+            <source type="image/webp" sizes="(max-width:620px) calc(100vw - 36px), (max-width:900px) calc(50vw - 34px), 380px" srcset="assets/img/svc-odontopediatria-400.webp 400w, assets/img/svc-odontopediatria.webp 720w">
+            <img src="assets/img/svc-odontopediatria-400.jpg" srcset="assets/img/svc-odontopediatria-400.jpg 400w, assets/img/svc-odontopediatria.jpg 720w" sizes="(max-width:620px) calc(100vw - 36px), (max-width:900px) calc(50vw - 34px), 380px" alt="Odontopediatra atendiendo a un niño sentado en el sillón dental" width="720" height="440" loading="lazy" decoding="async">
           </picture>
           <span class="svc-tag"><svg aria-hidden="true"><use href="#ic-child"/></svg>Infantil</span>
         </div>
@@ -402,7 +455,7 @@
 
 <!-- ===================== PROCESO ===================== -->
 <section class="sec" id="proceso">
-  <span class="bignum" style="left:-1.5vw;top:26px">03</span>
+  <span class="bignum" aria-hidden="true" data-n="03" style="left:-1.5vw;top:26px"></span>
   <div class="wrap">
     <div class="sec-head reveal">
       <span class="eyebrow">Cómo trabajamos</span>
@@ -440,7 +493,7 @@
 
 <!-- ===================== POR QUÉ NOSOTROS ===================== -->
 <section class="sec sec--bone" id="nosotros">
-  <span class="bignum" style="right:-1.5vw;top:20px">04</span>
+  <span class="bignum" aria-hidden="true" data-n="04" style="right:-1.5vw;top:20px"></span>
   <div class="wrap">
     <div class="sec-head reveal">
       <span class="eyebrow green">Por qué nosotros</span>
@@ -470,7 +523,7 @@
 
 <!-- ===================== ESPECIALIDADES ===================== -->
 <section class="sec" id="especialidades">
-  <span class="bignum" style="left:-1.5vw;top:20px">05</span>
+  <span class="bignum" aria-hidden="true" data-n="05" style="left:-1.5vw;top:20px"></span>
   <div class="wrap">
     <div class="sec-head reveal">
       <span class="eyebrow">Especialidades</span>
@@ -514,7 +567,7 @@
 
 <!-- ===================== PRECIOS ===================== -->
 <section class="sec sec--bone" id="precios">
-  <span class="bignum" style="right:-1.5vw;top:20px">06</span>
+  <span class="bignum" aria-hidden="true" data-n="06" style="right:-1.5vw;top:20px"></span>
   <div class="wrap">
     <div class="sec-head reveal">
       <span class="eyebrow green">Precios orientativos</span>
@@ -566,7 +619,7 @@
 
 <!-- ===================== FAQ ===================== -->
 <section class="sec" id="faq">
-  <span class="bignum" style="left:-1.5vw;top:20px">07</span>
+  <span class="bignum" aria-hidden="true" data-n="07" style="left:-1.5vw;top:20px"></span>
   <div class="wrap">
     <div class="sec-head sec-head--center reveal">
       <span class="eyebrow">Preguntas frecuentes</span>
@@ -617,8 +670,8 @@
   <div class="wrap">
     <div class="foot-grid">
       <div class="foot-brand">
-        <a href="./" class="brand" aria-label="WhiteMoon Dental — ir al inicio">
-          <span class="brand__mark"><img src="assets/logo-whitemoon.png" alt="" width="32" height="34" loading="lazy" decoding="async"></span>
+        <a href="./" class="brand">
+          <span class="brand__mark"><img src="assets/logo-whitemoon.webp" alt="" width="32" height="34" loading="lazy" decoding="async"></span>
           <span class="brand__txt"><b>WhiteMoon</b><small>Dental · Madrid</small></span>
         </a>
         <p>Clínica dental en Madrid Oeste. Implantes, ortodoncia e Invisalign, estética dental, higiene, endodoncia y odontopediatría.</p>
@@ -669,7 +722,7 @@
   <span class="label">Habla con Marcos</span>
 </button>
 
-<section id="watio" class="watio-panel" aria-label="Asistente dental Marcos">
+<section id="watio" class="watio-panel" aria-label="Asistente dental Marcos" inert>
   <div class="watio-head">
     <span class="watio-head__av"><svg aria-hidden="true"><use href="#ic-tooth"/></svg></span>
     <div>

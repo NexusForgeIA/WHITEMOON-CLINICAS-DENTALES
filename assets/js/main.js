@@ -8,11 +8,29 @@
   const $ = (s, c = document) => c.querySelector(s);
   const $$ = (s, c = document) => Array.from(c.querySelectorAll(s));
 
-  /* ---------- Nav: fondo al hacer scroll ---------- */
+  /* ---------- Scroll: un solo listener, agrupado en rAF ----------
+     Antes habia dos listeners que leian scrollY/offsetTop y escribian clases
+     en el mismo tick; Lighthouse lo marcaba como forced reflow (~220 ms).
+     Ahora se lee una vez por frame y las medidas de seccion van en cache. */
   const nav = $("#nav");
-  const onScroll = () => nav && nav.classList.toggle("scrolled", window.scrollY > 20);
-  onScroll();
-  window.addEventListener("scroll", onScroll, { passive: true });
+  const onScrollFns = [];
+  let ticking = false;
+  const runScroll = () => {
+    const y = window.scrollY;
+    onScrollFns.forEach((fn) => fn(y));
+    ticking = false;
+  };
+  window.addEventListener(
+    "scroll",
+    () => {
+      if (ticking) return;
+      ticking = true;
+      requestAnimationFrame(runScroll);
+    },
+    { passive: true }
+  );
+
+  if (nav) onScrollFns.push((y) => nav.classList.toggle("scrolled", y > 20));
 
   /* ---------- Menú móvil ---------- */
   const burger = $("#burger");
@@ -35,15 +53,24 @@
   const spy = $$("#navLinks a");
   const sections = $$("main section[id]");
   if (spy.length && sections.length) {
-    const sync = () => {
+    /* offsetTop se mide una vez (y al redimensionar), no en cada scroll */
+    let marks = [];
+    const measure = () => {
+      marks = sections.map((s) => ({ id: s.id, top: s.offsetTop - 160 }));
+    };
+    let last = null;
+    const sync = (y) => {
       let current = "top";
-      sections.forEach((s) => {
-        if (window.scrollY >= s.offsetTop - 160) current = s.id;
-      });
+      for (let i = 0; i < marks.length; i++) if (y >= marks[i].top) current = marks[i].id;
+      if (current === last) return;
+      last = current;
       spy.forEach((a) => a.classList.toggle("active", a.getAttribute("href") === "#" + current));
     };
-    sync();
-    window.addEventListener("scroll", sync, { passive: true });
+    measure();
+    sync(window.scrollY);
+    onScrollFns.push(sync);
+    window.addEventListener("resize", () => { measure(); last = null; sync(window.scrollY); }, { passive: true });
+    window.addEventListener("load", () => { measure(); last = null; sync(window.scrollY); });
   }
 
   /* ---------- Marquee: duplicar para bucle continuo ---------- */
@@ -87,9 +114,13 @@
        Revelamos de golpe lo que ya está en pantalla o por encima. */
     const revealPasados = () => {
       const limite = window.innerHeight * 0.94;
-      reveals.forEach((el) => {
-        if (el.classList.contains("in")) return;
-        if (el.getBoundingClientRect().top < limite) {
+      /* Primero se lee todo, despues se escribe: intercalar lecturas de
+         getBoundingClientRect con cambios de clase forzaba un reflow por
+         elemento (~66 ms en el audit). */
+      const pendientes = reveals.filter((el) => !el.classList.contains("in"));
+      const tops = pendientes.map((el) => el.getBoundingClientRect().top);
+      pendientes.forEach((el, i) => {
+        if (tops[i] < limite) {
           el.style.transitionDelay = "0ms";
           el.classList.add("in");
           io.unobserve(el);
