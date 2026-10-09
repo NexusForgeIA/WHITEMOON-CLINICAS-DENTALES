@@ -100,6 +100,8 @@ h1,h2,h3,h4{font-family:var(--display);color:var(--ink);line-height:1.08;letter-
 </style>
 <link rel="preload" as="style" href="assets/css/style.css" onload="this.onload=null;this.rel='stylesheet'">
 <noscript><link rel="stylesheet" href="assets/css/style.css"></noscript>
+<link rel="preload" as="style" href="assets/css/holo.css" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="assets/css/holo.css"></noscript>
 
 <!-- ===================== JSON-LD ===================== -->
 <script type="application/ld+json">
@@ -257,6 +259,23 @@ h1,h2,h3,h4{font-family:var(--display);color:var(--ink);line-height:1.08;letter-
     </video>
     <div class="scrim"></div>
     <div class="dots"></div>
+  </div>
+  <div class="hl" aria-hidden="true">
+    <div class="hl-arco hl-arco--a"></div><div class="hl-arco hl-arco--b"></div>
+    <div class="hl-suelo"></div>
+    <div class="hl-mini"></div>
+    <div class="hl-graf">
+      <div class="hl-don"></div>
+      <div class="hl-bars"><i></i><i></i><i></i><i></i><i></i></div>
+      <div class="hl-linea"><svg viewBox="0 0 200 46" preserveAspectRatio="none"><path pathLength="1" d="M2 40 L45 30 L90 34 L140 14 L196 6"/><circle cx="45" cy="30" r="3"/><circle cx="90" cy="34" r="3"/><circle cx="140" cy="14" r="3"/><circle cx="196" cy="6" r="3"/></svg></div>
+    </div>
+    <div class="hl-tel"><div class="hl-pant">
+      <div class="hl-m hl-m--u"><i></i><i></i></div>
+      <div class="hl-m"><i></i><i></i></div>
+      <div class="hl-m hl-m--t"><b></b></div>
+      <div class="hl-cita"><i></i></div>
+    </div></div>
+    <div class="hl-nota"></div>
   </div>
   <div class="wrap hero-content">
     <h1>Tu clínica dental<span class="accent">de confianza.</span></h1>
@@ -742,6 +761,7 @@ h1,h2,h3,h4{font-family:var(--display);color:var(--ink);line-height:1.08;letter-
 </section>
 
 <script src="assets/js/main.js" defer></script>
+<script src="assets/js/holo.js" defer></script>
 <script src="assets/js/watio.js" defer></script>
 </body>
 </html>
