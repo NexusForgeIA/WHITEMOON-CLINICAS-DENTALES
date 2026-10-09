@@ -2,7 +2,7 @@
    Solo decorativa (aria-hidden). Animaciones solo con transform/opacity/background-position
    (sin top/left => CLS 0). Se pausan fuera de pantalla y con prefers-reduced-motion. */
 .hl{display:none}
-@media (min-width:1040px){
+@media (min-width:980px){
 .hl{display:block;position:absolute;z-index:3;right:max(2vw,calc((100vw - var(--maxw))/2 - 8px));top:50%;width:clamp(380px,36vw,540px);height:560px;margin-top:-250px;pointer-events:none;contain:layout}
 .hl *{animation-play-state:paused}
 .hl.hl-on *{animation-play-state:running}
@@ -70,16 +70,6 @@
 .hl-nota::before{content:"Ilustración, no datos reales"}
 }
 
-/* sección Cómo trabajamos: hilo de luz entre pasos */
-@media (min-width:901px){
-.proc-grid{position:relative}
-.proc-grid::before{content:"";position:absolute;left:24px;right:24px;top:57px;height:2px;z-index:0;border-radius:2px;pointer-events:none;
-  background:linear-gradient(90deg,transparent 0,rgba(124,196,232,.0) 30%,rgba(26,111,156,.55) 48%,rgba(127,216,191,.9) 52%,rgba(124,196,232,0) 70%,transparent 100%) 0 0/60% 100% no-repeat,linear-gradient(90deg,rgba(26,111,156,.16),rgba(127,216,191,.2));
-  box-shadow:0 0 14px rgba(124,196,232,.45);animation:hl-hilo 6s linear infinite;animation-play-state:paused}
-.proc-grid.hl-on::before{animation-play-state:running}
-.proc-grid .proc-c{z-index:1}
-}
-
 @keyframes hl-flota{0%,100%{transform:translateY(0)}50%{transform:translateY(-12px)}}
 @keyframes hl-flota2{0%,100%{transform:rotate(-3deg) translateY(0)}50%{transform:rotate(-3deg) translateY(10px)}}
 @keyframes hl-gira{to{transform:rotate(360deg)}}
@@ -127,7 +117,7 @@
 
 /* ===== Escenas holográficas por bloque (mismo lenguaje que el hero) ===== */
 .hs{display:none}
-@media (min-width:1100px){
+@media (min-width:960px){
 .sec .wrap{position:relative}
 .hs{display:block;position:absolute;right:32px;top:-4px;width:400px;height:250px;pointer-events:none;z-index:0}
 .hs *{animation-play-state:paused}.hs.hl-on *{animation-play-state:running}
@@ -220,7 +210,7 @@
 
 /* La clínica: paneles flotando junto a la foto */
 .hs-fo{display:none}
-@media (min-width:1100px){
+@media (min-width:960px){
 .hs-fo{display:block;position:absolute;z-index:3;pointer-events:none}
 .hs-fo *{animation-play-state:paused}.about-media.hl-on .hs-fo *,.about-media.hl-on .hs-fo{animation-play-state:running}
 .hs-fo--a{right:-36px;bottom:96px;width:156px;height:104px;--r:3deg;transform:rotate(3deg)}
@@ -234,3 +224,59 @@
 .hl-map.hl-on .hl-orbita{animation-play-state:running}
 .hl-map .hs-chip{right:16px;top:14px;padding:9px 13px 9px 26px;font-size:.6rem}
 @media (prefers-reduced-motion:reduce){.hl-map .hl-orbita,.hs-fo,.hs-fo *{animation:none!important}}
+
+/* Escenas de cabecera en pantallas medias (zoom de Windows): se reducen */
+@media (min-width:960px) and (max-width:1239px){
+.hs{transform:scale(.8);transform-origin:100% 0}.hs--c{transform:scale(.7)}
+.hs--faq{transform:none}.hs--faq .hs-chat{width:164px;height:126px;padding-top:36px}
+.hl{transform:scale(.88);transform-origin:100% 50%}
+}
+
+/* ===== Holografía DENTRO de cada tarjeta (sin nada entre bloques) ===== */
+.why-c,.area-c{position:relative}
+.proc-c .n{top:auto;bottom:14px}
+.hc{position:absolute;right:14px;top:14px;width:122px;height:76px;border-radius:14px;overflow:hidden;pointer-events:none;
+  border:1px solid rgba(26,111,156,.3);background:radial-gradient(circle,rgba(26,111,156,.22) 1px,transparent 1.6px) 0 0/12px 12px,linear-gradient(150deg,rgba(255,255,255,.96),rgba(232,243,250,.8));
+  box-shadow:0 14px 30px -16px rgba(26,111,156,.55),0 0 26px rgba(124,196,232,.4),inset 0 0 16px rgba(124,196,232,.24);
+  animation:hc-f 6s ease-in-out infinite;animation-play-state:paused}
+.hc.hl-on,.hc.hl-on *,.hc.hl-on::after{animation-play-state:running!important}
+.hc *,.hc::after{animation-play-state:paused}
+.hc::after{content:"";position:absolute;top:0;bottom:0;left:0;width:38%;background:linear-gradient(90deg,transparent,rgba(124,196,232,.45),transparent);transform:translateX(-120%);animation:hc-s 4.6s ease-in-out infinite}
+.area-c .hc,.why-c .hc{right:16px;top:18px}.area-c .hc{width:132px;height:82px;top:20px;right:18px}
+@keyframes hc-f{0%,100%{transform:translateY(0)}50%{transform:translateY(-4px)}}
+@keyframes hc-s{0%{transform:translateX(-120%)}60%,100%{transform:translateX(320%)}}
+.proc-c:nth-child(2n) .hc,.why-c:nth-child(2n) .hc{border-color:rgba(15,122,97,.32);box-shadow:0 14px 30px -16px rgba(15,122,97,.5),0 0 26px rgba(127,216,191,.42),inset 0 0 16px rgba(127,216,191,.24)}
+/* calendario */
+.hc-cal i{position:absolute;left:50%;top:50%;width:18px;height:18px;margin:-9px 0 0 -9px;border-radius:50%;background:var(--green-lt);border:2px solid var(--green);box-shadow:0 0 16px rgba(15,122,97,.7);animation:hl-pulso 3s ease-in-out infinite}
+/* barras */
+.hc-bars{position:absolute;left:12px;right:12px;bottom:10px;top:12px;display:flex;align-items:flex-end;gap:6px}
+.hc-bars i{flex:1;border-radius:3px 3px 0 0;background:linear-gradient(180deg,var(--green-lt),var(--blue-lt));border:1px solid rgba(26,111,156,.2);border-bottom:0}
+.hc-bars i:nth-child(1){height:36%}.hc-bars i:nth-child(2){height:62%}.hc-bars i:nth-child(3){height:48%}.hc-bars i:nth-child(4){height:84%}.hc-bars i:nth-child(5){height:100%}
+/* hoja con sello */
+.hc-doc i{position:absolute;left:12px;height:5px;border-radius:3px;background:rgba(26,111,156,.28)}
+.hc-doc i:nth-child(1){top:12px;width:56%}.hc-doc i:nth-child(2){top:23px;width:42%}.hc-doc i:nth-child(3){top:34px;width:50%}
+.hc-doc u{position:absolute;left:12px;bottom:9px;width:34px;height:5px;border-radius:3px;background:linear-gradient(90deg,var(--green-lt),var(--blue-lt))}
+.hc-doc b{position:absolute;right:10px;bottom:8px;width:24px;height:24px;border-radius:50%;border:2px solid var(--green);box-shadow:0 0 14px rgba(127,216,191,.8);animation:hl-pulso 3.4s ease-in-out infinite}
+.hc-doc b::before{content:"";position:absolute;left:7px;top:3px;width:6px;height:11px;border:solid var(--green);border-width:0 2px 2px 0;transform:rotate(40deg)}
+/* anillo / sello / escudo / ecg */
+.hc-ring i,.hc-seal i{position:absolute;left:50%;top:50%;width:44px;height:44px;margin:-22px 0 0 -22px;border-radius:50%;background:conic-gradient(var(--green) 0 74%,rgba(26,111,156,.16) 0);-webkit-mask:radial-gradient(circle,transparent 15px,#000 16px);mask:radial-gradient(circle,transparent 15px,#000 16px);animation:hl-gira 12s linear infinite}
+.hc-ring b,.hc-seal u{position:absolute;left:50%;top:50%;width:12px;height:12px;margin:-6px 0 0 -6px;border-radius:50%;background:radial-gradient(circle,#fff,var(--blue-lt) 75%);box-shadow:0 0 14px rgba(124,196,232,.95)}
+.hc-seal b{position:absolute;left:50%;top:50%;width:56px;height:56px;margin:-28px 0 0 -28px;border-radius:50%;border:1px dashed rgba(26,111,156,.45);animation:hl-gira 18s linear infinite reverse}
+.hc-shield i{position:absolute;left:50%;top:50%;width:34px;height:42px;margin:-21px 0 0 -17px;background:linear-gradient(160deg,var(--green-lt),var(--blue-lt));clip-path:polygon(50% 0,100% 16%,100% 56%,50% 100%,0 56%,0 16%);filter:drop-shadow(0 0 8px rgba(15,122,97,.6));animation:hl-pulso 3.6s ease-in-out infinite}
+.hc-ecg svg{position:absolute;inset:6px 0;width:100%;height:calc(100% - 12px);overflow:visible}
+.hc-ecg path{fill:none;stroke:var(--green);stroke-width:2;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:1;stroke-dashoffset:1;animation:hl-trazo 4.6s ease-in-out infinite;filter:drop-shadow(0 0 5px rgba(15,122,97,.55))}
+/* órbitas / arco / familia */
+.hc-orb i,.hc-orb b,.hc-orb u,.hc-fam i,.hc-fam b,.hc-fam u{position:absolute;left:50%;top:50%;border-radius:50%}
+.hc-orb i{width:56px;height:56px;margin:-28px 0 0 -28px;border:1px solid rgba(26,111,156,.34);animation:hl-gira 14s linear infinite}
+.hc-orb i::after{content:"";position:absolute;left:50%;top:-5px;width:9px;height:9px;margin-left:-4.5px;border-radius:50%;background:var(--blue-lt);box-shadow:0 0 0 2px #fff,0 0 12px rgba(26,111,156,.7)}
+.hc-orb b{width:34px;height:34px;margin:-17px 0 0 -17px;border:1px dashed rgba(15,122,97,.4);animation:hl-gira 20s linear infinite reverse}
+.hc-orb u{width:12px;height:12px;margin:-6px 0 0 -6px;background:radial-gradient(circle,#fff,var(--blue-lt) 75%);box-shadow:0 0 16px rgba(124,196,232,.95)}
+.hc-arco i{position:absolute;left:50%;bottom:10px;width:84px;height:42px;margin-left:-42px;border:2px dotted rgba(26,111,156,.55);border-bottom:0;border-radius:84px 84px 0 0}
+.hc-arco b{position:absolute;left:50%;bottom:6px;width:70px;height:6px;margin-left:-35px;border-radius:3px;background:linear-gradient(90deg,var(--green-lt),var(--blue-lt));box-shadow:0 0 12px rgba(124,196,232,.7);animation:hl-pulso 3.6s ease-in-out infinite}
+.hc-fam i{width:44px;height:44px;margin:-22px 0 0 -22px;border:1px solid rgba(26,111,156,.3);animation:hl-gira 16s linear infinite}
+.hc-fam i::before,.hc-fam i::after{content:"";position:absolute;width:10px;height:10px;border-radius:50%}
+.hc-fam i::before{left:50%;top:-5px;margin-left:-5px;background:var(--blue-lt);box-shadow:0 0 0 2px #fff,0 0 12px rgba(26,111,156,.7)}
+.hc-fam i::after{left:50%;bottom:-5px;margin-left:-5px;background:var(--green-lt);box-shadow:0 0 0 2px #fff,0 0 12px rgba(15,122,97,.7)}
+.hc-fam b{width:66px;height:66px;margin:-33px 0 0 -33px;border:1px dashed rgba(15,122,97,.4);animation:hl-gira 22s linear infinite reverse}
+.hc-fam u{width:12px;height:12px;margin:-6px 0 0 -6px;background:radial-gradient(circle,#fff,var(--green-lt) 75%);box-shadow:0 0 16px rgba(127,216,191,.95)}
+@media (prefers-reduced-motion:reduce){.hc,.hc *,.hc::after{animation:none!important}.hc-ecg path{stroke-dashoffset:0!important}}
