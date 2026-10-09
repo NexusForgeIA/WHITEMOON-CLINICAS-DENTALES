@@ -88,3 +88,92 @@
 @keyframes hl-parp{0%,100%{opacity:.4}50%{opacity:1}}
 @keyframes hl-hilo{from{background-position:-60% 0,0 0}to{background-position:160% 0,0 0}}
 @media (prefers-reduced-motion:reduce){.hl *,.proc-grid::before{animation:none!important}.hl-bars i{transform:none!important;transition:none!important}.hl-linea path{stroke-dashoffset:0!important;transition:none!important}}
+
+/* ======================= HOLOGRAFÍA EN EL RESTO DE BLOQUES ======================= */
+/* Hover de tarjetas: borde y resplandor de luz */
+.svc-card:hover,.area-c:hover,.why-c:hover,.proc-c:hover,.precio-card:hover{box-shadow:0 0 0 1px rgba(124,196,232,.55),0 22px 46px -22px rgba(26,111,156,.5),0 0 34px rgba(124,196,232,.3)}
+.svc-media::before{content:"";position:absolute;inset:0;z-index:1;pointer-events:none;background:linear-gradient(105deg,transparent 35%,rgba(255,255,255,.55) 50%,transparent 65%);transform:translateX(-120%);transition:transform .9s cubic-bezier(.16,1,.3,1)}
+.svc-card:hover .svc-media::before{transform:translateX(120%)}
+
+/* Foto de La clínica: marco HUD + barrido de escáner */
+.framed .hl-sc{position:absolute;inset:0;z-index:2;pointer-events:none}
+.hl-sc i{position:absolute;width:26px;height:26px;border:2px solid rgba(255,255,255,.92);filter:drop-shadow(0 0 6px rgba(124,196,232,.9))}
+.hl-sc i:nth-child(1){left:16px;top:16px;border-right:0;border-bottom:0;border-radius:8px 0 0 0}
+.hl-sc i:nth-child(2){right:16px;top:16px;border-left:0;border-bottom:0;border-radius:0 8px 0 0}
+.hl-sc i:nth-child(3){left:16px;bottom:16px;border-right:0;border-top:0;border-radius:0 0 0 8px}
+.hl-sc i:nth-child(4){right:16px;bottom:16px;border-left:0;border-top:0;border-radius:0 0 8px 0}
+.hl-sc b{position:absolute;left:0;right:0;top:0;height:34%;background:linear-gradient(180deg,transparent,rgba(124,196,232,.0) 20%,rgba(124,196,232,.4) 92%,rgba(255,255,255,.85) 100%);border-bottom:1px solid rgba(255,255,255,.9);transform:translateY(-100%);animation:hl-barre 5.2s ease-in-out infinite;animation-play-state:paused}
+.hl-sc em{position:absolute;left:18px;bottom:52px;padding:7px 12px;border-radius:100px;font:700 .64rem/1 var(--display);font-style:normal;letter-spacing:.07em;text-transform:uppercase;color:var(--blue);background:rgba(255,255,255,.86);backdrop-filter:blur(6px);border:1px solid rgba(124,196,232,.7);box-shadow:0 0 22px rgba(124,196,232,.55);animation:hl-flota 6s ease-in-out infinite;animation-play-state:paused}
+.hl-sc em::before{content:"Imagen digital"}
+.framed.hl-on .hl-sc b,.framed.hl-on .hl-sc em{animation-play-state:running}
+
+/* Hilo de luz al pie de la web */
+.foot{position:relative}
+.foot::before{content:"";position:absolute;left:0;right:0;top:-1px;height:2px;background:linear-gradient(90deg,transparent 0,rgba(124,196,232,.95) 50%,rgba(127,216,191,.9) 58%,transparent 100%) 0 0/40% 100% no-repeat;box-shadow:0 0 14px rgba(124,196,232,.7);animation:hl-hilo2 7s linear infinite;animation-play-state:paused}
+.foot.hl-on::before{animation-play-state:running}
+@keyframes hl-hilo2{from{background-position:-40% 0}to{background-position:140% 0}}
+
+/* Mapa holográfico de Contacto (en flujo, todas las pantallas) */
+.hl-map{position:relative;margin-top:30px;height:150px;border-radius:18px;overflow:hidden;border:1px solid rgba(26,111,156,.26);
+  background:radial-gradient(circle at 62% 52%,rgba(124,196,232,.32),transparent 60%),repeating-linear-gradient(0deg,rgba(26,111,156,.12) 0 1px,transparent 1px 22px),repeating-linear-gradient(90deg,rgba(26,111,156,.12) 0 1px,transparent 1px 22px),linear-gradient(160deg,#fff,#e8f3fa);
+  box-shadow:0 20px 44px -24px rgba(26,111,156,.5),inset 0 0 30px rgba(124,196,232,.22)}
+.hl-map::before{content:"Madrid Oeste";position:absolute;left:16px;top:14px;font:700 .64rem/1 var(--display);letter-spacing:.08em;text-transform:uppercase;color:var(--blue)}
+.hl-map::after{content:"Ilustración, no es un mapa real";position:absolute;left:16px;bottom:12px;font:600 .58rem/1 var(--display);letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
+.hl-pin{position:absolute;left:62%;top:52%;width:14px;height:14px;margin:-7px 0 0 -7px;border-radius:50%;background:var(--green);box-shadow:0 0 0 4px rgba(255,255,255,.9),0 0 18px rgba(15,122,97,.7)}
+.hl-pin::before,.hl-pin::after{content:"";position:absolute;inset:-6px;border-radius:50%;border:1.5px solid rgba(15,122,97,.55);animation:hl-radar 3s ease-out infinite;animation-play-state:paused}
+.hl-pin::after{animation-delay:1.5s}
+.hl-map.hl-on .hl-pin::before,.hl-map.hl-on .hl-pin::after{animation-play-state:running}
+@keyframes hl-radar{0%{transform:scale(1);opacity:.9}100%{transform:scale(5.2);opacity:0}}
+
+/* Piezas flotantes junto a las cabeceras (solo escritorio ancho) */
+.hl-d{display:none}
+@media (min-width:1100px){
+.sec .wrap{position:relative}
+.hl-d{display:block;position:absolute;right:32px;top:6px;width:290px;height:210px;pointer-events:none}
+.hl-d *{animation-play-state:paused}.hl-d.hl-on *{animation-play-state:running}
+.hl-d--faq{left:32px;right:32px;width:auto;height:150px}
+
+/* Servicios: diente wireframe + anillos */
+.hl-diente{position:absolute;left:50%;top:50%;width:112px;height:130px;margin:-65px 0 0 -56px;animation:hl-flota 7s ease-in-out infinite}
+.hl-diente svg{width:100%;height:100%;overflow:visible;filter:drop-shadow(0 0 12px rgba(124,196,232,.75))}
+.hl-diente path{fill:rgba(124,196,232,.18);stroke:var(--blue);stroke-width:1.6;stroke-linejoin:round}
+.hl-diente path+path{fill:none;stroke:rgba(15,122,97,.55);stroke-dasharray:3 5;stroke-width:1.2}
+.hl-anillo{position:absolute;left:50%;top:50%;border-radius:50%;border:1px solid rgba(26,111,156,.22)}
+.hl-anillo--a{width:200px;height:200px;margin:-100px 0 0 -100px;border-color:rgba(124,196,232,.7) transparent transparent rgba(127,216,191,.6);animation:hl-gira 16s linear infinite}
+.hl-anillo--b{width:156px;height:156px;margin:-78px 0 0 -78px;border-style:dashed;border-color:rgba(26,111,156,.34);animation:hl-gira 24s linear infinite reverse}
+
+/* Por qué nosotros: pulso */
+.hl-pulso{position:absolute;right:0;top:20px;width:280px;height:128px;border-radius:18px;border:1px solid rgba(26,111,156,.3);background:linear-gradient(150deg,rgba(255,255,255,.94),rgba(227,246,240,.74));box-shadow:0 22px 46px -22px rgba(26,111,156,.5),0 0 40px rgba(127,216,191,.36),inset 0 0 20px rgba(127,216,191,.2);animation:hl-flota 8s ease-in-out infinite}
+.hl-pulso::before{content:"Protocolo";position:absolute;left:16px;top:13px;font:700 .64rem/1 var(--display);letter-spacing:.08em;text-transform:uppercase;color:var(--green-deep)}
+.hl-pulso svg{position:absolute;left:12px;right:12px;bottom:12px;width:calc(100% - 24px);height:74px;overflow:visible}
+.hl-pulso path{fill:none;stroke:var(--green);stroke-width:2;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:1;stroke-dashoffset:1;animation:hl-trazo 4.6s ease-in-out infinite;filter:drop-shadow(0 0 5px rgba(15,122,97,.55))}
+@keyframes hl-trazo{0%{stroke-dashoffset:1}55%,85%{stroke-dashoffset:0}100%{stroke-dashoffset:-1}}
+
+/* Especialidades: órbitas con 3 nodos */
+.hl-orb{position:absolute;left:50%;top:50%;border-radius:50%;border:1px solid rgba(26,111,156,.26)}
+.hl-orb--1{width:196px;height:196px;margin:-98px 0 0 -98px;animation:hl-gira 20s linear infinite}
+.hl-orb--2{width:136px;height:136px;margin:-68px 0 0 -68px;border-color:rgba(15,122,97,.32);animation:hl-gira 14s linear infinite reverse}
+.hl-orb--3{width:78px;height:78px;margin:-39px 0 0 -39px;border-style:dashed;animation:hl-gira 28s linear infinite}
+.hl-orb i{position:absolute;left:50%;top:-6px;width:12px;height:12px;margin-left:-6px;border-radius:50%;background:var(--blue-lt);box-shadow:0 0 0 3px #fff,0 0 16px rgba(26,111,156,.7)}
+.hl-orb--2 i{background:var(--green-lt);box-shadow:0 0 0 3px #fff,0 0 16px rgba(15,122,97,.7)}
+.hl-orb--3 i{top:auto;bottom:-6px}
+.hl-nucleo{position:absolute;left:50%;top:50%;width:26px;height:26px;margin:-13px 0 0 -13px;border-radius:50%;background:radial-gradient(circle,#fff,var(--blue-lt) 70%);box-shadow:0 0 30px rgba(124,196,232,.95);animation:hl-pulso 3.6s ease-in-out infinite}
+
+/* Precios: hoja de presupuesto */
+.hl-doc{position:absolute;right:20px;top:4px;width:208px;height:198px;border-radius:16px;padding:46px 18px 16px;transform:rotate(3deg);border:1px solid rgba(26,111,156,.3);background:linear-gradient(155deg,rgba(255,255,255,.95),rgba(232,243,250,.76));box-shadow:0 24px 50px -22px rgba(26,111,156,.55),0 0 40px rgba(124,196,232,.34),inset 0 0 20px rgba(124,196,232,.2);animation:hl-flota3 7.4s ease-in-out infinite}
+@keyframes hl-flota3{0%,100%{transform:rotate(3deg) translateY(0)}50%{transform:rotate(3deg) translateY(-11px)}}
+.hl-doc::before{content:"Presupuesto cerrado";position:absolute;left:18px;top:16px;font:700 .64rem/1 var(--display);letter-spacing:.07em;text-transform:uppercase;color:var(--blue)}
+.hl-doc i{display:block;height:6px;border-radius:3px;background:rgba(26,111,156,.22);margin-bottom:11px}
+.hl-doc i:nth-child(2){width:78%}.hl-doc i:nth-child(3){width:90%}.hl-doc i:nth-child(4){width:56%}
+.hl-doc b{position:absolute;right:18px;bottom:16px;width:44px;height:44px;border-radius:50%;border:2px solid var(--green);box-shadow:0 0 22px rgba(127,216,191,.8),inset 0 0 12px rgba(127,216,191,.5);animation:hl-pulso 3.4s ease-in-out infinite}
+.hl-doc b::before{content:"";position:absolute;left:13px;top:9px;width:10px;height:18px;border:solid var(--green);border-width:0 3px 3px 0;transform:rotate(40deg)}
+.hl-bar{position:absolute;left:18px;bottom:24px;width:80px;height:6px;border-radius:3px;background:linear-gradient(90deg,var(--green-lt),var(--blue-lt))}
+
+/* FAQ: burbujas flotantes a ambos lados del título */
+.hl-q{position:absolute;display:grid;place-items:center;width:62px;height:62px;border-radius:20px 20px 20px 6px;border:1px solid rgba(26,111,156,.3);background:linear-gradient(145deg,rgba(255,255,255,.95),rgba(232,243,250,.76));box-shadow:0 18px 36px -18px rgba(26,111,156,.55),0 0 30px rgba(124,196,232,.4);font:800 1.6rem/1 var(--display);color:var(--blue);animation:hl-flota 6.6s ease-in-out infinite}
+.hl-q::before{content:"?"}
+.hl-q--1{left:2%;top:10px}.hl-q--2{left:9%;top:76px;width:44px;height:44px;border-radius:14px 14px 14px 5px;font-size:1.1rem;animation-delay:-2s}
+.hl-q--3{right:2%;top:24px;border-radius:20px 20px 6px 20px;animation-delay:-3.4s;color:var(--green);border-color:rgba(15,122,97,.32)}
+.hl-q--4{right:10%;top:92px;width:40px;height:40px;border-radius:13px 13px 5px 13px;font-size:1rem;animation-delay:-1s;color:var(--green);border-color:rgba(15,122,97,.32)}
+}
+@media (prefers-reduced-motion:reduce){.hl-sc b,.hl-sc em,.foot::before,.hl-pin::before,.hl-pin::after,.hl-d *{animation:none!important}.hl-pulso path{stroke-dashoffset:0!important}.svc-media::before{transition:none}}
